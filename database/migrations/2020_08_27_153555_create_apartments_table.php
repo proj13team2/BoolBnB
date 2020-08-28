@@ -25,7 +25,6 @@ class CreateApartmentsTable extends Migration
             $table->float('address_lat', 10, 7);
             $table->float('address_lng', 10, 7);
             $table->string('slug')->unique();
-
             $table->timestamps();
         });
     }

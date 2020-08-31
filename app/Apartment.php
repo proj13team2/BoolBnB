@@ -25,4 +25,6 @@ class Apartment extends Model
     public function sponsors() {
         return $this->belongsToMany('App\Sponsor');
     }
+
+    protected $fillable = ['user_id','title', 'address', 'price', 'number_of_rooms', 'number_of_bathrooms', 'square_meters', 'src', 'slug'];
 }

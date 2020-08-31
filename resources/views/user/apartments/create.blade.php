@@ -7,7 +7,7 @@
                 <div class="d-flex align-items-center">
                     <h1 class="mt-3 mb-3">New apartment</h1>
                 </div>
-                {{-- @if ($errors->any())
+                @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -15,7 +15,7 @@
                             @endforeach
                         </ul>
                     </div>
-                @endif --}}
+                @endif
                 <form action="{{ route('user.apartments.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
@@ -42,6 +42,14 @@
                     <div class="form-group">
                         <label for="square_meters">square_meters</label>
                         <textarea type="text" name="square_meters" class="form-control" id="square_meters" placeholder="square_meters">{{ old('square_meters') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address_lng">address_lng</label>
+                        <textarea type="text" name="address_lng" class="form-control" id="address_lng" placeholder="address_lng">{{ old('address_lng') }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="address_lat">address_lat</label>
+                        <textarea type="text" name="address_lat" class="form-control" id="address_lat" placeholder="address_lat">{{ old('address_lat') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="immagine">Immagine di copertina</label>

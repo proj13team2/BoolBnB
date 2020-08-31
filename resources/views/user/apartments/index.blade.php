@@ -29,13 +29,13 @@
                                 <td>{{ $apartment->price }}</td>
                                 <td>
                                     <a class="btn btn-small btn-info"
-                                    {{-- href="{{ route('user.apartments.show', ['post' => $post->id]) }}"> --}}
+                                    href="{{ route('user.apartments.show', ['apartment' => $apartment->id]) }}">
                                         Dettaglio
                                     </a>
-                                    {{-- <a class="btn btn-small btn-warning" href="{{ route('admin.posts.edit', ['post' => $post->id]) }}"> --}}
+                                    <a class="btn btn-small btn-warning"  href="{{ route('user.apartments.edit', ['apartment' => $apartment->id]) }}">
                                         Modifica
                                     </a>
-                                    {{-- <form class="d-inline" action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="post"> --}}
+                                    <form class="d-inline" action="{{ route('user.apartments.destroy', ['apartment' => $apartment->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-small btn-danger" value="Elimina">

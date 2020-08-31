@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Apartment;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApartmentController extends Controller
 {
@@ -39,6 +40,16 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+           'title' => 'required|max:255|unique:apartments,title',
+           'address' => 'required|max:255',
+           'price' => 'required|numeric',
+           'number_of_rooms' => 'required|numeric|between:1,10',
+           'number_of_bathrooms' => 'required|numeric|between:1,10',
+           'square_meters' => 'required|numeric|min:1',
+           'src' => 'image|max:1024'
+        ]);
+
         $dati = $request->all();
         $slug = Str::of($dati['title'])->slug('-');
         $slug_originale = $slug;
@@ -51,6 +62,12 @@ class ApartmentController extends Controller
             $slug = $slug_originale . '-' . $contatore;
             $apartment_trovato = Apartment::where('slug', $slug)->first();
         }
+
+        if($dati['src']) {
+
+           $img_path = Storage::put('uploads', $dati['src']);
+           $dati['src'] = $img_path;
+       }
 
         $dati['slug'] = $slug;
         $dati['user_id'] = Auth::id();
@@ -69,7 +86,12 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $apartment = Apartment::find($id);
+        if($apartment) {
+            return view('user.apartments.show', compact('apartment'));
+        } else {
+            return abort('404');
+        }
     }
 
     /**
@@ -80,7 +102,8 @@ class ApartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $apartment = Apartment::find($id);
+        return view('user.apartments.edit', compact('apartment'));
     }
 
     /**
@@ -92,8 +115,42 @@ class ApartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+           'title' => 'required|max:255|unique:apartments,title,'.$id,
+           'address' => 'required|max:255',
+           'price' => 'required|numeric',
+           'number_of_rooms' => 'required|numeric|between:1,10',
+           'number_of_bathrooms' => 'required|numeric|between:1,10',
+           'square_meters' => 'required|numeric|min:1',
+           'src' => 'image|max:1024'
+        ]);
+
+        $dati = $request->all();
+        $slug = Str::of($dati['title'])->slug('-');
+        $slug_originale = $slug;
+
+        $apartment_trovato = Apartment::where('slug', $slug)->first();
+        $contatore = 0;
+        while($apartment_trovato) {
+            $contatore++;
+
+            $slug = $slug_originale . '-' . $contatore;
+            $apartment_trovato = Apartment::where('slug', $slug)->first();
+        }
+
+        if($dati['src']) {
+
+           $img_path = Storage::put('uploads', $dati['src']);
+           $dati['src'] = $img_path;
+        }
+
+        $dati['slug'] = $slug;
+        $dati['user_id'] = Auth::id();
+
+        $new_apartment = Apartment::find($id);
+        $new_apartment->update($dati);
+
+        return redirect()->route('user.apartments.index');    }
 
     /**
      * Remove the specified resource from storage.
@@ -103,6 +160,12 @@ class ApartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apartment = Apartment::find($id);
+        if($apartment) {
+            $apartment->delete();
+            return redirect()->route('user.apartments.index');
+        } else {
+            return abort('404');
+        }
     }
 }

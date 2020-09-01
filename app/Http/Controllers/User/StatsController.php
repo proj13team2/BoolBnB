@@ -18,13 +18,13 @@ class StatsController extends Controller
      */
     public function index(Apartment $apartment)
     {
+
         $visualizations = $apartment->visualizations;
-        // $apartment = Apartment::find($id);{
-            return view('user.apartments.stats', compact('visualizations'));
-        // $user_apartment = Apartment::all();
-        // $visualizations = Visualization::all();
-        // $apartment_stats = DB::table('')
-        // $visualizations = DB::table('visualizations')->where('apartment_id', '=', $user_apartment);
+        $data = [
+            'apartment' => $apartment,
+            'visualizations' => $visualizations
+        ];
+        return view('user.apartments.stats', $data);
 
     }
 

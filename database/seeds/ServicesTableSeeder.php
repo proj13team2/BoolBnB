@@ -13,11 +13,11 @@ class ServicesTableSeeder extends Seeder
     {
         $services = [
             ['type'=>'Wifi'],
-            ['type'=>'posto macchina'],
-            ['type'=>'piscina'],
-            ['type'=>'portineria'],
-            ['type'=>'sauna'],
-            ['type'=>'vista mare'],
+            ['type'=>'Posto macchina'],
+            ['type'=>'Piscina'],
+            ['type'=>'Portineria'],
+            ['type'=>'Sauna'],
+            ['type'=>'Vista mare'],
         ];
         
         foreach ($services as $service) {

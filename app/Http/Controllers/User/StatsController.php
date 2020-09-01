@@ -16,19 +16,11 @@ class StatsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function index(Apartment $apartment)
     {
-        $apartment = Apartment::find($id);
-        if($apartment) {
-            $visualizations = $apartment->visualizations;
-            $data = [
-                'apartment' => $apartment,
-                'visualizations' => $visualizations
-            ];
-            return view('user.apartments.stats', $data);
-        } else {
-            return abort('404');
-        }
+        $visualizations = $apartment->visualizations;
+        // $apartment = Apartment::find($id);{
+            return view('user.apartments.stats', compact('visualizations'));
         // $user_apartment = Apartment::all();
         // $visualizations = Visualization::all();
         // $apartment_stats = DB::table('')

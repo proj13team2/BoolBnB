@@ -24,6 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');
-    Route::get('/stats', 'StatsController@show')->name('apartments.stats');
+    Route::get('apartment/stats/{apartment}', 'StatsController@index')->name('apartments.stats');
     Route::resource('/apartments', 'ApartmentController');
 });

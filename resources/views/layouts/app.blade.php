@@ -58,7 +58,7 @@
                                     <a class="dropdown-item" href="{{ route('user.apartments.index') }}">
                                         {{ __('Dashboard') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}">
+                                    <a class="dropdown-item" href="{{ route('user.apartments.messages') }}">
                                         {{ __('Messages') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

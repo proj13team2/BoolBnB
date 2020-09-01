@@ -36,6 +36,10 @@
                         <textarea type="text" name="number_of_rooms" class="form-control" id="number_of_rooms" placeholder="number of rooms">{{ old('number_of_rooms') }}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="number_of_beds">number_of_beds</label>
+                        <textarea type="text" name="number_of_beds" class="form-control" id="number_of_beds" placeholder="number of beds">{{ old('number_of_beds') }}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="number_of_bathrooms">number_of_bathrooms</label>
                         <textarea type="text" name="number_of_bathrooms" class="form-control" id="number_of_bathrooms" placeholder="number_of_bathrooms">{{ old('number_of_bathrooms') }}</textarea>
                     </div>

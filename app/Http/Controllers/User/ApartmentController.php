@@ -8,6 +8,7 @@ use App\Apartment;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
 {
@@ -18,8 +19,9 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::all();
-        return view('user.apartments.index', compact('apartments'));
+        $user = Auth::id();
+        $user_apartments = DB::table('apartments')->where('apartments.user_id', '=', $user)->get();
+        return view('user.apartments.index', compact('user_apartments'));
     }
 
     /**

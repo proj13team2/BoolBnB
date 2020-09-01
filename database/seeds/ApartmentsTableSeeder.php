@@ -19,6 +19,7 @@ class ApartmentsTableSeeder extends Seeder
             $newApartment->address = $faker->address;
             $newApartment->price = $faker->randomFloat(2, 10, 1000);
             $newApartment->number_of_rooms = $faker->numberBetween(1,10);
+            $newApartment->number_of_beds = $faker->numberBetween(1,20);
             $newApartment->number_of_bathrooms = $faker->numberBetween(1,10);
             $newApartment->square_meters = $faker->numberBetween(1,10000);
             $newApartment->src = $faker->imageUrl($width = 640, $height = 480, 'cats');

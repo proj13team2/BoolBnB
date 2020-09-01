@@ -21,6 +21,9 @@ class CreateApartmentSponsorTable extends Migration
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
 
             $table->primary(['apartment_id','sponsor_id']);
+            $table->dateTime('end_date')->require();
+            $table->timestamps();
+            
         });
     }
 

@@ -18,7 +18,6 @@ class CreateSponsorsTable extends Migration
             $table->string('sponsorship_level')->require();
             $table->float('price',3,2)->require();
             $table->smallInteger('duration')->require();
-            $table->dateTime('end_date')->require();
             $table->timestamps();
         });
     }

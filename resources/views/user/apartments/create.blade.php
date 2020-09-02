@@ -26,6 +26,7 @@
                     <div class="form-group">
                         <label for="address">address</label>
                         <textarea type="text" name="address" class="form-control" id="address" placeholder="address...">{{ old('address') }}</textarea>
+                        <p class="address-btn">Conferma Indirizzo</p>
                     </div>
                     <div class="form-group">
                         <label for="price">price</label>

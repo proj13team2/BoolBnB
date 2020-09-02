@@ -26,5 +26,10 @@ class Apartment extends Model
         return $this->belongsToMany('App\Sponsor');
     }
 
+    public function address()
+    {
+        return $this->hasOne('App\Address'); 
+    }
+
     protected $fillable = ['user_id','title', 'address', 'price', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'src', 'slug', 'address_lat', 'address_lng'];
 }

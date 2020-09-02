@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Apartment;
 
 class SearchController extends Controller
 {
@@ -22,6 +23,14 @@ class SearchController extends Controller
             'count' => $apartments->count(),
             'results' => $apartments ]);
     }
+
+    // public function store(Request $request, Apartment $apartment) {
+    //     $data = $request->all();
+    //     $lat = $data['lat'];
+    //     $lng = $data['lng'];
+    //     $apartment->address->lat = $lat;
+    //     $apartment->address->lng = $lng;
+    // }
 }
 
 function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {

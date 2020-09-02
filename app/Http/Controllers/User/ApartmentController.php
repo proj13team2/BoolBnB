@@ -92,6 +92,7 @@ class ApartmentController extends Controller
            'square_meters' => $dati['square_meters'],
            'src' => $dati['src'],
            'slug' => $slug,
+           'service_id' => []
        ];
 
        
@@ -99,7 +100,7 @@ class ApartmentController extends Controller
         $new_apartment = new Apartment();
         $new_apartment->fill($dati_apartment);
         $new_apartment->save();
-        $new_apartment->services()->sync($dati['service_id']);
+        $new_apartment->services()->sync($dati_apartment['service_id']);
 
         $dati_address = [
             'apartment_id' => $new_apartment->id,

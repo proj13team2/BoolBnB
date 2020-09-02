@@ -113,8 +113,12 @@ $(document).ready(function(){
     }
 
     //CHIAMATA API PER CREATE E UPDATE
-    $('.address-btn').click(function(){
-        var indirizzo_inserito = $('#address').val();
+    $('.salvaci').click(function(){
+        var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val() 
+        + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' + 
+        $('#region').val() + ' ' + $('#country').val() ;
+
+        console.log(indirizzo_inserito);
 
         $.ajax({
             'url': 'https://api.tomtom.com/search/2/geocode/' + indirizzo_inserito + '.' + 'json',
@@ -124,15 +128,30 @@ $(document).ready(function(){
                 'idxSet': 'Str'
             },
             'success': function(data) {
-                for (let i = 0; i < data.results.length; i++) {
-                    console.log(data.results);
-                    var indirizzo_corrente = data.results[i].address;
-                }
+                var lat = data.results.address.position.lat;
+                var lng = data.results.address.position.lon;
+                console.log(lat,lng);
+
+                $('.btn').click(function(){
+                    $.ajax({
+                        'url': window.location.protocol + '//' + window.location.host  + '/api/store',
+                        'method': 'GET',
+                        'data': {
+                            'lat': lat,
+                            'lng': lng
+                        },
+                        'success': function(data) {
+    
+                        },
+                        'error': function(){
+    
+                        }
+                    })
+                })  
             },
             'error': function(){
                 console.log('Errore Chiamata Ajax');
             }
         })
     })
-    
 })

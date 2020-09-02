@@ -46,6 +46,7 @@
                     <div class="form-group">
                         <label for="country">country</label>
                         <input type="text" name="country" class="form-control" id="country" placeholder="country..." value='{{ old('country') }}'>
+                        <p class='salvaci'>Salva indirizzo</p>
                     </div>
                     <div class="form-group">
                         <label for="price">price</label>

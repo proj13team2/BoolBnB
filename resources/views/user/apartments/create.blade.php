@@ -24,9 +24,28 @@
                         <input type="text" name="title" class="form-control" id="title" placeholder="title " value="{{ old('title') }}">
                     </div>
                     <div class="form-group">
-                        <label for="address">address</label>
-                        <textarea type="text" name="address" class="form-control" id="address" placeholder="address...">{{ old('address') }}</textarea>
-                        <p class="address-btn">Conferma Indirizzo</p>
+                        <label for="street">street</label>
+                        <input type="text" name="street" class="form-control" id="street" placeholder="street..." value='{{ old('street') }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="building_number">building_number</label>
+                        <input type="text" name="building_number" class="form-control" id="building_number" placeholder="building_number..." value='{{ old('building_number') }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">city</label>
+                        <input type="text" name="city" class="form-control" id="city" placeholder="city..." value='{{ old('city') }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip_code">zip_code</label>
+                        <input type="text" name="zip_code" class="form-control" id="zip_code" placeholder="zip_code..." value='{{ old('zip_code') }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">region</label>
+                        <input type="text" name="region" class="form-control" id="region" placeholder="region..." value='{{ old('region') }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">country</label>
+                        <input type="text" name="country" class="form-control" id="country" placeholder="country..." value='{{ old('country') }}'>
                     </div>
                     <div class="form-group">
                         <label for="price">price</label>
@@ -49,14 +68,6 @@
                         <textarea type="text" name="square_meters" class="form-control" id="square_meters" placeholder="square_meters">{{ old('square_meters') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="address_lng">address_lng</label>
-                        <textarea type="text" name="address_lng" class="form-control" id="address_lng" placeholder="address_lng">{{ old('address_lng') }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="address_lat">address_lat</label>
-                        <textarea type="text" name="address_lat" class="form-control" id="address_lat" placeholder="address_lat">{{ old('address_lat') }}</textarea>
-                    </div>
-                    <div class="form-group">
                         <label for="immagine">Immagine di copertina</label>
                         <input type="file" name="src" class="form-control-file">
                     </div>
@@ -70,7 +81,6 @@
                         </div>
                     @endforeach
                 </div>
-
                     <button type="submit" class="btn btn-primary">Salva</button>
                 </form>
             </div>

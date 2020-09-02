@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Service;
+use App\Address;
 
 class ApartmentController extends Controller
 {
@@ -21,7 +22,7 @@ class ApartmentController extends Controller
     public function index()
     {
         $user = Auth::id();
-        $user_apartments = Apartment::with('services')->where('apartments.user_id', '=', $user)->get();
+        $user_apartments = Apartment::with('services','address')->where('apartments.user_id', '=', $user)->get();
         return view('user.apartments.index', compact('user_apartments'));
     }
 
@@ -44,13 +45,19 @@ class ApartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Apartment $apartment)
     {
         $request->validate([
            'title' => 'required|max:255|unique:apartments,title',
-           'address' => 'required|max:255',
+           'street'=>'required|max:255',
+            'building_number'=>'required',
+            'city'=>'required|max:255',
+            'zip_code'=>'required|numeric',
+            'region'=>'required|max:255',
+            'country'=>'required|max:255',
            'price' => 'required|numeric',
            'number_of_rooms' => 'required|numeric|between:1,10',
+           'number_of_beds' => 'required|numeric|between:1,10',
            'number_of_bathrooms' => 'required|numeric|between:1,10',
            'square_meters' => 'required|numeric|min:1',
            'src' => 'image|max:1024'
@@ -75,16 +82,40 @@ class ApartmentController extends Controller
            $dati['src'] = $img_path;
        }
 
-        $dati['slug'] = $slug;
-        $dati['user_id'] = Auth::id();
+       $dati_apartment = [
+           'user_id' => Auth::id(),
+           'title' => $dati['title'],
+           'price' => $dati['price'],
+           'number_of_rooms' => $dati['number_of_rooms'],
+           'number_of_beds' => $dati['number_of_beds'],
+           'number_of_bathrooms' => $dati['number_of_bathrooms'],
+           'square_meters' => $dati['square_meters'],
+           'src' => $dati['src'],
+           'slug' => $slug,
+       ];
+
+       
+
         $new_apartment = new Apartment();
-        $new_apartment->fill($dati);
+        $new_apartment->fill($dati_apartment);
         $new_apartment->save();
         $new_apartment->services()->sync($dati['service_id']);
 
+        $dati_address = [
+            'apartment_id' => $new_apartment->id,
+            'street' => $dati['street'],
+            'building_number' => $dati['building_number'],
+            'city' => $dati['city'],
+            'zip_code' => $dati['zip_code'],
+            'region' => $dati['region'],
+            'country' => $dati['country'],
+        ];
 
+        $new_address = new Address();
+        $new_address->fill($dati_address);
+        $new_address->save();
 
-       return redirect()->route('user.apartments.index');
+        return redirect()->route('user.apartments.index');
     }
 
     /**

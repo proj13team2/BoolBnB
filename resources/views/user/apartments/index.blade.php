@@ -26,7 +26,7 @@
                         @forelse ($user_apartments as $user_apartment)
                             <tr>
                                 <td>{{ $user_apartment->title }}</td>
-                                <td>{{ $user_apartment->address}}</td>
+                                <td>{{ $user_apartment->address->street}} {{$user_apartment->address->building_number}}, {{$user_apartment->address->city}}</td>
                                 <td>{{ $user_apartment->price }}</td>
                                 <td>
                                     @forelse ($user_apartment->services as $service)

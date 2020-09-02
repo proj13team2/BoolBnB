@@ -16,7 +16,7 @@ class MessagesTableSeeder extends Seeder
             $newMessage = new Message();
             $newMessage->email = $faker->freeEmail;
             $newMessage->content = $faker->text(150);
-            $newMessage->apartment_id = $faker->numberBetween(4,5);
+            $newMessage->apartment_id = $faker->numberBetween(1,10);
             $newMessage->save();
         }
     }

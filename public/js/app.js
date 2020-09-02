@@ -37264,12 +37264,14 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // const $ = require('jquery');
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
   //CHIAMATE API CON AJAX PER HOME
-  //chiave per accedere alle API di tomtom
+  alert('ciao'); //chiave per accedere alle API di tomtom
+
   var key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1'; //ricerca in tempo reale tramite la il rilascio dei tasti
 
   $('#input').keyup(function () {
@@ -37360,8 +37362,9 @@ $(document).ready(function () {
   } //CHIAMATA API PER CREATE E UPDATE
 
 
-  $('.address-btn').click(function () {
-    var indirizzo_inserito = $('#address').val();
+  $('.salvaci').click(function () {
+    var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val() + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' + $('#region').val() + ' ' + $('#country').val();
+    console.log(indirizzo_inserito);
     $.ajax({
       'url': 'https://api.tomtom.com/search/2/geocode/' + indirizzo_inserito + '.' + 'json',
       'method': 'GET',
@@ -37370,10 +37373,10 @@ $(document).ready(function () {
         'idxSet': 'Str'
       },
       'success': function success(data) {
-        for (var i = 0; i < data.results.length; i++) {
-          console.log(data.results);
-          var indirizzo_corrente = data.results[i].address;
-        }
+        var lat = data.results[0].position.lat;
+        var lng = data.results[0].position.lon;
+        $('#lat').val(lat);
+        $('#lng').val(lng);
       },
       'error': function error() {
         console.log('Errore Chiamata Ajax');

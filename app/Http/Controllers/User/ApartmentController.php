@@ -110,6 +110,8 @@ class ApartmentController extends Controller
             'zip_code' => $dati['zip_code'],
             'region' => $dati['region'],
             'country' => $dati['country'],
+            'lat' => $dati['lat'],
+            'lng' => $dati['lng'],
         ];
 
         $new_address = new Address();

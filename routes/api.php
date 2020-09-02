@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Api')->group(function() {
     Route::get('/search', 'SearchController@index');
-    // Route::get('/store', 'SearchController@store');
 });
 
 // middleware('auth_api')

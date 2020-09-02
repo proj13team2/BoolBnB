@@ -1,9 +1,10 @@
 require('./bootstrap');
 
-// const $ = require('jquery');
+const $ = require('jquery');
 
 $(document).ready(function(){
     //CHIAMATE API CON AJAX PER HOME
+    alert('ciao')
 
 
     //chiave per accedere alle API di tomtom
@@ -128,26 +129,12 @@ $(document).ready(function(){
                 'idxSet': 'Str'
             },
             'success': function(data) {
-                var lat = data.results.address.position.lat;
-                var lng = data.results.address.position.lon;
-                console.log(lat,lng);
+                var lat = data.results[0].position.lat;
+                var lng = data.results[0].position.lon;
+                $('#lat').val(lat)
+                $('#lng').val(lng)
+                
 
-                $('.btn').click(function(){
-                    $.ajax({
-                        'url': window.location.protocol + '//' + window.location.host  + '/api/store',
-                        'method': 'GET',
-                        'data': {
-                            'lat': lat,
-                            'lng': lng
-                        },
-                        'success': function(data) {
-    
-                        },
-                        'error': function(){
-    
-                        }
-                    })
-                })  
             },
             'error': function(){
                 console.log('Errore Chiamata Ajax');

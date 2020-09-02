@@ -49,6 +49,12 @@
                         <p class='salvaci'>Salva indirizzo</p>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" name="lat" class="form-control" id="lat" placeholder="lat..." value='{{ old('lat') }}'>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="lng" class="form-control" id="lng" placeholder="lng..." value='{{ old('lng') }}'>
+                    </div>
+                    <div class="form-group">
                         <label for="price">price</label>
                         <textarea type="text" name="price" class="form-control" id="price" placeholder="price...">{{ old('price') }}</textarea>
                     </div>

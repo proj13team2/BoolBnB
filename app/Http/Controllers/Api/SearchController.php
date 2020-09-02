@@ -23,14 +23,6 @@ class SearchController extends Controller
             'count' => $apartments->count(),
             'results' => $apartments ]);
     }
-
-    // public function store(Request $request, Apartment $apartment) {
-    //     $data = $request->all();
-    //     $lat = $data['lat'];
-    //     $lng = $data['lng'];
-    //     $apartment->address->lat = $lat;
-    //     $apartment->address->lng = $lng;
-    // }
 }
 
 function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {

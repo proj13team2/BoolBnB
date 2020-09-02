@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use App\Service;
 
 class ApartmentController extends Controller
 {
@@ -20,7 +21,7 @@ class ApartmentController extends Controller
     public function index()
     {
         $user = Auth::id();
-        $user_apartments = DB::table('apartments')->where('apartments.user_id', '=', $user)->get();
+        $user_apartments = Apartment::with('services')->where('apartments.user_id', '=', $user)->get();
         return view('user.apartments.index', compact('user_apartments'));
     }
 
@@ -31,7 +32,10 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        return view('user.apartments.create');
+        $services = Service::all();
+        $dati = ['services' => $services];
+        return view('user.apartments.create', $dati);
+
     }
 
     /**
@@ -76,6 +80,9 @@ class ApartmentController extends Controller
         $new_apartment = new Apartment();
         $new_apartment->fill($dati);
         $new_apartment->save();
+        $new_apartment->services()->sync($dati['service_id']);
+
+
 
        return redirect()->route('user.apartments.index');
     }
@@ -105,7 +112,16 @@ class ApartmentController extends Controller
     public function edit($id)
     {
         $apartment = Apartment::find($id);
-        return view('user.apartments.edit', compact('apartment'));
+        if ($apartment) {
+            $services = Service::all();
+            $dati = [
+                'apartment' => $apartment,
+                'services' => $services
+            ];
+            return view('user.apartments.edit', $dati);
+        } else {
+            return abort('404');
+        }
     }
 
     /**
@@ -144,13 +160,19 @@ class ApartmentController extends Controller
 
            $img_path = Storage::put('uploads', $dati['src']);
            $dati['src'] = $img_path;
-        }
+        } 
+
 
         $dati['slug'] = $slug;
         $dati['user_id'] = Auth::id();
 
         $new_apartment = Apartment::find($id);
         $new_apartment->update($dati);
+        if(!empty($dati['service_id'])) {
+            $new_apartment->services()->sync($dati['service_id']);
+        } else {
+            $new_apartment->services()->detach();
+        }
 
         return redirect()->route('user.apartments.index');    }
 

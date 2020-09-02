@@ -16,8 +16,9 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>address</th>
-                            <th>price</th>
+                            <th>Address</th>
+                            <th>Price</th>
+                            <th>Services</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -27,6 +28,13 @@
                                 <td>{{ $user_apartment->title }}</td>
                                 <td>{{ $user_apartment->address}}</td>
                                 <td>{{ $user_apartment->price }}</td>
+                                <td>
+                                    @forelse ($user_apartment->services as $service)
+                                        {{ $service->type }}{{$loop->last ? '' : ', '}}
+                                    @empty
+                                        -
+                                    @endforelse
+                                </td>
                                 <td>
                                     <a class="btn btn-small btn-info"
                                     href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}">

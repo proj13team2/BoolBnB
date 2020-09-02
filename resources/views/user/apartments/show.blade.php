@@ -48,6 +48,14 @@
                     <strong>Aggiornato il: </strong>
                     {{ $apartment->updated_at }}
                 </p>
+                <p>
+                    <strong>Services: </strong>
+                    @forelse ($apartment->services as $service)
+                        {{ $service->type }}{{$loop->last ? '' : ', '}}
+                    @empty
+                        -
+                    @endforelse
+                </p>
             </div>
         </div>
     </div>

@@ -14,7 +14,7 @@ class ApartmentsTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $datas = [
-            [  
+            [
                 'user_id'=>'1',
                 'title' =>'Corte Milanese Room Three',
                 'address'=>'Via Repubblica 86, 20026, Novate Milanese, Milano',
@@ -28,7 +28,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.186516',
                 'slug'=>'corte-milanese-room-three'
             ],
-            [  
+            [
                 'user_id'=>'1',
                 'title' =>'Appartamento Da Vinci Milano',
                 'address'=>'Via Senigallia 6, 20161, Milano',
@@ -42,7 +42,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.1710849',
                 'slug'=>'appartamento-da-vinci-milano'
             ],
-            [  
+            [
                 'user_id'=>'1',
                 'title' =>'Villa Cheta',
                 'address'=>'Via Privata Imola,3, 20158, Milano',
@@ -56,7 +56,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.18951',
                 'slug'=>'villa-cheta'
             ],
-            [  
+            [
                 'user_id'=>'2',
                 'title' =>'Appartamento Milano Sesto Marelli',
                 'address'=>'Via Ercole Marelli 303, 20099, Sesto San Giovanni',
@@ -70,7 +70,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.2294943',
                 'slug'=>'appartamento-milano-sesto-marelli'
             ],
-            [  
+            [
                 'user_id'=>'2',
                 'title' =>'Repubblica Apartment Roma',
                 'address'=>'Via Cernaia 20, 00185, Roma',
@@ -84,7 +84,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'12.4998886',
                 'slug'=>'repubblica-apartment-roma'
             ],
-            [  
+            [
                 'user_id'=>'2',
                 'title' =>'Casa della Divina',
                 'address'=>'Via della Consulta 1b, 00184, Roma',
@@ -98,7 +98,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'12.4892876',
                 'slug'=>'casa-della-divina'
             ],
-            [  
+            [
                 'user_id'=>'3',
                 'title' =>'Glamour Apartments',
                 'address'=>'Passaggio Duomo 2, 20123, Milano',
@@ -112,7 +112,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.1882275',
                 'slug'=>'glamour-apartments'
             ],
-            [  
+            [
                 'user_id'=>'3',
                 'title' =>'Appartamento Giardino',
                 'address'=>'Via dei Missaglia 14, 20142, Milano',
@@ -126,7 +126,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.1777495',
                 'slug'=>'appartamento-giardino'
             ],
-            [  
+            [
                 'user_id'=>'3',
                 'title' =>'Residence Milano Fiore',
                 'address'=>'Via Roggia Bartolomea 5, 20090, Assago, Milano',
@@ -140,7 +140,7 @@ class ApartmentsTableSeeder extends Seeder
                 'address_lng'=>'9.1531421',
                 'slug'=>'residence-milano-fiore'
             ],
-            [  
+            [
                 'user_id'=>'3',
                 'title' =>'Panchina nel Parco',
                 'address'=>'Piazza Sempione, 20154, Milano',
@@ -173,8 +173,8 @@ class ApartmentsTableSeeder extends Seeder
             $newApartment->save();
         }
 
-        
-        
+
+
         // for ($i = 0; $i < 5; $i++){
         //     $newApartment = new Apartment();
         //     $newApartment->user_id = $faker->numberBetween(7,8);

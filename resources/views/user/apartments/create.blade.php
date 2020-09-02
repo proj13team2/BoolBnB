@@ -59,6 +59,16 @@
                         <label for="immagine">Immagine di copertina</label>
                         <input type="file" name="src" class="form-control-file">
                     </div>
+                    <div class="form-group">
+                    @foreach ($services as $service)
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input {{ in_array($service->id, old('service_id', [])) ? 'checked' : '' }} name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->id }}">
+                                {{ $service->type }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
 
                     <button type="submit" class="btn btn-primary">Salva</button>
                 </form>

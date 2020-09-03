@@ -15,7 +15,7 @@ $(document).ready(function(){
 
 
     //chiave per accedere alle API di tomtom
-    const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
+    const key = process.env.TomTomKey;
 
     //ricerca in tempo reale tramite la il rilascio dei tasti
     $('#input').keyup(function(){

@@ -42366,7 +42366,10 @@ $(document).ready(function () {
     street: '',
     city: '',
     img: '',
-    title: ''
+    title: '',
+    building_number: '',
+    zip_code: '',
+    region: ''
   }; //funzione per far apparire/scomparire i luoghi risultanti dall'api
 
   function research() {
@@ -42419,6 +42422,9 @@ $(document).ready(function () {
                   our_results.title = data.results[index].title;
                   our_results.city = data.results[index].city;
                   our_results.img = data.results[index].src;
+                  our_results.building_number = data.results[index].building_number;
+                  our_results.zip_code = data.results[index].zip_code;
+                  our_results.region = data.results[index].region;
                   var html = template(our_results);
                   $('.our_results').append(html); // var html = '<div class="our_result">' +
                   // '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +

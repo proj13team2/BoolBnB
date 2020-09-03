@@ -18,10 +18,13 @@
     <div class='our_results'></div>
     <script id="our_results" type="text/x-handlebars-template">
       <div class="apartment_result">
-
         <img src="storage/@{{img}}" width="200px" height="125px">
-        <p> Street : @{{street}} </p>
-        <span> City : @{{city}} </span></div>
+        <h4> <a href="{{route("guest.apartment.show", ["slug"=>$apartment->slug])}}"> @{{title}} </a></h4>
+        <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
+        <!-- <p> City : @{{city}} </p>
+        <p> Building number : @{{building_number}} </p>
+        <p> Zip code : @{{zip_code}} </p>
+        <p> Region : @{{region}} </p> -->
       </div>
     </script>
 </main>

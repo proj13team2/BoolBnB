@@ -1,8 +1,16 @@
 require('./bootstrap');
 
+
 const $ = require('jquery');
 
 $(document).ready(function(){
+
+    const Handlebars = require("handlebars");
+
+    // handlebars per our results
+    var source = $("#our_results").html();
+    var template = Handlebars.compile(source);
+
     //CHIAMATE API CON AJAX PER HOME
 
 
@@ -14,6 +22,15 @@ $(document).ready(function(){
         $('.tomtom_results').empty();
         research();
     })
+
+    // handlebars arr our.our_results
+    var our_results = {
+      street : '',
+      city : '',
+      img : '',
+      title : ''
+    }
+
 
     //funzione per far apparire/scomparire i luoghi risultanti dall'api
     function research() {
@@ -36,14 +53,14 @@ $(document).ready(function(){
                     var indirizzo_corrente = data.results[i].address;
 
                     // ------- DA SOSTITUIRE CON HANDLEBARS --------
-                    var html = '<div class="tomtom_result" data-lat="' + data.results[i].position.lat + '" data-lon="' + data.results[i].position.lon + '" +  >' +
+                    var tomtomresults = '<div class="tomtom_result" data-lat="' + data.results[i].position.lat + '" data-lon="' + data.results[i].position.lon + '" +  >' +
                     '<span>' + indirizzo_corrente.streetName + ',</span>' +
                     '<span>' + indirizzo_corrente.municipality + ',</span>' +
                     '<span>' + indirizzo_corrente.countrySecondarySubdivision + ',</span>' +
                     '<span>' + indirizzo_corrente.countrySubdivision + ',</span>' +
                     '<span>' + indirizzo_corrente.country + '</span>' + '</div>';
 
-                    $('.tomtom_results').append(html);
+                    $('.tomtom_results').append(tomtomresults);
                 }
 
                 //al click su un risutlato recupero i suoi valori e li stampo nell'input
@@ -66,19 +83,24 @@ $(document).ready(function(){
                         'data': {
                             'lat': lat,
                             'lng': lon
-                        }, 
+                        },
                         success: function(data) {
-                            console.log(data.results);
                             //Ricerca contatti con click
                             $('button').click(function(){
                                 $('.our_results').empty();
                                 for (let index = 0; index < data.results.length; index++) {
-                                    var html = '<div class="our_result">' +
-                                    '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +
-                                    '<img src="storage/' + data.results[index].src + '", width="200px" height="125px">' +
-                                    '<p>' + data.results[index].street + ',</p>' +
-                                    '<span>' + data.results[index].city + '</span>' + '</div>';
-                                    $('.our_results').append(html);
+                                  our_results.street = data.results[index].street;
+                                  our_results.title = data.results[index].title;
+                                  our_results.city = data.results[index].city;
+                                  our_results.img = data.results[index].src;
+                                  var html = template(our_results);
+                                  $('.our_results').append(html);
+                                    // var html = '<div class="our_result">' +
+                                    // '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +
+                                    // '<img src="storage/' + data.results[index].src + '", width="200px" height="125px">' +
+                                    // '<p>' + data.results[index].street + ',</p>' +
+                                    // '<span>' + data.results[index].city + '</span>' + '</div>';
+                                    // $('.our_results').append(html);
                                 }
                                 //dopodichè libero l'input
                                 $('input').val('');
@@ -103,19 +125,19 @@ $(document).ready(function(){
                         error: function() {
                             console.log('error');
                         }
-                    }) 
+                    })
                 })
             },
             error: function() {
                 console.log('error');
             }
-        }) 
+        })
     }
 
     //CHIAMATA API PER CREATE E UPDATE
     $('.salvaci').click(function(){
-        var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val() 
-        + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' + 
+        var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val()
+        + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' +
         $('#region').val() + ' ' + $('#country').val() ;
 
         console.log(indirizzo_inserito);
@@ -132,7 +154,7 @@ $(document).ready(function(){
                 var lng = data.results[0].position.lon;
                 $('#lat').val(lat)
                 $('#lng').val(lng)
-                
+
 
             },
             'error': function(){

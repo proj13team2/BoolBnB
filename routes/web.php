@@ -18,11 +18,9 @@ use App\Apartment;
 // Route::get('/', function (Apartment $apartment) {
 //     return view('home', compact('apartment'));
 // });
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
 
 Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');

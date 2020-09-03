@@ -18,7 +18,7 @@
                 </p>
                 <p>
                     <strong>address:</strong>
-                    {{ $apartment->address }}
+                    {{ $apartment->address->street }} {{ $apartment->address->building_number }}, {{ $apartment->address->city }}
                 </p>
                 <p>
                     <strong>price:</strong>

@@ -4,7 +4,6 @@ const $ = require('jquery');
 
 $(document).ready(function(){
     //CHIAMATE API CON AJAX PER HOME
-    alert('ciao')
 
 
     //chiave per accedere alle API di tomtom
@@ -65,22 +64,20 @@ $(document).ready(function(){
                         'url': window.location.protocol + '//' + window.location.host  + '/api/search',
                         'method': 'GET',
                         'data': {
-                            'address' : address,
                             'lat': lat,
                             'lng': lon
                         }, 
                         success: function(data) {
                             console.log(data.results);
-
-
-
                             //Ricerca contatti con click
                             $('button').click(function(){
                                 $('.our_results').empty();
                                 for (let index = 0; index < data.results.length; index++) {
                                     var html = '<div class="our_result">' +
-                                    '<span>' + data.results[index].title + ',</span>' +
-                                    '<span>' + data.results[index].address + ',</span>' + '</div>';
+                                    '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +
+                                    '<img src="storage/' + data.results[index].src + '", width="200px" height="125px">' +
+                                    '<p>' + data.results[index].street + ',</p>' +
+                                    '<span>' + data.results[index].city + '</span>' + '</div>';
                                     $('.our_results').append(html);
                                 }
                                 //dopodichè libero l'input
@@ -93,8 +90,10 @@ $(document).ready(function(){
                                     $('.our_results').empty();
                                     for (let index = 0; index < data.results.length; index++) {
                                         var html = '<div class="our_result">' +
-                                        '<span>' + data.results[index].title + ',</span>' +
-                                        '<span>' + data.results[index].address + '</span>' + '</div>';
+                                        '<h4>' + data.results[index].title + ',</h4>' +
+                                        '<img src="' + data.results[index].src + '",>' +
+                                        '<p>' + data.results[index].street + ',</p>' +
+                                        '<span>' + data.results[index].city + '</span>' + '</div>';
                                         $('.our_results').append(html);
                                     }
                                     $('input').val('');

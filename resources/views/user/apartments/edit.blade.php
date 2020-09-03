@@ -25,8 +25,35 @@
                         <input type="text" name="title" class="form-control" id="title" placeholder="title " value="{{old('title', $apartment->title)}}">
                     </div>
                     <div class="form-group">
-                        <label for="address">address</label>
-                        <textarea type="text" name="address" class="form-control" id="address" placeholder="address...">{{old('address', $apartment->address)}}</textarea>
+                        <label for="street">street</label>
+                        <input type="text" name="street" class="form-control" id="street" placeholder="street..." value='{{ old('street', $apartment->address->street) }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="building_number">building_number</label>
+                        <input type="text" name="building_number" class="form-control" id="building_number" placeholder="building_number..." value='{{ old('building_number', $apartment->address->building_number) }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">city</label>
+                        <input type="text" name="city" class="form-control" id="city" placeholder="city..." value='{{ old('city', $apartment->address->city) }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="zip_code">zip_code</label>
+                        <input type="text" name="zip_code" class="form-control" id="zip_code" placeholder="zip_code..." value='{{ old('zip_code',$apartment->address->zip_code) }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="region">region</label>
+                        <input type="text" name="region" class="form-control" id="region" placeholder="region..." value='{{ old('region',$apartment->address->region) }}'>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">country</label>
+                        <input type="text" name="country" class="form-control" id="country" placeholder="country..." value='{{ old('country',$apartment->address->country) }}'>
+                        <p class='salvaci'>Salva indirizzo</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="lat" class="form-control" id="lat" placeholder="lat..." value='{{ old('lat',$apartment->address->lat) }}'>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="lng" class="form-control" id="lng" placeholder="lng..." value='{{ old('lng',$apartment->address->lng) }}'>
                     </div>
                     <div class="form-group">
                         <label for="price">price</label>
@@ -35,6 +62,10 @@
                     <div class="form-group">
                         <label for="number_of_rooms">number_of_rooms</label>
                         <textarea type="text" name="number_of_rooms" class="form-control" id="number_of_rooms" placeholder="number of rooms">{{old('number_of_rooms', $apartment->number_of_rooms)}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="number_of_beds">number_of_beds</label>
+                        <textarea type="text" name="number_of_beds" class="form-control" id="number_of_beds" placeholder="number of beds">{{old('number_of_beds', $apartment->number_of_beds)}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="number_of_bathrooms">number_of_bathrooms</label>

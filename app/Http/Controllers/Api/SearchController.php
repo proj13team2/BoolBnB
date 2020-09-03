@@ -14,10 +14,9 @@ class SearchController extends Controller
 
 
         $data = $request->all();
-        $address = $data['address'];
         $lat = $data['lat'];
         $lng = $data['lng'];
-       $apartments = scopeIsWithinMaxDistance(DB::table('apartments'),$lat , $lng, $radius = 20);
+       $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, $radius = 20);
         return response()->json([
             'success' => true,
             'count' => $apartments->count(),
@@ -28,11 +27,11 @@ class SearchController extends Controller
 function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {
 
     $calculationsForDistance = "(6371 * acos(cos(radians($lat)) 
-                    * cos(radians(apartments.address_lat)) 
-                    * cos(radians(apartments.address_lng) 
+                    * cos(radians(addresses.lat)) 
+                    * cos(radians(addresses.lng) 
                     - radians($lon)) 
                     + sin(radians($lat)) 
-                    * sin(radians(apartments.address_lat))))";
+                    * sin(radians(addresses.lat))))";
     return $query
        ->select("*")
        ->selectRaw("{$calculationsForDistance} AS distance")

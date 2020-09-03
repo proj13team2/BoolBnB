@@ -22,9 +22,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');
-    Route::post('/address', 'AddressController@store')->name('apartment.address');
     Route::get('apartment/stats/{apartment}', 'StatsController@index')->name('apartments.stats');
     Route::resource('/apartments', 'ApartmentController');
+});
+
+Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function () {
+    Route::get('/{slug}', 'ApartmentController@show')->name('apartment');
 });

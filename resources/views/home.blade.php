@@ -16,10 +16,12 @@
 
     </div>
     <div class='our_results'></div>
+    @foreach ($apartments as $apartment)
     <script id="our_results" type="text/x-handlebars-template">
       <div class="apartment_result">
         <img src="storage/@{{img}}" width="200px" height="125px">
-        <h4> <a href="{{route("guest.apartment.show", ["slug"=>$apartment->slug])}}"> @{{title}} </a></h4>
+        <h4> <a href="{{ route('guest.apartment.show', ['slug' => $apartment->slug])}}
+          "> @{{title}} </a></h4>
         <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
         <!-- <p> City : @{{city}} </p>
         <p> Building number : @{{building_number}} </p>
@@ -27,5 +29,6 @@
         <p> Region : @{{region}} </p> -->
       </div>
     </script>
+    @endforeach
 </main>
 @endsection

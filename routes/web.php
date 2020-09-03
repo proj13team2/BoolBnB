@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Apartment;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function (Apartment $apartment) {
+//     return view('home', compact('apartment'));
+// });
 
 Auth::routes();
 
@@ -30,5 +31,5 @@ Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->gro
 });
 
 Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function () {
-    Route::get('/{slug}', 'ApartmentController@show')->name('apartment');
+    Route::get('/apartment/{slug}', 'ApartmentController@show')->name('apartment.show');
 });

@@ -46,6 +46,9 @@
                                     <a class="btn btn-small btn-info"  href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}">
                                         Statistiche
                                     </a>
+                                    <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $user_apartment->id]) }}">
+                                        Sponsorizza
+                                    </a>
                                     <form class="d-inline" action="{{ route('user.apartments.destroy', ['apartment' => $user_apartment->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')

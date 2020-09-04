@@ -25,6 +25,7 @@ Auth::routes();
 Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');
     Route::get('apartment/stats/{apartment}', 'StatsController@index')->name('apartments.stats');
+    Route::get('apartment/sponsorization/{apartment}', 'SponsorController@show')->name('apartment.sponsorization');
     Route::resource('/apartments', 'ApartmentController');
 });
 

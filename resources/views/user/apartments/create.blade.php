@@ -87,7 +87,7 @@
                             </label>
                         </div>
                     @endforeach
-                </div>
+                    </div>
                     <button type="submit" class="btn btn-primary">Salva</button>
                 </form>
             </div>

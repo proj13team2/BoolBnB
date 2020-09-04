@@ -16,10 +16,10 @@ class MessageController extends Controller
         ]);
         $message = $request->all();  
         $new_message = new Message();
-        $new_message['apartment_id'] = $apartment;
+        $new_message['apartment_id'] = $apartment->id;
         $new_message->fill($message);
         $new_message->save();
 
-        return redirect()->route('guest.apartment.show', ['slug' => $apartment->slug]);
+        return redirect()->route('guest.apartment.show', ['slug'=> $apartment->slug]);
     }
 }

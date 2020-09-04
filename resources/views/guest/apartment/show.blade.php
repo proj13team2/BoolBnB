@@ -57,7 +57,7 @@
                 </p>
             </div>
             <div class="col-12">
-            <form action="{{route('guest.message')}}" method="post">
+            <form action="{{route('guest.message', ['apartment' => $apartment->id])}}" method="post">
                 @csrf
                 <div class="form-group">
                     <label for="email">email</label>

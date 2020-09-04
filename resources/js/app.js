@@ -7,7 +7,7 @@ $(document).ready(function(){
 
     const Handlebars = require("handlebars");
 
-    // handlebars per our results
+    // // handlebars per our results
     var source = $("#our_results").html();
     var template = Handlebars.compile(source);
 
@@ -15,24 +15,13 @@ $(document).ready(function(){
 
 
     //chiave per accedere alle API di tomtom
-    const key = process.env.TomTomKey;
+    const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
 
     //ricerca in tempo reale tramite la il rilascio dei tasti
     $('#input').keyup(function(){
         $('.tomtom_results').empty();
         research();
     })
-
-    // handlebars arr our.our_results
-    var our_results = {
-      street : '',
-      city : '',
-      img : '',
-      title : '',
-      building_number : '',
-      zip_code : '',
-      region : ''
-    }
 
 
     //funzione per far apparire/scomparire i luoghi risultanti dall'api
@@ -87,27 +76,13 @@ $(document).ready(function(){
                             'lat': lat,
                             'lng': lon
                         },
-                        success: function(data) {
+                        success: function(dati) {
+                            console.log(dati);
                             //Ricerca contatti con click
                             $('button').click(function(){
                                 $('.our_results').empty();
-                                for (let index = 0; index < data.results.length; index++) {
-                                  our_results.street = data.results[index].street;
-                                  our_results.title = data.results[index].title;
-                                  our_results.city = data.results[index].city;
-                                  our_results.img = data.results[index].src;
-                                  our_results.building_number = data.results[index].building_number;
-                                  our_results.zip_code = data.results[index].zip_code;
-                                  our_results.region = data.results[index].region;
-                                  var html = template(our_results);
-                                  $('.our_results').append(html);
-                                    // var html = '<div class="our_result">' +
-                                    // '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +
-                                    // '<img src="storage/' + data.results[index].src + '", width="200px" height="125px">' +
-                                    // '<p>' + data.results[index].street + ',</p>' +
-                                    // '<span>' + data.results[index].city + '</span>' + '</div>';
-                                    // $('.our_results').append(html);
-                                }
+                                var html = template(our_results);
+                                $('.our_results').append(html);
                                 //dopodichè libero l'input
                                 $('input').val('');
                             })
@@ -116,14 +91,8 @@ $(document).ready(function(){
                                 // verifico se l'utente ha digitato "ENTER"
                                 if(event.which == 13) {
                                     $('.our_results').empty();
-                                    for (let index = 0; index < data.results.length; index++) {
-                                        var html = '<div class="our_result">' +
-                                        '<h4>' + data.results[index].title + ',</h4>' +
-                                        '<img src="' + data.results[index].src + '",>' +
-                                        '<p>' + data.results[index].street + ',</p>' +
-                                        '<span>' + data.results[index].city + '</span>' + '</div>';
-                                        $('.our_results').append(html);
-                                    }
+                                    var html = template(our_results);
+                                    $('.our_results').append(html);
                                     $('input').val('');
                                 }
                             })

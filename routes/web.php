@@ -30,4 +30,6 @@ Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->gro
 
 Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function () {
     Route::get('/apartment/{slug}', 'ApartmentController@show')->name('apartment.show');
+    Route::post('/message', 'ApartmentController@store')->name('message');
 });
+

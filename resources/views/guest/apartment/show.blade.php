@@ -56,6 +56,20 @@
                     @endforelse
                 </p>
             </div>
+            <div class="col-12">
+            <form action="{{route('guest.message')}}" method="post">
+                @csrf
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" name="email" class="form-control" id="email" placeholder="email " value="{{ old('email') }}">
+                </div>
+                <div class="form-group">
+                    <label for="content">content</label>
+                    <textarea type="text" name="content" class="form-control" id="content" placeholder="content..." value='{{ old('content') }}'></textarea>
+                </div>
+                <button type='submit'>Invia Messaggio</button>
+            </form>
+            </div>
         </div>
     </div>
 @endsection

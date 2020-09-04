@@ -16,7 +16,8 @@ class SearchController extends Controller
         $data = $request->all();
         $lat = $data['lat'];
         $lng = $data['lng'];
-       $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, $radius = 20);
+        $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, $radius = 20);
+    //    return view ('home', compact('apartments'))->render() ;
         return response()->json([
             'success' => true,
             'count' => $apartments->count(),

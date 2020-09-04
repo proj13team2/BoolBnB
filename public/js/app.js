@@ -42348,7 +42348,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
-  var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js"); // handlebars per our results
+  var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js"); // // handlebars per our results
 
 
   var source = $("#our_results").html();
@@ -42360,17 +42360,7 @@ $(document).ready(function () {
   $('#input').keyup(function () {
     $('.tomtom_results').empty();
     research();
-  }); // handlebars arr our.our_results
-
-  var our_results = {
-    street: '',
-    city: '',
-    img: '',
-    title: '',
-    building_number: '',
-    zip_code: '',
-    region: ''
-  }; //funzione per far apparire/scomparire i luoghi risultanti dall'api
+  }); //funzione per far apparire/scomparire i luoghi risultanti dall'api
 
   function research() {
     //identifico il valore inserito dall'utente e lo rendo uppercase
@@ -42412,28 +42402,13 @@ $(document).ready(function () {
               'lat': lat,
               'lng': lon
             },
-            success: function success(data) {
-              //Ricerca contatti con click
+            success: function success(dati) {
+              console.log(dati); //Ricerca contatti con click
+
               $('button').click(function () {
                 $('.our_results').empty();
-
-                for (var index = 0; index < data.results.length; index++) {
-                  our_results.street = data.results[index].street;
-                  our_results.title = data.results[index].title;
-                  our_results.city = data.results[index].city;
-                  our_results.img = data.results[index].src;
-                  our_results.building_number = data.results[index].building_number;
-                  our_results.zip_code = data.results[index].zip_code;
-                  our_results.region = data.results[index].region;
-                  var html = template(our_results);
-                  $('.our_results').append(html); // var html = '<div class="our_result">' +
-                  // '<h4> <a href="{{route("guest.apartment", ["slug"=\>$apartment->slug])}}">' + data.results[index].title + ',</a></h4>' +
-                  // '<img src="storage/' + data.results[index].src + '", width="200px" height="125px">' +
-                  // '<p>' + data.results[index].street + ',</p>' +
-                  // '<span>' + data.results[index].city + '</span>' + '</div>';
-                  // $('.our_results').append(html);
-                } //dopodichè libero l'input
-
+                var html = template(our_results);
+                $('.our_results').append(html); //dopodichè libero l'input
 
                 $('input').val('');
               }); //faccio la stessa cosa ma con l'enter
@@ -42442,12 +42417,8 @@ $(document).ready(function () {
                 // verifico se l'utente ha digitato "ENTER"
                 if (event.which == 13) {
                   $('.our_results').empty();
-
-                  for (var index = 0; index < data.results.length; index++) {
-                    var html = '<div class="our_result">' + '<h4>' + data.results[index].title + ',</h4>' + '<img src="' + data.results[index].src + '",>' + '<p>' + data.results[index].street + ',</p>' + '<span>' + data.results[index].city + '</span>' + '</div>';
-                    $('.our_results').append(html);
-                  }
-
+                  var html = template(our_results);
+                  $('.our_results').append(html);
                   $('input').val('');
                 }
               });
@@ -42553,8 +42524,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

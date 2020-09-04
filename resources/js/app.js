@@ -1,9 +1,22 @@
 require('./bootstrap');
 
 
+
 const $ = require('jquery');
 
 $(document).ready(function(){
+
+
+
+  // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  $('#input').val('Piazza Cesare Beccaria Mil');
+  $('#input').click(function(){
+      $('.tomtom_results').empty();
+      research();
+  });
+    // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 
     const Handlebars = require("handlebars");
 
@@ -21,7 +34,7 @@ $(document).ready(function(){
     $('#input').keyup(function(){
         $('.tomtom_results').empty();
         research();
-    })
+    });
 
 
     //funzione per far apparire/scomparire i luoghi risultanti dall'api

@@ -18,11 +18,11 @@ $(document).ready(function(){
 
 
 
-    const Handlebars = require("handlebars");
+    // const Handlebars = require("handlebars");
 
     // // handlebars per our results
-    var source = $("#our_results").html();
-    var template = Handlebars.compile(source);
+    // var source = $("#our_results").html();
+    // var template = Handlebars.compile(source);
 
     //CHIAMATE API CON AJAX PER HOME
 

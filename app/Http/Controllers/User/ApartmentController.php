@@ -92,7 +92,6 @@ class ApartmentController extends Controller
            'square_meters' => $dati['square_meters'],
            'src' => $dati['src'],
            'slug' => $slug,
-           'service_id' => $dati['service_id']
        ];
 
        
@@ -100,7 +99,10 @@ class ApartmentController extends Controller
         $new_apartment = new Apartment();
         $new_apartment->fill($dati_apartment);
         $new_apartment->save();
-        $new_apartment->services()->sync($dati_apartment['service_id']);
+        If(!empty($dati['service_id'])) {
+            $dati_apartment['service_id'] = $dati['service_id'];
+            $new_apartment->services()->sync($dati_apartment['service_id']);
+        }
 
         $dati_address = [
             'apartment_id' => $new_apartment->id,
@@ -196,11 +198,13 @@ class ApartmentController extends Controller
             $apartment_trovato = Apartment::where('slug', $slug)->first();
         }
 
-        if($dati['src']) {
+        if($request->hasFile('src')) {
 
            $img_path = Storage::put('uploads', $dati['src']);
            $dati['src'] = $img_path;
-        } 
+        } else {
+            $dati['src'] = $apartment->src;
+        }
 
         $dati_apartment = [
             'user_id' => Auth::id(),
@@ -212,14 +216,14 @@ class ApartmentController extends Controller
             'square_meters' => $dati['square_meters'],
             'src' => $dati['src'],
             'slug' => $slug,
-            'service_id' => $dati['service_id']
         ];
 
         $apartment->update($dati_apartment);
-        if(!empty($dati_apartment['service_id'])) {
+        if($request->has('service_id')) {
+            $dati_apartment['service_id'] = $dati['service_id'];
             $apartment->services()->sync($dati_apartment['service_id']);
         } else {
-            $apartment->services()->detach();
+            $apartment->services()->sync([]);
         }
 
         $dati_address = [

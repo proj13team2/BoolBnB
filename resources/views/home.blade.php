@@ -11,18 +11,16 @@
     <div class='our_results'>
 
     </div>
+    @foreach ($apartments as $apartment)
     <script id="our_results" type="text/x-handlebars-template">
-      @if ($apartments)
-      @foreach($apartments as $apartment)
       <div class="apartment_result">
-        <img src="storage/{{$apartment->src}}" width="200px" height="125px">
-        <h4><a  href="{{ route('guest.apartment.show', ['slug' => $apartment->slug ])}}"
-          > {{$apartment->title}} </a></h4>
-        <p> Address : {{$apartment->address->street}} {{$apartment->address->building_number}} {{$apartment->address->city}} {{$apartment->address->region}}  {{$apartment->address->zip_code}} </p>
-      @endforeach
-      @endif
-      
+        <img src="storage/@{{src}}" width="200px" height="125px">
+      <h4><a  href="@{{link}}"> @{{title}} </a></h4>
+        <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
     </script>
-    
+    @endforeach
 </main>
 @endsection
+@push('head')
+  <script src="{{ asset('js/search.js')}}"></script>
+@endpush

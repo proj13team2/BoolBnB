@@ -39,3 +39,6 @@
         </div>
     </div>
 @endsection
+@push('head')
+  <script src="{{ asset('js/app.js')}}"></script>
+@endpush

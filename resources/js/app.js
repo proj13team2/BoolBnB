@@ -6,11 +6,11 @@ $(document).ready(function(){
 
     const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
     //CHIAMATA API PER CREATE E UPDATE
-    $('.salvaci').click(function(){
+    $('button.btn-submit').click('btn-submit',function(evento){
+        evento.preventDefault()
         var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val()
         + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' +
         $('#region').val() + ' ' + $('#country').val() ;
-
         console.log(indirizzo_inserito);
 
         $.ajax({
@@ -25,8 +25,7 @@ $(document).ready(function(){
                 var lng = data.results[0].position.lon;
                 $('#lat').val(lat)
                 $('#lng').val(lng)
-
-
+                $('form.apartment-form').submit()
             },
             'error': function(){
                 console.log('Errore Chiamata Ajax');

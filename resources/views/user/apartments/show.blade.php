@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex align-items-center">
-                    <h1 class="mt-3 mb-3">Dettagli posts</h1>
+                    <h1 class="mt-3 mb-3">Dettagli Appartmento</h1>
                 </div>
                 <div>
                     @if($apartment->src)
@@ -60,3 +60,6 @@
         </div>
     </div>
 @endsection
+@push('head')
+  <script src="{{ asset('js/app.js')}}"></script>
+@endpush

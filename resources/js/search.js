@@ -133,7 +133,7 @@ $(document).ready(function(){
                                         our_results.zip_code = dati.results[index].zip_code;
                                         our_results.src = dati.results[index].src;
                                         var html = template(our_results);
-                                        $('.apartment_result a').attr('href', link )
+                                        $('.apartment_result>a').attr('href', link )
                                         $('.our_results').append(html);
                                     }
                                     $('input').val('');

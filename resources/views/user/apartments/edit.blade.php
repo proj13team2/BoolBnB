@@ -16,7 +16,7 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data">
+                <form class='apartment-form' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -47,7 +47,6 @@
                     <div class="form-group">
                         <label for="country">country</label>
                         <input type="text" name="country" class="form-control" id="country" placeholder="country..." value='{{ old('country',$apartment->address->country) }}'>
-                        <p class='salvaci'>Salva indirizzo</p>
                     </div>
                     <div class="form-group">
                         <input type="hidden" name="lat" class="form-control" id="lat" placeholder="lat..." value='{{ old('lat',$apartment->address->lat) }}'>
@@ -102,9 +101,12 @@
                         @endforeach
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Salva</button>
+                    <button type="submit" class="btn btn-primary btn-submit">Salva</button>
                 </form>
             </div>
         </div>
     </div>
 @endsection
+@push('head')
+  <script src="{{ asset('js/app.js')}}"></script>
+@endpush

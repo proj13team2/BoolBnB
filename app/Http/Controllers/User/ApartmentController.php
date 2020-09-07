@@ -219,6 +219,7 @@ class ApartmentController extends Controller
         ];
 
         $apartment->update($dati_apartment);
+        
         if($request->has('service_id')) {
             $dati_apartment['service_id'] = $dati['service_id'];
             $apartment->services()->sync($dati_apartment['service_id']);

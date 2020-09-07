@@ -42470,7 +42470,7 @@ $(document).ready(function () {
               $('button').click(function () {
                 $('.our_results').empty();
 
-                for (var index = 0; index < data.results.length; index++) {
+                for (var index = 0; index < dati.results.length; index++) {
                   our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
                   our_results.title = dati.results[index].title;
                   our_results.street = dati.results[index].street;

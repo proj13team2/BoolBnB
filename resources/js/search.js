@@ -103,7 +103,7 @@ $(document).ready(function(){
                             //Ricerca contatti con click
                             $('button').click(function(){
                                 $('.our_results').empty();
-                                for (let index = 0; index < data.results.length; index++) {
+                                for (let index = 0; index < dati.results.length; index++) {
                                     our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
                                     our_results.title = dati.results[index].title;
                                     our_results.street = dati.results[index].street;

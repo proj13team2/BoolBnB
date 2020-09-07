@@ -25,8 +25,10 @@ Auth::routes();
 Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->group(function () {
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');
     Route::get('apartment/stats/{apartment}', 'StatsController@index')->name('apartments.stats');
-    Route::get('apartment/sponsorization/{apartment}', 'SponsorController@show')->name('apartment.sponsorization');
     Route::resource('/apartments', 'ApartmentController');
+    /* BRAINTREE'S ROUTES */
+    Route::get('apartment/sponsorization/{apartment}', 'SponsorController@show')->name('apartment.sponsorization');
+    Route::post('apartment/sponsorization/{apartment}', 'SponsorController@checkout')->name('apartment.sponsorization');
 });
 
 Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function () {
@@ -34,4 +36,6 @@ Route::prefix('guest')->namespace('Guest')->name('guest.')->group(function () {
     //OCCHIO
     Route::post('/message/{apartment}', 'MessageController@store')->name('message');
 });
+
+
 

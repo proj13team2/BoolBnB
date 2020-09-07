@@ -14,4 +14,6 @@ class ApartmentController extends Controller
         $apartment = $apartments[0];
         return view('guest.apartment.show', compact('apartment'));
     }
+
+   
 }

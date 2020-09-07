@@ -76,7 +76,7 @@
                     </div>
                     <div class="form-group">
                         <label for="immagine">Immagine di copertina</label>
-                        <input type="file" name="src" class="form-control-file">
+                        <input type="file" name="src" class="form-control-file" multiple>
                         @if ($apartment->src)
                             <p>Image Ok</p>
                             <img src="{{ asset('storage/' . $apartment->src) }}">

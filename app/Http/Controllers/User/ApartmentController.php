@@ -96,7 +96,7 @@ class ApartmentController extends Controller
            'slug' => $slug,
        ];
 
-       
+
 
         $new_apartment = new Apartment();
         $new_apartment->fill($dati_apartment);
@@ -133,9 +133,10 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
+        $mutable = Carbon::now();
         $apartment = Apartment::find($id);
         if($apartment) {
-            return view('user.apartments.show', compact('apartment'));
+            return view('user.apartments.show', compact('apartment' , 'mutable'));
         } else {
             return abort('404');
         }
@@ -221,7 +222,7 @@ class ApartmentController extends Controller
         ];
 
         $apartment->update($dati_apartment);
-        
+
         if($request->has('service_id')) {
             $dati_apartment['service_id'] = $dati['service_id'];
             $apartment->services()->sync($dati_apartment['service_id']);

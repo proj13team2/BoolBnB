@@ -51,6 +51,7 @@ class SponsorController extends Controller
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['sponsor_id'],
         'end_date' => $modifiedMutable
+        
     )));
 
 

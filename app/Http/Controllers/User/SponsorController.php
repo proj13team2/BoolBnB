@@ -27,16 +27,18 @@ class SponsorController extends Controller
     public function checkout(Request $request, Apartment $apartment){
 
 
-
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
       $sponsor_apartment = $request->all();
-      $new_Sponsor_A = new Message();
-      $new_Sponsor_A['apartment_id'] = $apartment->id;
-      $new_Sponsor_A->fill($message);
-      $new_Sponsor_A->save();
+      $new_Sponsor_A = [
+        'apartment_id' => $apartment->id ,
+        'sponsor_id' => $sponsor_apartment['sponsor_id'],
+      ];
+      $apartment->sponsors()->pivot()->sync($new_Sponsor_A, ['end_date' => 2021-03-04 ]);
 
-      return redirect()->route('guest.apartment.show', ['slug'=> $apartment->slug]);
 
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
 

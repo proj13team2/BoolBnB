@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use App\Message;
 
 class Apartment extends Model
@@ -24,12 +25,12 @@ class Apartment extends Model
     }
 
     public function sponsors() {
-        return $this->belongsToMany('App\Sponsor');
+        return $this->belongsToMany('App\Sponsor')->withPivot('end_date');
     }
 
     public function address()
     {
-        return $this->hasOne('App\Address'); 
+        return $this->hasOne('App\Address');
     }
 
     protected $fillable = ['user_id','title', 'address', 'price', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'src', 'slug', 'address_lat', 'address_lng'];

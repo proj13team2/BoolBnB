@@ -28,6 +28,7 @@ Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->gro
     Route::resource('/apartments', 'ApartmentController');
     /* BRAINTREE'S ROUTES */
     Route::get('apartment/sponsorization/{apartment}', 'SponsorController@show')->name('apartment.sponsorization');
+    Route::get('apartment/sponsorized/{apartment}', 'SponsorController@sponsorized_show')->name('apartment.sponsorized');
     Route::post('apartment/sponsorization/{apartment}', 'SponsorController@checkout')->name('apartment.sponsorization');
 });
 

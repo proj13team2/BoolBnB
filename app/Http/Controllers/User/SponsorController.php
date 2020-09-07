@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Apartment;
 use App\Sponsor;
 use Braintree;
+use Carbon\Carbon;
 
 class SponsorController extends Controller
 {
@@ -24,21 +25,33 @@ class SponsorController extends Controller
         return view('user.apartments.sponsorization', compact('apartment', 'sponsors', 'token') );
     }
 
+    public function sponsorized_show(Apartment $apartment) {
+        return view('user.apartments.sponsorized', compact('apartment'));
+    }
+
     public function checkout(Request $request, Apartment $apartment){
 
+    $mutable = Carbon::now();
+    $sa = $request->all();
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if ($sa['amount'] == 2.99) {
+        $sa['sponsor_id'] = 1;
+        $modifiedMutable = $mutable->add(1, 'day');
+    } 
+    elseif ($sa['amount'] == 5.99) {
+        $sa['sponsor_id'] = 2;
+        $modifiedMutable = $mutable->add(3, 'day');
+    } 
+    else {
+        $sa['sponsor_id'] = 3;
+        $modifiedMutable = $mutable->add(6, 'day');
+    };
 
-      $sponsor_apartment = $request->all();
-      $new_Sponsor_A = [
-        'apartment_id' => $apartment->id ,
-        'sponsor_id' => $sponsor_apartment['sponsor_id'],
-      ];
-      $apartment->sponsors()->pivot()->sync($new_Sponsor_A, ['end_date' => 2021-03-04 ]);
-
-
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    
+    $apartment->sponsors()->attach(array($apartment->id => array(
+        'sponsor_id' => $sa['sponsor_id'],
+        'end_date' => $modifiedMutable
+    )));
 
 
 

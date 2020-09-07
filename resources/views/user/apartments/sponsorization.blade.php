@@ -26,10 +26,8 @@
                 @csrf
                 <section>
                   <div class="form-group">
-                        {{-- <input type="hidden" name="apartment_id" value="{{$apartment->id}}"> --}}
                       @foreach ($sponsors as $sponsor)
                       <div class="form-check">
-                          <input type="hidden" name="sponsor_id" value="{{$sponsor->id}}">
                           <label for="amount" class="form-check-label">
                               <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio" value="{{ $sponsor->price }} ">
                               {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione

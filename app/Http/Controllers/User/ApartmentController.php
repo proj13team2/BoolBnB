@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use App\Service;
 use App\Address;
+use Carbon\Carbon;
 
 class ApartmentController extends Controller
 {
@@ -21,9 +22,10 @@ class ApartmentController extends Controller
      */
     public function index()
     {
+        $mutable = Carbon::now();
         $user = Auth::id();
         $user_apartments = Apartment::with('services','address')->where('apartments.user_id', '=', $user)->get();
-        return view('user.apartments.index', compact('user_apartments'));
+        return view('user.apartments.index', compact('user_apartments', 'mutable'));
     }
 
     /**

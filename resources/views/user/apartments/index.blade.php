@@ -46,9 +46,14 @@
                                     <a class="btn btn-small btn-info"  href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}">
                                         Statistiche
                                     </a>
-                                    <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $user_apartment->id]) }}">
-                                        Sponsorizza
-                                    </a>
+                                    
+                                    @forelse ($user_apartment->sponsors as $sponsor) 
+                                    @if($sponsor->pivot->end_date > $mutable) 
+                                        <a class="btn btn-small btn-info"  href="  {{ route('user.apartment.sponsorized', ['apartment' => $user_apartment->id]) }} "> Vedi Sponsorizzazione </a>
+                                    @endif
+                                    @empty
+                                    <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $user_apartment->id]) }} ">  Sponsorizza </a> 
+                                    @endforelse
                                     <form class="d-inline" action="{{ route('user.apartments.destroy', ['apartment' => $user_apartment->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')

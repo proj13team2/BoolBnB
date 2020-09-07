@@ -29,30 +29,31 @@ class SponsorController extends Controller
         return view('user.apartments.sponsorized', compact('apartment'));
     }
 
-    public function checkout(Request $request, Apartment $apartment){
+    public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
 
     $mutable = Carbon::now();
     $sa = $request->all();
+    $sponsor = Sponsor::find($sa['amount']);
+    $sponsor_price = $sponsor['price'];
 
-    if ($sa['amount'] == 2.99) {
-        $sa['sponsor_id'] = 1;
-        $modifiedMutable = $mutable->add(1, 'day');
-    } 
-    elseif ($sa['amount'] == 5.99) {
-        $sa['sponsor_id'] = 2;
-        $modifiedMutable = $mutable->add(3, 'day');
-    } 
-    else {
-        $sa['sponsor_id'] = 3;
-        $modifiedMutable = $mutable->add(6, 'day');
-    };
+    if ($sponsor_price == 2.99) {
+       $modifiedMutable = $mutable->add(1, 'day');
+   }
+   elseif ($sponsor_price == 5.99) {
+       $modifiedMutable = $mutable->add(3, 'day');
+   }
+   else {
+       $modifiedMutable = $mutable->add(6, 'day');
+   };
 
-    
+
+
+
     $apartment->sponsors()->attach(array($apartment->id => array(
-        'sponsor_id' => $sa['sponsor_id'],
+        'sponsor_id' => $sa['amount'],
         'end_date' => $modifiedMutable
-        
     )));
+
 
 
 
@@ -65,7 +66,7 @@ class SponsorController extends Controller
             'privateKey' => config('services.braintree.privateKey')
         ]);
 
-        $amount = $_POST["amount"];
+        $amount = $sponsor_price;
         $nonce = $_POST["payment_method_nonce"];
 
 

@@ -29,7 +29,7 @@
                       @foreach ($sponsors as $sponsor)
                       <div class="form-check">
                           <label for="amount" class="form-check-label">
-                              <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio" value="{{ $sponsor->price }} ">
+                              <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio"  value=" {{ $sponsor->id }}">
                               {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
                           </label>
                       </div>

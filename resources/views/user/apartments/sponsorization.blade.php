@@ -5,19 +5,6 @@
         <div class="col-12">
             <h4> Seleziona la stanza "{{$apartment->title}}"</h4>
             <p>Seleziona la modalità di sponsorizzazione:</p>
-            <form action="">
-                <div class="form-group">
-                    @foreach ($sponsors as $sponsor)
-                    <div class="form-check">
-                        <label class="form-check-label">
-                            <input name="sponsor_id" class="form-check-input sponsorship-level" type="radio" value="{{ $sponsor->id }}">
-                            {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
-                        </label>
-                    </div>
-                    @endforeach
-                </div>
-                <!-- <button type='submit'>Sponsor</button> -->
-            </form>
 
             @if (session('success_message'))
             <div class="alert alert-success">
@@ -38,12 +25,18 @@
             <form method="post" id="payment-form" action="{{route('user.apartment.sponsorization', ['apartment' => $apartment->id])}}">
                 @csrf
                 <section>
-                    <label for="amount">
-                        <span class="input-label">Amount</span>
-                        <div class="input-wrapper amount-wrapper">
-                            <input id="amount" name="amount" type="tel" min="1" placeholder="Amount" value="">
-                        </div>
-                    </label>
+                  <div class="form-group">
+                        {{-- <input type="hidden" name="apartment_id" value="{{$apartment->id}}"> --}}
+                      @foreach ($sponsors as $sponsor)
+                        <input type="hidden" name="sponsor_id" value="{{$sponsor->id}}">
+                      <div class="form-check">
+                          <label for="amount" class="form-check-label">
+                              <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio" value="{{ $sponsor->price }} ">
+                              {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
+                          </label>
+                      </div>
+                      @endforeach
+                  </div>
 
                     <div class="bt-drop-in-wrapper">
                         <div id="bt-dropin"></div>
@@ -53,7 +46,6 @@
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
                 <button class="button" type="submit"><span>Proceed to payment</span></button>
             </form>
-
         </div>
     </div>
 </div>

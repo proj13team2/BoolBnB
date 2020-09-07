@@ -21,10 +21,27 @@ class SponsorController extends Controller
 
         $token = $gateway->ClientToken()->generate();
 
-        return view('user.apartments.sponsorization', compact('apartment', 'sponsors', 'token') ); 
+        return view('user.apartments.sponsorization', compact('apartment', 'sponsors', 'token') );
     }
 
     public function checkout(Request $request, Apartment $apartment){
+
+
+
+
+      $sponsor_apartment = $request->all();
+      $new_Sponsor_A = new Message();
+      $new_Sponsor_A['apartment_id'] = $apartment->id;
+      $new_Sponsor_A->fill($message);
+      $new_Sponsor_A->save();
+
+      return redirect()->route('guest.apartment.show', ['slug'=> $apartment->slug]);
+
+
+
+
+
+
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
             'merchantId' => config('services.braintree.merchantId'),
@@ -34,6 +51,7 @@ class SponsorController extends Controller
 
         $amount = $_POST["amount"];
         $nonce = $_POST["payment_method_nonce"];
+
 
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
@@ -48,7 +66,7 @@ class SponsorController extends Controller
             ]
         ]);
 
-        if ($result->success || !is_null($result->transaction)) {
+        if ($result->success) {
             $transaction = $result->transaction;
 
             return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);

@@ -27,5 +27,5 @@ class HomeController extends Controller
         $apartments = Apartment::all();
         return view('home',compact('apartments'));
     }
-    
+
 }

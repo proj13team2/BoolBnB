@@ -10915,7 +10915,8 @@ body {
 }
 
 .our_results,
-.tomtom_results {
+.tomtom_results,
+.SPONSORIZED {
   float: left;
   width: 50%;
   height: 100vh;

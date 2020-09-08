@@ -42400,11 +42400,15 @@ $(document).ready(function () {
     research();
   }); // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js"); // // handlebars per our results
+  var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/dist/cjs/handlebars.js"); // // handlebars per our results - CHIAMATA SEARCH
 
 
   var source = $("#our_results").html();
-  var template = Handlebars.compile(source);
+  var template = Handlebars.compile(source); // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
+
+  var source_Sponsorized = $("#SPONSORIZED").html();
+  var template_Sponsorized = Handlebars.compile(source_Sponsorized); // Obje HANDLEBARS appartamenti
+
   var our_results = {
     title: '',
     street: '',
@@ -42414,8 +42418,38 @@ $(document).ready(function () {
     zip_code: '',
     src: '',
     link: ''
-  }; //CHIAMATE API CON AJAX PER HOME
-  //chiave per accedere alle API di tomtom
+  };
+  Stamp_A_sponsored();
+
+  function Stamp_A_sponsored() {
+    $.ajax({
+      'url': window.location.protocol + '//' + window.location.host + '/api/stamp',
+      'method': 'GET',
+      success: function success(dati) {
+        $('.SPONSORIZED').empty();
+
+        for (var index = 0; index < dati.results.length; index++) {
+          our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
+          our_results.title = dati.results[index].title;
+          our_results.street = dati.results[index].street;
+          our_results.building_number = dati.results[index].building_number;
+          our_results.city = dati.results[index].city;
+          our_results.region = dati.results[index].region;
+          our_results.zip_code = dati.results[index].zip_code;
+          our_results.src = dati.results[index].src;
+          var html = template_Sponsorized(our_results);
+          $('.SPONSORIZED').append(html);
+        }
+
+        ;
+      },
+      error: function error() {
+        console.log('error');
+      }
+    });
+  }
+
+  ; //chiave per accedere alle API di tomtom
 
   var key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1'; //ricerca in tempo reale tramite la il rilascio dei tasti
 
@@ -42468,6 +42502,7 @@ $(document).ready(function () {
               console.log(dati); //Ricerca contatti con click
 
               $('button').click(function () {
+                $('.SPONSORIZED').empty();
                 $('.our_results').empty();
 
                 for (var index = 0; index < dati.results.length; index++) {
@@ -42486,29 +42521,26 @@ $(document).ready(function () {
 
                 $('input').val('');
               }); //faccio la stessa cosa ma con l'enter
-
-              $('input').keyup(function (event) {
-                // verifico se l'utente ha digitato "ENTER"
-                if (event.which == 13) {
-                  $('.our_results').empty();
-
-                  for (var index = 0; index < data.results.length; index++) {
-                    our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
-                    our_results.title = dati.results[index].title;
-                    our_results.street = dati.results[index].street;
-                    our_results.building_number = dati.results[index].building_number;
-                    our_results.city = dati.results[index].city;
-                    our_results.region = dati.results[index].region;
-                    our_results.zip_code = dati.results[index].zip_code;
-                    our_results.src = dati.results[index].src;
-                    var html = template(our_results);
-                    $('.apartment_result>a').attr('href', link);
-                    $('.our_results').append(html);
-                  }
-
-                  $('input').val('');
-                }
-              });
+              // $('input').keyup(function(event) {
+              // verifico se l'utente ha digitato "ENTER"
+              //  if(event.which == 13) {
+              //     $('.our_results').empty();
+              //     for (let index = 0; index < dati.results.length; index++) {
+              //         our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
+              //         our_results.title = dati.results[index].title;
+              //         our_results.street = dati.results[index].street;
+              //         our_results.building_number = dati.results[index].building_number;
+              //         our_results.city = dati.results[index].city;
+              //         our_results.region = dati.results[index].region;
+              //         our_results.zip_code = dati.results[index].zip_code;
+              //         our_results.src = dati.results[index].src;
+              //         var html = template(our_results);
+              //         $('.apartment_result>a').attr('href', link )
+              //         $('.our_results').append(html);
+              //     }
+              //     $('input').val('');
+              // }
+              // })
             },
             error: function error() {
               console.log('error');

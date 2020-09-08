@@ -23,6 +23,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "@tomtom-international/web-sdk-maps": "^5.64.0",
+        "@tomtom-international/web-sdk-services": "^5.64.0",
         "handlebars": "^4.7.6"
     }
 }

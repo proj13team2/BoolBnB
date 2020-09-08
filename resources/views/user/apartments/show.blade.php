@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 appartamento" data-lat='{{$apartment->address->lat}}' data-lng='{{$apartment->address->lng}}'>
                 <div class="d-flex align-items-center">
                     <h1 class="mt-3 mb-3">Dettagli Appartmento</h1>
                 </div>
@@ -57,15 +57,16 @@
                     @endforelse
                 </p>
                 @forelse ($apartment->sponsors as $sponsor)
-                @if($sponsor->pivot->end_date > $mutable)
+                @if($sponsor->pivot->end_date > ($mutable ?? ''))
                     <a class="btn btn-small btn-info"  href="  {{ route('user.apartment.sponsorized', ['apartment' => $apartment->id]) }} "> Vedi Sponsorizzazione </a>
                 @endif
                 @empty
                 <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $apartment->id]) }} ">  Sponsorizza </a>
                 @endforelse
+                <div id="map" style="width: 500px; height: 500px;"></div>
             </div>
         </div>
-    </div>
+    </div> 
 @endsection
 @push('head')
   <script src="{{ asset('js/app.js')}}"></script>

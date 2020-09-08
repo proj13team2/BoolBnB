@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 appartamento" data-lat='{{$apartment->address->lat}}' data-lng='{{$apartment->address->lng}}'>
                 <div class="d-flex align-items-center">
                     <h1 class="mt-3 mb-3">Dettagli Appartmento</h1>
                 </div>
@@ -55,8 +55,9 @@
                         -
                     @endforelse
                 </p>
+
             </div>
-            <div class="col-12">
+            <div class="col-6">
             <form action="{{route('guest.message', ['apartment' => $apartment->id])}}" method="post">
                 @csrf
                 <div class="form-group">
@@ -69,6 +70,9 @@
                 </div>
                 <button type='submit'>Invia Messaggio</button>
             </form>
+            </div>
+            <div class="col-6">
+                <div id="map" style="width: 500px; height: 500px;"></div>
             </div>
         </div>
     </div>

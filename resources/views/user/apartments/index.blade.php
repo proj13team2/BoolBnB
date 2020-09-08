@@ -48,7 +48,7 @@
                                     </a>
                                     
                                     @forelse ($user_apartment->sponsors as $sponsor) 
-                                    @if($sponsor->pivot->end_date > $mutable) 
+                                    @if($sponsor->pivot->end_date > ($mutable ?? '')) 
                                         <a class="btn btn-small btn-info"  href="  {{ route('user.apartment.sponsorized', ['apartment' => $user_apartment->id]) }} "> Vedi Sponsorizzazione </a>
                                     @endif
                                     @empty

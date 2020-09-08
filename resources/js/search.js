@@ -5,6 +5,15 @@ const $ = require('jquery');
 $(document).ready(function(){
 
 
+  //SLIDER
+  var slider = $("#km_slider");
+  var output = $("#slider_range");
+  $("#slider_range").html(slider.val());
+  slider.on('change' , function() {
+    output.html($(this).val());
+  });
+
+
 
   // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
   $('#input').val('Piazza Cesare Beccaria Mil');

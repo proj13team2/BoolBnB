@@ -42393,7 +42393,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
-  // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //SLIDER
+  var slider = $("#km_slider");
+  var output = $("#slider_range");
+  $("#slider_range").html(slider.val());
+  slider.on('change', function () {
+    output.html($(this).val());
+  }); // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   $('#input').val('Piazza Cesare Beccaria Mil');
   $('#input').click(function () {
     $('.tomtom_results').empty();

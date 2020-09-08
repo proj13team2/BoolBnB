@@ -34,12 +34,6 @@ class SponsorController extends Controller
     }
 
 
-
-
-    public function sponsorized_show(Apartment $apartment) {
-        return view('user.apartments.sponsorized', compact('apartment'));
-    }
-
     public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
 
     $mutable = Carbon::now();

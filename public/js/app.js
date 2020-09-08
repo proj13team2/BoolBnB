@@ -37313,7 +37313,6 @@ $(document).ready(function () {
     });
   });
   var position = [$('.appartamento').data('lng'), $('.appartamento').data('lat')];
-  console.log(position);
   var map = _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.map({
     key: key,
     container: "map",
@@ -37331,13 +37330,17 @@ $(document).ready(function () {
   };
   var element = document.createElement('div');
   element.id = 'marker';
+  var apt_title = $('p[data-title]').data('title');
+  var apt_address = $('p[data-address]').data('address');
+  var apt_endaddress = $('.appartamento').data('endaddress');
   var popup = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Popup({
     offset: popupOffsets
-  }).setHTML("<b>Speedy's pizza</b><br/>100 Century Center Ct 210, San Jose, CA 95112, USA");
+  }).setHTML("<b>" + apt_title + "</b><br/>" + apt_address + '</br>' + apt_endaddress);
   var marker = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Marker({
     element: element
   }).setLngLat(position).addTo(map);
   marker.setPopup(popup).togglePopup();
+  map.addControl(new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.NavigationControl());
 });
 
 /***/ }),

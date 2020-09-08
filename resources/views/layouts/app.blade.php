@@ -15,7 +15,6 @@
         he sulla home, là si collega search.js,
          POSSIBILI CAMBIAMENTI IN CORSO D'OPERA,
          guardare dopo endsection di ogni view --}}
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">

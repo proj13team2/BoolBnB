@@ -40,7 +40,8 @@ $(document).ready(function(){
 
     
     var position = [ $('.appartamento').data('lng') , $('.appartamento').data('lat') ];
-    console.log(position);
+
+
     var map = tt.map({
         key: key,
         container: "map",
@@ -58,10 +59,12 @@ $(document).ready(function(){
     }
     var element = document.createElement('div');
     element.id = 'marker';
-    var popup = new tt.Popup({offset: popupOffsets}).setHTML("<b>Speedy's pizza</b><br/>100 Century Center Ct 210, San Jose, CA 95112, USA");
+    var apt_title = $('p[data-title]').data('title');
+    var apt_address = $('p[data-address]').data('address');
+    var apt_endaddress = $('.appartamento').data('endaddress')
+    var popup = new tt.Popup({offset: popupOffsets}).setHTML("<b>"+ apt_title +"</b><br/>" + apt_address + '</br>' + apt_endaddress);
     var marker = new tt.Marker({element: element}).setLngLat(position).addTo(map);
     marker.setPopup(popup).togglePopup();
-    
 
-
+    map.addControl(new tt.NavigationControl());
 })

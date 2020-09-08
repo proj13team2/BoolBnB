@@ -46,19 +46,17 @@
                                     <a class="btn btn-small btn-info"  href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}">
                                         Statistiche
                                     </a>
-                                    
-                                    @forelse ($user_apartment->sponsors as $sponsor) 
-                                    @if($sponsor->pivot->end_date > ($mutable ?? '')) 
-                                        <a class="btn btn-small btn-info"  href="  {{ route('user.apartment.sponsorized', ['apartment' => $user_apartment->id]) }} "> Vedi Sponsorizzazione </a>
-                                    @endif
-                                    @empty
-                                    <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $user_apartment->id]) }} ">  Sponsorizza </a> 
-                                    @endforelse
                                     <form class="d-inline" action="{{ route('user.apartments.destroy', ['apartment' => $user_apartment->id]) }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-small btn-danger" value="Elimina">
                                     </form>
+                                    @forelse ($user_apartment->sponsors as $sponsor)
+                                    @if($sponsor->pivot->end_date > ($mutable ?? ''))
+                                    <img src="https://cdn.icon-icons.com/icons2/554/PNG/512/money_dollar_cash_coins_riches_wealth_icon-icons.com_53585.png" height="35px" alt="Money">
+                                    @endif
+                                    @empty
+                                    @endforelse
                                 </td>
                             </tr>
                         @empty

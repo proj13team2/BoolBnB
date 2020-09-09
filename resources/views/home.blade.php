@@ -14,8 +14,8 @@
                 @foreach ($services as $service)
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input
-                            name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->id }}">
+                            <input class='services_input'
+                            name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->type }}">
                             {{ $service->type }}
                         </label>
                     </div>
@@ -36,8 +36,8 @@
                   <option value="9">9</option>
                   <option value="10">10</option>
                 </select>
-                <label for="number_of_bathrooms">Select number of bathrooms:</label>
-                <select class="" id="number_of_bathrooms" name="number_of_bathrooms">
+                <label for="number_of_beds">Select number of beds:</label>
+                <select class="" id="number_of_beds" name="number_of_beds">
                   <option value="">...</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
@@ -56,7 +56,7 @@
                 <input type="range" min="1" max="100" id="km_slider" name="km_slider" value="100">
                 <p>value: <span id="slider_range"></span></p>
               </div>
-              <button type="button" name="button">Go</button>
+              <button type="button" id='go' name="button">Go</button>
             </form>
           </div>
        </div>

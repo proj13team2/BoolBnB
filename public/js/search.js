@@ -42494,10 +42494,10 @@ $(document).ready(function () {
           var nome_provincia = $(this).find('span:nth-of-type(3)').text();
           var nome_nazione = $(this).find('span:nth-of-type(4)').text();
           var address = nome_via + nome_città + nome_provincia + nome_nazione;
-          $('input').val(address); //recupero latitudine e longitudine dell'indirizzo cercato
+          $('#input').val(address); //recupero latitudine e longitudine dell'indirizzo cercato
 
-          var lat = $(this).data('lat');
-          var lon = $(this).data('lon'); //chiamata ajax per recuperare gli appartamenti che ho nel db e le rispettive lat e lon
+          lat = $(this).data('lat');
+          lon = $(this).data('lon'); //chiamata ajax per recuperare gli appartamenti che ho nel db e le rispettive lat e lon
 
           $.ajax({
             'url': window.location.protocol + '//' + window.location.host + '/api/search',
@@ -42560,41 +42560,52 @@ $(document).ready(function () {
       }
     });
   }
-}); //Funzione per i FILTRI
 
-function filtered_research() {
-  $.ajax({
-    'url': window.location.protocol + '//' + window.location.host + '/api/search',
-    'method': 'GET',
-    'data': {
-      'lat': lat,
-      'lng': lon
-    },
-    success: function success(dati) {
-      console.log(dati); //Ricerca contatti con click
+  $('#go').click(function () {
+    var searched_services = [];
+    $('.services_input').each(function () {
+      if ($(this).is(':checked')) {
+        searched_services.push($(this).val());
+      }
+    });
+    console.log(searched_services);
+    $.ajax({
+      'url': window.location.protocol + '//' + window.location.host + '/api/filtered',
+      'method': 'GET',
+      'data': {
+        'lat': lat,
+        'lng': lon,
+        'radius': $('#km_slider').val(),
+        'searched_services': searched_services,
+        'number_of_rooms': $('#number_of_rooms').val(),
+        'number_of_beds': $('#number_of_beds').val()
+      },
+      success: function success(dati) {
+        console.log(dati); //Ricerca contatti con click
 
-      $('button').click(function () {
-        $('.our_results').empty();
+        $('button').click(function () {
+          $('.our_results').empty();
 
-        for (var index = 0; index < dati.results.length; index++) {
-          our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
-          our_results.title = dati.results[index].title;
-          our_results.street = dati.results[index].street;
-          our_results.building_number = dati.results[index].building_number;
-          our_results.city = dati.results[index].city;
-          our_results.region = dati.results[index].region;
-          our_results.zip_code = dati.results[index].zip_code;
-          our_results.src = dati.results[index].src;
-          var html = template(our_results);
-          $('.our_results').append(html);
-        }
-      });
-    },
-    error: function error() {
-      console.log('error');
-    }
+          for (var index = 0; index < dati.results.length; index++) {
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
+            our_results.title = dati.results[index].title;
+            our_results.street = dati.results[index].street;
+            our_results.building_number = dati.results[index].building_number;
+            our_results.city = dati.results[index].city;
+            our_results.region = dati.results[index].region;
+            our_results.zip_code = dati.results[index].zip_code;
+            our_results.src = dati.results[index].src;
+            var html = template(our_results);
+            $('.our_results').append(html);
+          }
+        });
+      },
+      error: function error() {
+        console.log('error');
+      }
+    });
   });
-}
+}); //Funzione per i FILTRI
 
 /***/ }),
 
@@ -42605,7 +42616,7 @@ function filtered_research() {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

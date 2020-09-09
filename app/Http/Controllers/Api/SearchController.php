@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Apartment;
 use Carbon\Carbon;
+use App\Service;
 
 class SearchController extends Controller
 {
@@ -15,6 +16,7 @@ class SearchController extends Controller
 
 
         $data = $request->all();
+        
         $lat = $data['lat'];
         $lng = $data['lng'];
         $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, $radius = 20);
@@ -35,6 +37,39 @@ class SearchController extends Controller
             'count' => $apartments->count(),
             'results' => $apartments ]);
     }
+
+    public function filtered (Request $request){
+        $data = $request->all();
+
+        $searched_services = $data['searched_services'];
+        $number_of_beds = $data['number_of_beds'];
+        $number_of_rooms = $data['number_of_rooms'];
+        $radius = $data['radius'];
+        $lat = $data['lat'];
+        $lng = $data['lng'];
+
+
+        $services = Service::all();
+        $all_services = [];
+
+        foreach ($services as $service) {
+            array_push($all_services, $service->type);
+        }
+
+        $apartments = Apartment::with('services','address')->get();
+
+
+        foreach ($all_services as $service) {
+            if(in_array($service,$searched_services)) {
+                // $apartments->where('');
+            }
+        }
+
+        return response()->json([
+            'success' => true,
+            'count' => 'a',
+            'results' => $apartments ]);
+    }
 }
 
 function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {
@@ -50,3 +85,5 @@ function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {
        ->selectRaw("{$calculationsForDistance} AS distance")
        ->whereRaw("{$calculationsForDistance} < ?", $radius)->get();
 }
+
+

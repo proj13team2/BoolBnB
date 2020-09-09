@@ -133,10 +133,37 @@ class ApartmentController extends Controller
      */
     public function show($id)
     {
-        $mutable = Carbon::now();
         $apartment = Apartment::find($id);
+        $apartment_sponsors = DB::table('apartment_sponsor')->select('apartment_id')->get();
+        $sponsorized_apartments = [];
+        $active = '';
+
+        
+            foreach ( $apartment_sponsors  as $apartment_sponsor) {
+                if (!in_array( $apartment_sponsor->apartment_id, $sponsorized_apartments)) {
+                    array_push($sponsorized_apartments, $apartment_sponsor->apartment_id );
+                }
+            }
+        
+
+            foreach ($apartment_sponsors  as $apartment_sponsor) {
+                if (in_array($apartment_sponsor->apartment_id, $sponsorized_apartments)) {
+                    foreach($apartment->sponsors as $sponsor) {
+                        if ($sponsor->pivot->end_date > Carbon::now()) {
+                         $active = 1;
+                        } else {
+                         $active = 0;
+                        }
+                    }
+                } else {
+                    $active = 0;
+                }
+            }
+        
+        
+
         if($apartment) {
-            return view('user.apartments.show', compact('apartment' , 'mutable'));
+            return view('user.apartments.show', compact('apartment' , 'active'));
         } else {
             return abort('404');
         }

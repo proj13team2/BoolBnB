@@ -56,17 +56,18 @@
                         -
                     @endforelse
                 </p>
-                @foreach ($apartment->sponsors as $sponsor)
-                @if($sponsor->pivot->end_date > ($mutable ?? ''))
-                  <ul>
-                    <li> Tipo di Sponsor :{{$sponsor->sponsorship_level}} </li>
-                    <li> Prezzo :{{$sponsor->price}} </li>
-                    <li> Fine sponsorizzazione:{{$sponsor->pivot->end_date}} </li>
-                  </ul>
-                @else
+                
+                @if($active == 0 || $active = '')
                     <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $apartment->id]) }} ">  Sponsorizza </a>
+                @else
+                    @foreach ($apartment->sponsors as $sponsor)
+                        <ul>
+                            <li> Tipo di Sponsor :{{$sponsor->sponsorship_level}} </li>
+                            <li> Prezzo :{{$sponsor->price}} </li>
+                            <li> Fine sponsorizzazione:{{$sponsor->pivot->end_date}} </li>
+                        </ul>
+                    @endforeach
                 @endif
-                @endforeach
                 <div id="map" style="width: 500px; height: 500px;"></div>
             </div>
         </div>

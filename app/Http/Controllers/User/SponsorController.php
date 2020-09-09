@@ -22,14 +22,10 @@ class SponsorController extends Controller
           'privateKey' => config('services.braintree.privateKey')
       ]);
 
+      
+
       $token = $gateway->ClientToken()->generate();
 
-      foreach ($apartment->sponsors as $sponsor) {
-        if ($sponsor->pivot->end_date > $mutable) {
-          return view('user.apartments.sponsorized' , ['apartment' => $apartment->id]);
-        }
-
-      }
       return view('user.apartments.sponsorization', compact('apartment', 'sponsors', 'token') );
     }
 
@@ -51,15 +47,25 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-
-
+   foreach($apartment->sponsors as $sponsor) {
+        if ($sponsor->pivot->end_date > Carbon::now()) {
+         $active = 1;
+        } else {
+         $active = 0;
+        }
+    }
 
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['amount'],
-        'end_date' => $modifiedMutable
+        'end_date' => $modifiedMutable,
+        'is_active' => $active
     )));
 
+    
 
+    // $apartment->sponsors()->attach(array($apartment->id => array(
+    //     'is_active' => $active
+    // )));
 
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -96,6 +102,6 @@ class SponsorController extends Controller
         //     return back()->withErrors('An error occured with the message: ' . $result->message);
         // }
 
-        return view('user.apartments.show', compact('apartment'));
+        return view('user.apartments.show', compact('apartment', 'active'));
     }
 }

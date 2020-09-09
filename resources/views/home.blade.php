@@ -12,7 +12,7 @@
               @csrf
               <div class="services">
                 @foreach ($services as $service)
-                    <div class="form-check">
+                    <div class="form-check form-check-inline ">
                         <label class="form-check-label">
                             <input class='services_input'
                             name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->type }}">

@@ -19,7 +19,7 @@ class SearchController extends Controller
         
         $lat = $data['lat'];
         $lng = $data['lng'];
-        $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, $radius = 20);
+        $apartments = scopeIsWithinMaxDistance(DB::table('addresses')->join('apartments','addresses.apartment_id', '=', 'apartments.id'),$lat , $lng, 20);
     //    return view ('home', compact('apartments'))->render() ;
         return response()->json([
             'success' => true,
@@ -48,31 +48,15 @@ class SearchController extends Controller
         $lat = $data['lat'];
         $lng = $data['lng'];
 
-
-        $services = Service::all();
-        $all_services = [];
-
-        foreach ($services as $service) {
-            array_push($all_services, $service->type);
-        }
-
-        $apartments = Apartment::with('services','address')->get();
-
-
-        foreach ($all_services as $service) {
-            if(in_array($service,$searched_services)) {
-                // $apartments->where('');
-            }
-        }
+        $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id'),$lat,$lng,$radius);
 
         return response()->json([
             'success' => true,
-            'count' => 'a',
-            'results' => $apartments ]);
+            'results' => $results ]);
     }
 }
 
-function scopeIsWithinMaxDistance($query, $lat, $lon, $radius = 20) {
+function scopeIsWithinMaxDistance($query, $lat, $lon, $radius) {
 
     $calculationsForDistance = "(6371 * acos(cos(radians($lat))
                     * cos(radians(addresses.lat))

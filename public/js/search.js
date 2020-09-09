@@ -42562,6 +42562,7 @@ $(document).ready(function () {
   }
 
   $('#go').click(function () {
+    $('.our_results').empty();
     var searched_services = [];
     $('.services_input').each(function () {
       if ($(this).is(':checked')) {
@@ -42581,20 +42582,38 @@ $(document).ready(function () {
         'number_of_beds': $('#number_of_beds').val()
       },
       success: function success(dati) {
-        console.log(dati); //Ricerca contatti con click
+        console.log(dati);
+
+        for (var index = 0; index < dati.results.length; index++) {
+          for (var j = 0; j < dati.results[index].services.length; j++) {
+            if (searched_services.includes(dati.results[index].services[j].type)) {
+              our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
+              our_results.title = dati.results[index].title;
+              our_results.street = dati.results[index].street;
+              our_results.building_number = dati.results[index].building_number;
+              our_results.city = dati.results[index].city;
+              our_results.region = dati.results[index].region;
+              our_results.zip_code = dati.results[index].zip_code;
+              our_results.src = dati.results[index].src;
+              var html = template(our_results);
+              $('.our_results').append(html);
+            }
+          }
+        } //Ricerca contatti con click
+
 
         $('button').click(function () {
           $('.our_results').empty();
 
-          for (var index = 0; index < dati.results.length; index++) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
-            our_results.title = dati.results[index].title;
-            our_results.street = dati.results[index].street;
-            our_results.building_number = dati.results[index].building_number;
-            our_results.city = dati.results[index].city;
-            our_results.region = dati.results[index].region;
-            our_results.zip_code = dati.results[index].zip_code;
-            our_results.src = dati.results[index].src;
+          for (var _index = 0; _index < dati.results.length; _index++) {
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[_index].slug;
+            our_results.title = dati.results[_index].title;
+            our_results.street = dati.results[_index].street;
+            our_results.building_number = dati.results[_index].building_number;
+            our_results.city = dati.results[_index].city;
+            our_results.region = dati.results[_index].region;
+            our_results.zip_code = dati.results[_index].zip_code;
+            our_results.src = dati.results[_index].src;
             var html = template(our_results);
             $('.our_results').append(html);
           }

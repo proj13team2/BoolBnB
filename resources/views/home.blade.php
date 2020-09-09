@@ -7,7 +7,7 @@
             <button>Cerca</button>
         </div>
         <div class="FORM_SEARCH float yellow">
-          <div class="select">
+          <div class="form_fallovede disabled">
             <form class="" action="index.html" method="post">
               @csrf
               <div class="services">
@@ -22,8 +22,33 @@
                 @endforeach
               </div>
               <div class="number_of">
-                <select class="" name="">
-
+                <label for="number_of_rooms">Select number of rooms:</label>
+                <select class="" id="number_of_rooms" name="number_of_rooms">
+                  <option value="">...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+                <label for="number_of_bathrooms">Select number of bathrooms:</label>
+                <select class="" id="number_of_bathrooms" name="number_of_bathrooms">
+                  <option value="">...</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
                 </select>
               </div>
               <div class="slider">

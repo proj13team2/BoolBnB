@@ -49,6 +49,7 @@ $(document).ready(function(){
         link:''
     }
 
+    // funzione per stampare gli appartamenti sponsorizzati in pagina.
     Stamp_A_sponsored();
 
     function Stamp_A_sponsored() {
@@ -90,7 +91,7 @@ $(document).ready(function(){
     function research() {
 
         //identifico il valore inserito dall'utente e lo rendo uppercase
-        var ricerca_utente = $('#input').val().toLowerCase();
+        var ricerca_utente = $('#input').val();
 
         //chiamata ajax per effettuare la ricerca
         $.ajax({
@@ -139,11 +140,12 @@ $(document).ready(function(){
                             'lng': lon
                         },
                         success: function(dati) {
-                            console.log(dati);
                             //Ricerca contatti con click
                             $('button').click(function(){
                                 $('.SPONSORIZED').empty();
                                 $('.our_results').empty();
+                                $('.our_results').append('<p id="ricerca_user"></p>');
+                                $('.form_fallovede').removeClass('disabled');
                                 for (let index = 0; index < dati.results.length; index++) {
                                     our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
                                     our_results.title = dati.results[index].title;
@@ -155,9 +157,8 @@ $(document).ready(function(){
                                     our_results.src = dati.results[index].src;
                                     var html = template(our_results);
                                     $('.our_results').append(html);
+                                    $('#ricerca_user').text('Il risultato per la ricerca effettuata é :' + ricerca_utente);
                                 }
-                                //dopodichè libero l'input
-                                $('input').val('');
                             })
                             //faccio la stessa cosa ma con l'enter
                             // $('input').keyup(function(event) {
@@ -193,3 +194,38 @@ $(document).ready(function(){
         })
     }
 })
+
+
+//Funzione per i FILTRI
+function filtered_research() {
+  $.ajax({
+      'url': window.location.protocol + '//' + window.location.host  + '/api/search',
+      'method': 'GET',
+      'data': {
+          'lat': lat,
+          'lng': lon
+      },
+      success: function(dati) {
+          console.log(dati);
+          //Ricerca contatti con click
+          $('button').click(function(){
+              $('.our_results').empty();
+              for (let index = 0; index < dati.results.length; index++) {
+                  our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
+                  our_results.title = dati.results[index].title;
+                  our_results.street = dati.results[index].street;
+                  our_results.building_number = dati.results[index].building_number;
+                  our_results.city = dati.results[index].city;
+                  our_results.region = dati.results[index].region;
+                  our_results.zip_code = dati.results[index].zip_code;
+                  our_results.src = dati.results[index].src;
+                  var html = template(our_results);
+                  $('.our_results').append(html);
+              }
+          })
+      },
+      error: function() {
+          console.log('error');
+      }
+  })
+}

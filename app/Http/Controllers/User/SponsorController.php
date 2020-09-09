@@ -22,7 +22,7 @@ class SponsorController extends Controller
           'privateKey' => config('services.braintree.privateKey')
       ]);
 
-      
+
 
       $token = $gateway->ClientToken()->generate();
 
@@ -47,13 +47,15 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-   foreach($apartment->sponsors as $sponsor) {
-        if ($sponsor->pivot->end_date > Carbon::now()) {
-         $active = 1;
-        } else {
-         $active = 0;
-        }
-    }
+   // foreach($apartment->sponsors as $sponsor) {
+   //      if ($sponsor->pivot->end_date > Carbon::now()) {
+   //       $active = 1;
+   //      } else {
+   //       $active = 0;
+   //      }
+   //  }
+   
+   $active = 1;
 
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['amount'],
@@ -61,7 +63,7 @@ class SponsorController extends Controller
         'is_active' => $active
     )));
 
-    
+
 
     // $apartment->sponsors()->attach(array($apartment->id => array(
     //     'is_active' => $active

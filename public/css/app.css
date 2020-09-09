@@ -10943,6 +10943,10 @@ body {
   background-color: whitesmoke;
 }
 
+.disabled {
+  display: none;
+}
+
 p {
   margin-bottom: 0;
 }

@@ -12,7 +12,7 @@ class MessagesTableSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 15; $i++){
+        for ($i = 0; $i < 250; $i++){
             $newMessage = new Message();
             $newMessage->email = $faker->freeEmail;
             $newMessage->content = $faker->text(150);

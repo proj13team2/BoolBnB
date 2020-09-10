@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Apartment;
 use App\Visualization;
+use App\Message;
 
 class StatsController extends Controller
 {
@@ -25,6 +26,23 @@ class StatsController extends Controller
             'visualizations' => $visualizations
         ];
         return view('user.apartments.stats', $data);
+
+    }
+    
+    //function to get the months from the db
+    public function getMonth(){
+        $monthArray = [];
+        $monthsMessage = Message::orderby('created_at', 'ASC')->pluck('created_at');
+        if(!empty($monthMessage)) {
+            foreach ($monthsMessage as $month){
+                $month->date->format('M');
+                return $month;
+            }
+        }
+    }
+
+    //function to get the messages(count) x month
+    public function getData(){
 
     }
 

@@ -31,6 +31,19 @@ class SponsorController extends Controller
 
 
     public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
+        $time_now = Carbon::now();
+        $active = '';
+        foreach($apartment->sponsors as $sponsor) {
+            if( $sponsor->pivot->end_date <= Carbon::now()) {
+                $active = 0;
+            } else {
+                $active = 1;
+                return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
+            }
+        }
+       
+
+    
 
     $mutable = Carbon::now();
     $sa = $request->all();
@@ -47,28 +60,18 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-   $active = '';
-
-   foreach($apartment->sponsors as $sponsor) {
-        if ($sponsor->pivot->end_date > Carbon::now()) {
-         $active = 1;
-        } else {
-         $active = 0;
-        }
-    }
-   
-   
+//    foreach($apartment->sponsors as $sponsor) {
+//         if ($sponsor->pivot->end_date > Carbon::now()) {
+//          $active = 1;
+//         } else {
+//          $active = 0;
+//         }
+//     }
 
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['amount'],
         'end_date' => $modifiedMutable,
     )));
-
-
-
-    // $apartment->sponsors()->attach(array($apartment->id => array(
-    //     'is_active' => $active
-    // )));
 
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -105,6 +108,6 @@ class SponsorController extends Controller
         //     return back()->withErrors('An error occured with the message: ' . $result->message);
         // }
 
-        return redirect()->route('user.apartments.show', compact('apartment', 'active'));
+        return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
     }
 }

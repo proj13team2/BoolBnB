@@ -61,11 +61,13 @@
                     <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $apartment->id]) }} ">  Sponsorizza </a>
                 @else
                     @foreach ($apartment->sponsors as $sponsor)
+                    @if($sponsor->pivot->end_date > ($time_now ?? '') )
                         <ul>
                             <li> Tipo di Sponsor :{{$sponsor->sponsorship_level}} </li>
                             <li> Prezzo :{{$sponsor->price}} </li>
                             <li> Fine sponsorizzazione:{{$sponsor->pivot->end_date}} </li>
                         </ul>
+                    @endif
                     @endforeach
                 @endif
                 <div id="map" style="width: 500px; height: 500px;"></div>

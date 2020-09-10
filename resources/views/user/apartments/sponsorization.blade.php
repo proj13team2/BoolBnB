@@ -3,6 +3,13 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
+            @foreach ($apartment->sponsors as $sponsor)
+                        <ul>
+                            <li> Tipo di Sponsor :{{$sponsor->sponsorship_level}} </li>
+                            <li> Prezzo :{{$sponsor->price}} </li>
+                            <li> Fine sponsorizzazione:{{$sponsor->pivot->end_date}} </li>
+                        </ul>
+            @endforeach
             <h4> Seleziona la stanza "{{$apartment->title}}"</h4>
             <p>Seleziona la modalità di sponsorizzazione:</p>
 

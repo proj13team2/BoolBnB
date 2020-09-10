@@ -47,15 +47,17 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-   // foreach($apartment->sponsors as $sponsor) {
-   //      if ($sponsor->pivot->end_date > Carbon::now()) {
-   //       $active = 1;
-   //      } else {
-   //       $active = 0;
-   //      }
-   //  }
-   
    $active = 1;
+
+   foreach($apartment->sponsors as $sponsor) {
+        if ($sponsor->pivot->end_date > Carbon::now()) {
+         $active = 1;
+        } else {
+         $active = 0;
+        }
+    }
+   
+   
 
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['amount'],

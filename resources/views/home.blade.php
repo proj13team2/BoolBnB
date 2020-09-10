@@ -5,6 +5,9 @@
       <div class="input_search float yellow">
             <input id='input' type="text">
             <button>Cerca</button>
+            <div class="tomtom_results">
+
+            </div>
         </div>
         <div class="FORM_SEARCH float yellow">
           <div class="form_fallovede disabled">
@@ -62,9 +65,7 @@
        </div>
 </div>
 <main>
-    <div class="tomtom_results">
-
-    </div>
+  <p id="ricerca_user"></p>
       <div class="SPONSORIZED">
       </div>
     <div class='our_results'>

@@ -40,15 +40,21 @@ class SearchController extends Controller
 
     public function filtered (Request $request){
         $data = $request->all();
-
-        $searched_services = $data['searched_services'];
         $number_of_beds = $data['number_of_beds'];
         $number_of_rooms = $data['number_of_rooms'];
         $radius = $data['radius'];
         $lat = $data['lat'];
         $lng = $data['lng'];
+        if ($number_of_rooms == '' && $number_of_beds == '') {
+            $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id'),$lat,$lng,$radius);
+        } elseif($number_of_rooms == '' && $number_of_beds != '') {
+            $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '=', $number_of_beds),$lat,$lng,$radius);
+        } elseif($number_of_rooms != '' && $number_of_beds == '') {
+            $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
+        } else {
+            $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '=', $number_of_beds)->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
 
-        $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id'),$lat,$lng,$radius);
+        }
 
         return response()->json([
             'success' => true,

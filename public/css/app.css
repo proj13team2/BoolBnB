@@ -10914,11 +10914,21 @@ body {
   background-color: white;
 }
 
+main.py-4,
+main.pt-4,
+main.pb-4 {
+  padding-top: 10px !important;
+  padding-bottom: 0 !important;
+}
+
 .float {
-  float: left;
-  width: 50%;
   padding: 10px;
-  height: 700px;
+}
+
+.TOP_MAIN {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .yellow {
@@ -10928,15 +10938,21 @@ body {
 .our_results,
 .tomtom_results,
 .SPONSORIZED {
-  float: left;
-  width: 50%;
-  height: 100vh;
   padding: 10px;
 }
 
 .our_results {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   background-color: lightgrey;
   color: white;
+}
+
+.apartment_result {
+  padding: 20px;
+  width: 275px;
 }
 
 .tomtom_results {
@@ -10953,7 +10969,7 @@ p {
 
 input,
 button {
-  margin: 30px 10px;
+  margin: 10px 10px;
 }
 
 h3 {
@@ -10969,5 +10985,10 @@ h3 {
 
 #map {
   margin: auto;
+}
+
+#ricerca_user {
+  color: black;
+  padding: 20px;
 }
 

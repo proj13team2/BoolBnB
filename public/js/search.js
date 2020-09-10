@@ -42511,7 +42511,6 @@ $(document).ready(function () {
               $('button').click(function () {
                 $('.SPONSORIZED').empty();
                 $('.our_results').empty();
-                $('.our_results').append('<p id="ricerca_user"></p>');
                 $('.form_fallovede').removeClass('disabled');
 
                 for (var index = 0; index < dati.results.length; index++) {
@@ -42525,7 +42524,7 @@ $(document).ready(function () {
                   our_results.src = dati.results[index].src;
                   var html = template(our_results);
                   $('.our_results').append(html);
-                  $('#ricerca_user').text('Il risultato per la ricerca effettuata é :' + ricerca_utente);
+                  $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                 }
               }); //faccio la stessa cosa ma con l'enter
               // $('input').keyup(function(event) {
@@ -42577,47 +42576,48 @@ $(document).ready(function () {
         'lat': lat,
         'lng': lon,
         'radius': $('#km_slider').val(),
-        'searched_services': searched_services,
         'number_of_rooms': $('#number_of_rooms').val(),
         'number_of_beds': $('#number_of_beds').val()
       },
       success: function success(dati) {
         console.log(dati);
+        $('.our_results').empty();
 
         for (var index = 0; index < dati.results.length; index++) {
-          for (var j = 0; j < dati.results[index].services.length; j++) {
-            if (searched_services.includes(dati.results[index].services[j].type)) {
-              our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
-              our_results.title = dati.results[index].title;
-              our_results.street = dati.results[index].street;
-              our_results.building_number = dati.results[index].building_number;
-              our_results.city = dati.results[index].city;
-              our_results.region = dati.results[index].region;
-              our_results.zip_code = dati.results[index].zip_code;
-              our_results.src = dati.results[index].src;
-              var html = template(our_results);
-              $('.our_results').append(html);
-            }
-          }
-        } //Ricerca contatti con click
+          var services = dati.results[index].services;
+          var finalArray = dati.results[index].services.map(function (services) {
+            return services.type;
+          });
+          console.log(finalArray);
+          console.log(searched_services);
 
-
-        $('button').click(function () {
-          $('.our_results').empty();
-
-          for (var _index = 0; _index < dati.results.length; _index++) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[_index].slug;
-            our_results.title = dati.results[_index].title;
-            our_results.street = dati.results[_index].street;
-            our_results.building_number = dati.results[_index].building_number;
-            our_results.city = dati.results[_index].city;
-            our_results.region = dati.results[_index].region;
-            our_results.zip_code = dati.results[_index].zip_code;
-            our_results.src = dati.results[_index].src;
+          if (searched_services.every(function (elem) {
+            return finalArray.indexOf(elem) > -1;
+          })) {
+            //  if($('#number_of_rooms').val() != '' && dati.results[index].number_of_rooms == $('#number_of_rooms').val()) {
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
+            our_results.title = dati.results[index].title;
+            our_results.street = dati.results[index].street;
+            our_results.building_number = dati.results[index].building_number;
+            our_results.city = dati.results[index].city;
+            our_results.region = dati.results[index].region;
+            our_results.zip_code = dati.results[index].zip_code;
+            our_results.src = dati.results[index].src;
+            var html = template(our_results);
+            $('.our_results').append(html); //  }
+          } else if (searched_services.length == 0) {
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
+            our_results.title = dati.results[index].title;
+            our_results.street = dati.results[index].street;
+            our_results.building_number = dati.results[index].building_number;
+            our_results.city = dati.results[index].city;
+            our_results.region = dati.results[index].region;
+            our_results.zip_code = dati.results[index].zip_code;
+            our_results.src = dati.results[index].src;
             var html = template(our_results);
             $('.our_results').append(html);
           }
-        });
+        }
       },
       error: function error() {
         console.log('error');

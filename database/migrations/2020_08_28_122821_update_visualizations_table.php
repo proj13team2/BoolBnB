@@ -14,7 +14,7 @@ class UpdateVisualizationsTable extends Migration
     public function up()
     {
         Schema::table('visualizations', function( Blueprint $table ) {
-            $table->unsignedBigInteger('apartment_id');
+            $table->unsignedBigInteger('apartment_id')->after('visual_ip');
             $table->foreign('apartment_id')->references('id')->on('apartments')->onDelete('cascade');
         });
     }

@@ -138,13 +138,13 @@ class ApartmentController extends Controller
         $sponsorized_apartments = [];
         $active = '';
 
-        
+
             foreach ( $apartment_sponsors  as $apartment_sponsor) {
                 if (!in_array( $apartment_sponsor->apartment_id, $sponsorized_apartments)) {
                     array_push($sponsorized_apartments, $apartment_sponsor->apartment_id );
                 }
             }
-        
+
 
             foreach ($apartment_sponsors  as $apartment_sponsor) {
                 if (in_array($apartment_sponsor->apartment_id, $sponsorized_apartments)) {
@@ -159,8 +159,8 @@ class ApartmentController extends Controller
                     $active = 0;
                 }
             }
-        
-        
+
+
 
         if($apartment) {
             return view('user.apartments.show', compact('apartment' , 'active'));

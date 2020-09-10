@@ -1,6 +1,7 @@
 require('./bootstrap');
 
 const $ = require('jquery');
+const { log } = require('handlebars');
 
 $(document).ready(function(){
 
@@ -46,7 +47,8 @@ $(document).ready(function(){
         region: '',
         zip_code: '',
         src: '',
-        link:''
+        link:'',
+        distance: '',
     }
 
     // funzione per stampare gli appartamenti sponsorizzati in pagina.
@@ -67,6 +69,7 @@ $(document).ready(function(){
                 our_results.region = dati.results[index].region;
                 our_results.zip_code = dati.results[index].zip_code;
                 our_results.src = dati.results[index].src;
+                our_results.distance = dati.results[index].distance;
                 var html = template_Sponsorized(our_results);
                 $('.SPONSORIZED').append(html);
             };
@@ -154,8 +157,23 @@ $(document).ready(function(){
                                     our_results.region = dati.results[index].region;
                                     our_results.zip_code = dati.results[index].zip_code;
                                     our_results.src = dati.results[index].src;
-                                    var html = template(our_results);
-                                    $('.our_results').append(html);
+                                    our_results.distance = dati.results[index].distance
+                                    console.log(dati.results[index].distance);
+
+                                    // var html = template(our_results);
+                                    // $('.our_results').append(html);
+                                    
+                                    if(dati.results[0] == dati.results[index]) {
+                                        var html = template(our_results);
+                                        $('.our_results').append(html);
+                                    } else if (dati.results[index].distance > dati.results[index - 1].distance) {
+                                        var html = template(our_results);
+                                        $('.our_results').append(html);
+                                    } else if (dati.results[index].distance < dati.results[index - 1].distance) {
+                                        var html = template(our_results);
+                                        $('.our_results').prepend(html);
+                                    }
+                                    
                                     $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                                 }
                             })
@@ -200,7 +218,7 @@ $(document).ready(function(){
                 searched_services.push($(this).val());
             } 
         })
-        console.log(searched_services);
+        // console.log(searched_services);
         
         $.ajax({
             'url': window.location.protocol + '//' + window.location.host  + '/api/filtered',
@@ -215,33 +233,51 @@ $(document).ready(function(){
             success: function(dati) {
                 console.log(dati);
                 $('.our_results').empty();
+                var array = []
+                for (let index = 0; index < dati.results.length; index++) {
+                    array.push(dati.results[index].distance)
+                }
+                var sorted = array.sort()
+                var mannaggina = [];
+                
                 for (let index = 0; index < dati.results.length; index++) {
                     var services = dati.results[index].services;
                     var finalArray = dati.results[index].services.map(function (services) {
                         return services.type;
                     });
-                    console.log(finalArray); 
-                    console.log(searched_services);
+
+                    for (let endex = 0; endex < dati.results.length; endex++) {
+                        if(sorted[index] == dati.results[endex].distance) {
+                            mannaggina.push(dati.results[endex]);
+                        } 
+                    }
+
                     if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
-                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-                        our_results.title = dati.results[index].title;
-                        our_results.street = dati.results[index].street;
-                        our_results.building_number = dati.results[index].building_number;
-                        our_results.city = dati.results[index].city;
-                        our_results.region = dati.results[index].region;
-                        our_results.zip_code = dati.results[index].zip_code;
-                        our_results.src = dati.results[index].src;
+                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                        our_results.title = mannaggina[index].title;
+                        our_results.street = mannaggina[index].street;
+                        our_results.building_number = mannaggina[index].building_number;
+                        our_results.city = mannaggina[index].city;
+                        our_results.region = mannaggina[index].region;
+                        our_results.zip_code = mannaggina[index].zip_code;
+                        our_results.src = mannaggina[index].src;
+                        our_results.distance = mannaggina[index].distance;
+
                         var html = template(our_results);
                         $('.our_results').append(html);
-                    } else if ( searched_services.length == 0) {
-                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-                        our_results.title = dati.results[index].title;
-                        our_results.street = dati.results[index].street;
-                        our_results.building_number = dati.results[index].building_number;
-                        our_results.city = dati.results[index].city;
-                        our_results.region = dati.results[index].region;
-                        our_results.zip_code = dati.results[index].zip_code;
-                        our_results.src = dati.results[index].src;
+                         
+
+                        } else if ( searched_services.length == 0) {
+                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                            our_results.title = mannaggina[index].title;
+                            our_results.street = mannaggina[index].street;
+                            our_results.building_number = mannaggina[index].building_number;
+                            our_results.city = mannaggina[index].city;
+                            our_results.region = mannaggina[index].region;
+                            our_results.zip_code = mannaggina[index].zip_code;
+                            our_results.src = mannaggina[index].src;
+                            our_results.distance = mannaggina[index].distance;
+                        
                         var html = template(our_results);
                         $('.our_results').append(html);
                     }

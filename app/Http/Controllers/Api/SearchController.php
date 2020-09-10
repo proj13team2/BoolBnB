@@ -53,12 +53,11 @@ class SearchController extends Controller
             $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
         } else {
             $results = scopeIsWithinMaxDistance(Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '=', $number_of_beds)->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
-
         }
 
         return response()->json([
             'success' => true,
-            'results' => $results ]);
+            'results' => $results]);
     }
 }
 

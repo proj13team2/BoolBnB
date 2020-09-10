@@ -219,34 +219,32 @@ $(document).ready(function(){
                     var services = dati.results[index].services;
                     var finalArray = dati.results[index].services.map(function (services) {
                         return services.type;
-                      });
-                      console.log(finalArray); 
-                      console.log(searched_services);
-                        if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
-                        //  if($('#number_of_rooms').val() != '' && dati.results[index].number_of_rooms == $('#number_of_rooms').val()) {
-                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-                            our_results.title = dati.results[index].title;
-                            our_results.street = dati.results[index].street;
-                            our_results.building_number = dati.results[index].building_number;
-                            our_results.city = dati.results[index].city;
-                            our_results.region = dati.results[index].region;
-                            our_results.zip_code = dati.results[index].zip_code;
-                            our_results.src = dati.results[index].src;
-                            var html = template(our_results);
-                            $('.our_results').append(html);
-                        //  }
-                        } else if ( searched_services.length == 0) {
-                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-                            our_results.title = dati.results[index].title;
-                            our_results.street = dati.results[index].street;
-                            our_results.building_number = dati.results[index].building_number;
-                            our_results.city = dati.results[index].city;
-                            our_results.region = dati.results[index].region;
-                            our_results.zip_code = dati.results[index].zip_code;
-                            our_results.src = dati.results[index].src;
-                            var html = template(our_results);
-                            $('.our_results').append(html);
-                        }
+                    });
+                    console.log(finalArray); 
+                    console.log(searched_services);
+                    if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
+                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
+                        our_results.title = dati.results[index].title;
+                        our_results.street = dati.results[index].street;
+                        our_results.building_number = dati.results[index].building_number;
+                        our_results.city = dati.results[index].city;
+                        our_results.region = dati.results[index].region;
+                        our_results.zip_code = dati.results[index].zip_code;
+                        our_results.src = dati.results[index].src;
+                        var html = template(our_results);
+                        $('.our_results').append(html);
+                    } else if ( searched_services.length == 0) {
+                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
+                        our_results.title = dati.results[index].title;
+                        our_results.street = dati.results[index].street;
+                        our_results.building_number = dati.results[index].building_number;
+                        our_results.city = dati.results[index].city;
+                        our_results.region = dati.results[index].region;
+                        our_results.zip_code = dati.results[index].zip_code;
+                        our_results.src = dati.results[index].src;
+                        var html = template(our_results);
+                        $('.our_results').append(html);
+                    }
                 }
             },
             error: function() {

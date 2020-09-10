@@ -47,7 +47,7 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-   $active = 1;
+   $active = '';
 
    foreach($apartment->sponsors as $sponsor) {
         if ($sponsor->pivot->end_date > Carbon::now()) {
@@ -62,7 +62,6 @@ class SponsorController extends Controller
     $apartment->sponsors()->attach(array($apartment->id => array(
         'sponsor_id' => $sa['amount'],
         'end_date' => $modifiedMutable,
-        'is_active' => $active
     )));
 
 
@@ -106,6 +105,6 @@ class SponsorController extends Controller
         //     return back()->withErrors('An error occured with the message: ' . $result->message);
         // }
 
-        return view('user.apartments.show', compact('apartment', 'active'));
+        return redirect()->route('user.apartments.show', compact('apartment', 'active'));
     }
 }

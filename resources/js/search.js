@@ -148,31 +148,33 @@ $(document).ready(function(){
                                 $('.SPONSORIZED').empty();
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
-                                for (let index = 0; index < dati.results.length; index++) {
-                                    our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-                                    our_results.title = dati.results[index].title;
-                                    our_results.street = dati.results[index].street;
-                                    our_results.building_number = dati.results[index].building_number;
-                                    our_results.city = dati.results[index].city;
-                                    our_results.region = dati.results[index].region;
-                                    our_results.zip_code = dati.results[index].zip_code;
-                                    our_results.src = dati.results[index].src;
-                                    our_results.distance = dati.results[index].distance
-                                    console.log(dati.results[index].distance);
 
-                                    // var html = template(our_results);
-                                    // $('.our_results').append(html);
-                                    
-                                    if(dati.results[0] == dati.results[index]) {
-                                        var html = template(our_results);
-                                        $('.our_results').append(html);
-                                    } else if (dati.results[index].distance > dati.results[index - 1].distance) {
-                                        var html = template(our_results);
-                                        $('.our_results').append(html);
-                                    } else if (dati.results[index].distance < dati.results[index - 1].distance) {
-                                        var html = template(our_results);
-                                        $('.our_results').prepend(html);
+                                var array = []
+                                for (let index = 0; index < dati.results.length; index++) {
+                                    array.push(dati.results[index].distance)
+                                }
+                                var sorted = array.sort()
+                                var mannaggina = [];
+
+                                for (let index = 0; index < dati.results.length; index++) {
+
+                                    for (let endex = 0; endex < dati.results.length; endex++) {
+                                        if(sorted[index] == dati.results[endex].distance) {
+                                            mannaggina.push(dati.results[endex]);
+                                        } 
                                     }
+                                    our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                                    our_results.title = mannaggina[index].title;
+                                    our_results.street = mannaggina[index].street;
+                                    our_results.building_number = mannaggina[index].building_number;
+                                    our_results.city = mannaggina[index].city;
+                                    our_results.region = mannaggina[index].region;
+                                    our_results.zip_code = mannaggina[index].zip_code;
+                                    our_results.src = mannaggina[index].src;
+                                    our_results.distance = mannaggina[index].distance;
+
+                                    var html = template(our_results);
+                                    $('.our_results').append(html);
                                     
                                     $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                                 }
@@ -265,21 +267,19 @@ $(document).ready(function(){
 
                         var html = template(our_results);
                         $('.our_results').append(html);
-                         
-
-                        } else if ( searched_services.length == 0) {
-                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
-                            our_results.title = mannaggina[index].title;
-                            our_results.street = mannaggina[index].street;
-                            our_results.building_number = mannaggina[index].building_number;
-                            our_results.city = mannaggina[index].city;
-                            our_results.region = mannaggina[index].region;
-                            our_results.zip_code = mannaggina[index].zip_code;
-                            our_results.src = mannaggina[index].src;
-                            our_results.distance = mannaggina[index].distance;
-                        
-                        var html = template(our_results);
-                        $('.our_results').append(html);
+                    } else if ( searched_services.length == 0) {
+                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                        our_results.title = mannaggina[index].title;
+                        our_results.street = mannaggina[index].street;
+                        our_results.building_number = mannaggina[index].building_number;
+                        our_results.city = mannaggina[index].city;
+                        our_results.region = mannaggina[index].region;
+                        our_results.zip_code = mannaggina[index].zip_code;
+                        our_results.src = mannaggina[index].src;
+                        our_results.distance = mannaggina[index].distance;
+                    
+                    var html = template(our_results);
+                    $('.our_results').append(html);
                     }
                 }
             },

@@ -15,6 +15,7 @@
                 <table class="table">
                     <thead>
                         <tr>
+                            <th>Img</th>
                             <th>Title</th>
                             <th>Address</th>
                             <th>Price</th>
@@ -25,6 +26,7 @@
                     <tbody>
                         @forelse ($user_apartments as $user_apartment)
                             <tr>
+                                <td>   <img src="{{ asset('storage/' . $user_apartment->src) }}" height="80px" alt=""></td>
                                 <td>{{ $user_apartment->title }}</td>
                                 <td>{{ $user_apartment->address->street}} {{$user_apartment->address->building_number}}, {{$user_apartment->address->city}}</td>
                                 <td>{{ $user_apartment->price }}</td>
@@ -53,7 +55,7 @@
                                     </form>
                                     @forelse ($user_apartment->sponsors as $sponsor)
                                     @if($sponsor->pivot->end_date > ($mutable ?? ''))
-                                    <img src="https://cdn.icon-icons.com/icons2/554/PNG/512/money_dollar_cash_coins_riches_wealth_icon-icons.com_53585.png" height="35px" alt="Money">
+                                    <img src="https://www.partinicolive.it/home1/wp-content/uploads/2019/12/sponsor.jpg" height="35px" alt="Money">
                                     @endif
                                     @empty
                                     @endforelse

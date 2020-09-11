@@ -42514,7 +42514,7 @@ $(document).ready(function () {
             success: function success(dati) {
               //Ricerca contatti con click
               $('button').click(function () {
-                $('.SPONSORIZED').empty();
+                // $('.SPONSORIZED').empty();
                 $('.our_results').empty();
                 $('.form_fallovede').removeClass('disabled');
                 var array = [];
@@ -42524,6 +42524,7 @@ $(document).ready(function () {
                 }
 
                 var sorted = array.sort();
+                console.log(sorted);
                 var mannaggina = [];
 
                 for (var _index = 0; _index < dati.results.length; _index++) {

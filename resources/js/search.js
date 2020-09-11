@@ -145,7 +145,7 @@ $(document).ready(function(){
                         success: function(dati) {
                             //Ricerca contatti con click
                             $('button').click(function(){
-                                $('.SPONSORIZED').empty();
+                                // $('.SPONSORIZED').empty();
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
 
@@ -153,7 +153,9 @@ $(document).ready(function(){
                                 for (let index = 0; index < dati.results.length; index++) {
                                     array.push(dati.results[index].distance)
                                 }
+
                                 var sorted = array.sort()
+                                console.log(sorted);
                                 var mannaggina = [];
 
                                 for (let index = 0; index < dati.results.length; index++) {
@@ -161,7 +163,7 @@ $(document).ready(function(){
                                     for (let endex = 0; endex < dati.results.length; endex++) {
                                         if(sorted[index] == dati.results[endex].distance) {
                                             mannaggina.push(dati.results[endex]);
-                                        } 
+                                        }
                                     }
                                     our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
                                     our_results.title = mannaggina[index].title;
@@ -175,7 +177,7 @@ $(document).ready(function(){
 
                                     var html = template(our_results);
                                     $('.our_results').append(html);
-                                    
+
                                     $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                                 }
                             })
@@ -218,10 +220,10 @@ $(document).ready(function(){
         $('.services_input').each(function(){
             if($(this).is(':checked')) {
                 searched_services.push($(this).val());
-            } 
+            }
         })
         // console.log(searched_services);
-        
+
         $.ajax({
             'url': window.location.protocol + '//' + window.location.host  + '/api/filtered',
             'method': 'GET',
@@ -241,7 +243,7 @@ $(document).ready(function(){
                 }
                 var sorted = array.sort()
                 var mannaggina = [];
-                
+
                 for (let index = 0; index < dati.results.length; index++) {
                     var services = dati.results[index].services;
                     var finalArray = dati.results[index].services.map(function (services) {
@@ -251,7 +253,7 @@ $(document).ready(function(){
                     for (let endex = 0; endex < dati.results.length; endex++) {
                         if(sorted[index] == dati.results[endex].distance) {
                             mannaggina.push(dati.results[endex]);
-                        } 
+                        }
                     }
 
                     if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
@@ -277,7 +279,7 @@ $(document).ready(function(){
                         our_results.zip_code = mannaggina[index].zip_code;
                         our_results.src = mannaggina[index].src;
                         our_results.distance = mannaggina[index].distance;
-                    
+
                     var html = template(our_results);
                     $('.our_results').append(html);
                     }
@@ -289,6 +291,3 @@ $(document).ready(function(){
         })
     })
 })
-
-
-    

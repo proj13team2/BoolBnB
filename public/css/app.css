@@ -10941,7 +10941,8 @@ main.pb-4 {
   padding: 10px;
 }
 
-.our_results {
+.our_results,
+.SPONSORIZED {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

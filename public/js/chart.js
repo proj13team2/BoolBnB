@@ -74667,28 +74667,38 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
-  alert('ciao');
+  var id_apt = $('#titolo-apt-stats').attr('data-apartment');
+  $.ajax({
+    'url': window.location.protocol + '//' + window.location.host + '/api/stats/' + id_apt,
+    'method': 'GET',
+    'data': {},
+    success: function success(dati) {
+      $('#total-messages span').text(dati.count);
+      console.log(dati.results);
 
-  var Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+      var Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 
-  var ctx = document.getElementById('chartViews').getContext('2d');
-  var chart = new Chart(ctx, {
-    // The type of chart we want to create
-    type: 'line',
-    // The data for our dataset
-    data: {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45]
-      }]
+      var ctx = document.getElementById('chartViews').getContext('2d');
+      var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+        // The data for our dataset
+        data: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [{
+            label: 'Visualizzazioni mensili',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dati.results
+          }]
+        },
+        // Configuration options go here
+        options: {}
+      });
     },
-    // Configuration options go here
-    options: {}
+    error: function error() {}
   });
-}); //doc ready fine
+});
 
 /***/ }),
 
@@ -74699,7 +74709,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /var/www/html/Boolean/Final-project/BoolBnB/resources/js/chart.js */"./resources/js/chart.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/chart.js */"./resources/js/chart.js");
 
 
 /***/ })

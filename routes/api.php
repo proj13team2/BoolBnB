@@ -18,6 +18,8 @@ Route::namespace('Api')->group(function() {
     Route::get('/search', 'SearchController@index');
     Route::get('/stamp', 'SearchController@stamp');
     Route::get('/filtered', 'SearchController@filtered');
+    Route::get('/stats/{apartment}', 'ChartApiController@messagesChart');
+
 });
 
 // middleware('auth_api')

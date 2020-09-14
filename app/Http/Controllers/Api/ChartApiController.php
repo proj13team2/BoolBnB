@@ -6,16 +6,45 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Message;
 use Carbon\Carbon;
+use App\Apartment;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ChartApiController extends Controller
 {
     //function to get the months from the db
-    public function messagesChart(Request $request){
-        $messages = Message::all();
+    public function messagesChart(Request $request, $id){
+        // $messages = $apartment->messages;
+
+        // $messages_month = DB::table('messages')->select(DB::raw('count(messages)'),DB::raw( 'MONTH(created_at) month')->groupBy('month')->get();
+
+
+        // SELECT apartments.id, COUNT(messages.id), MONTH(messages.created_at) as month FROM messages JOIN apartments ON apartments.id = messages.apartment_id GROUP BY month, apartments.id 
+        // $messages_month = DB::tableraw('SELECT apartments.id, COUNT(messages.id), MONTH(messages.created_at) as month FROM messages JOIN apartments ON apartments.id = messages.apartment_id GROUP BY month, apartments.id ');
+
+        
+        $counted_messages = [];
+        $total_count = 0;
+
+        for ($i=1; $i <= 12; $i++) { 
+            $count = 0;
+            $month = $i;
+            $messages_month = Message::whereMonth('created_at', $month)->get();
+            foreach ($messages_month as $message_month) {
+                if($message_month->apartment_id == $id) {
+                    $count++;
+                    $total_count++;
+                }
+            }
+            array_push($counted_messages, $count);
+        }
+
+        
+
         return response()->json([
             'success' => true,
-            'count' => $messages->count(),
-            'results' => $messages
+            'count' => $total_count,
+            'results' => $counted_messages
         ])
 
 
@@ -51,4 +80,6 @@ class ChartApiController extends Controller
 
     //     return response()->json(compact('month', 'monthlyMessagesCount'));
     // }
-    };
+    ;
+    }
+}

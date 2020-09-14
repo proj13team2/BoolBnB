@@ -4,27 +4,44 @@ const $ = require('jquery');
 
 
 $(document).ready(function () {
-    alert('ciao')
-    var Chart = require('chart.js');
-    var ctx = document.getElementById('chartViews').getContext('2d');
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
+    var id_apt = $('#titolo-apt-stats').attr('data-apartment');
+   
+
+    $.ajax({
+    'url': window.location.protocol + '//' + window.location.host  + '/api/stats/' + id_apt,
+    'method': 'GET',
+    'data': {
+        
+    }, 
+    success: function(dati){
+        $('#total-messages span').text(dati.count);
+        console.log(dati.results);
+        var Chart = require('chart.js');
+        var ctx = document.getElementById('chartViews').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
 
         // The data for our dataset
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
             datasets: [{
-                label: 'My First dataset',
+                label: 'Visualizzazioni mensili',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
+                data: dati.results
             }]
         },
-
         // Configuration options go here
         options: {}
+        })
+},
+    error: function(){
+
+    }
+ 
 });
 
 
-});//doc ready fine
+});
+

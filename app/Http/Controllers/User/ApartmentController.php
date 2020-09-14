@@ -159,9 +159,7 @@ class ApartmentController extends Controller
                     $active = 0;
                 }
             }
-
-
-
+            
         if($apartment) {
             return view('user.apartments.show', compact('apartment' , 'active'));
         } else {

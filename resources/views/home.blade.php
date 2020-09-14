@@ -68,9 +68,9 @@
   <p id="ricerca_user"></p>
       <div class="SPONSORIZED">
       </div>
-    <div class='our_results'>
+      <div class='our_results'>
 
-    </div>
+      </div>
     <script id="our_results" type="text/x-handlebars-template">
       <div class="apartment_result">
         <img src="storage/@{{src}}" width="200px" height="125px">
@@ -78,7 +78,7 @@
         <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
     </script>
     <script id="SPONSORIZED" type="text/x-handlebars-template">
-      <div class="apartment_sponsorized">
+      <div class="apartment_sponsorized yellow">
         <img src="storage/@{{src}}" width="200px" height="125px">
       <h4><a  href="@{{link}}"> @{{title}} </a></h4>
         <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>

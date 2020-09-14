@@ -59,6 +59,7 @@ $(document).ready(function(){
         'url' : window.location.protocol + '//' + window.location.host  + '/api/stamp',
         'method': 'GET',
         success:function(dati) {
+            console.log(dati);
             $('.SPONSORIZED').empty();
             for (let index = 0; index < dati.results.length; index++) {
                 our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
@@ -143,9 +144,10 @@ $(document).ready(function(){
                             'lng': lon
                         },
                         success: function(dati) {
+                            console.log(dati);
                             //Ricerca contatti con click
                             $('button').click(function(){
-                                $('.SPONSORIZED').empty();
+                                // $('.SPONSORIZED').empty();
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
 
@@ -153,7 +155,9 @@ $(document).ready(function(){
                                 for (let index = 0; index < dati.results.length; index++) {
                                     array.push(dati.results[index].distance)
                                 }
+
                                 var sorted = array.sort()
+                                console.log(sorted);
                                 var mannaggina = [];
 
                                 for (let index = 0; index < dati.results.length; index++) {
@@ -161,8 +165,9 @@ $(document).ready(function(){
                                     for (let endex = 0; endex < dati.results.length; endex++) {
                                         if(sorted[index] == dati.results[endex].distance) {
                                             mannaggina.push(dati.results[endex]);
-                                        } 
+                                        }
                                     }
+                                     
                                     our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
                                     our_results.title = mannaggina[index].title;
                                     our_results.street = mannaggina[index].street;
@@ -175,7 +180,7 @@ $(document).ready(function(){
 
                                     var html = template(our_results);
                                     $('.our_results').append(html);
-                                    
+
                                     $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                                 }
                             })
@@ -218,10 +223,10 @@ $(document).ready(function(){
         $('.services_input').each(function(){
             if($(this).is(':checked')) {
                 searched_services.push($(this).val());
-            } 
+            }
         })
         // console.log(searched_services);
-        
+
         $.ajax({
             'url': window.location.protocol + '//' + window.location.host  + '/api/filtered',
             'method': 'GET',
@@ -241,7 +246,7 @@ $(document).ready(function(){
                 }
                 var sorted = array.sort()
                 var mannaggina = [];
-                
+
                 for (let index = 0; index < dati.results.length; index++) {
                     var services = dati.results[index].services;
                     var finalArray = dati.results[index].services.map(function (services) {
@@ -251,36 +256,101 @@ $(document).ready(function(){
                     for (let endex = 0; endex < dati.results.length; endex++) {
                         if(sorted[index] == dati.results[endex].distance) {
                             mannaggina.push(dati.results[endex]);
-                        } 
+                        }
                     }
 
-                    if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
-                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
-                        our_results.title = mannaggina[index].title;
-                        our_results.street = mannaggina[index].street;
-                        our_results.building_number = mannaggina[index].building_number;
-                        our_results.city = mannaggina[index].city;
-                        our_results.region = mannaggina[index].region;
-                        our_results.zip_code = mannaggina[index].zip_code;
-                        our_results.src = mannaggina[index].src;
-                        our_results.distance = mannaggina[index].distance;
+                    // var sponsors = dati.results[index].sponsors.pivot;
+                    // var finalArraySp = dati.results[index].sponsors.map(function (sponsors) {
+                    //     return sponsors.pivot;
+                    // });
 
-                        var html = template(our_results);
-                        $('.our_results').append(html);
-                    } else if ( searched_services.length == 0) {
-                        our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
-                        our_results.title = mannaggina[index].title;
-                        our_results.street = mannaggina[index].street;
-                        our_results.building_number = mannaggina[index].building_number;
-                        our_results.city = mannaggina[index].city;
-                        our_results.region = mannaggina[index].region;
-                        our_results.zip_code = mannaggina[index].zip_code;
-                        our_results.src = mannaggina[index].src;
-                        our_results.distance = mannaggina[index].distance;
-                    
-                    var html = template(our_results);
-                    $('.our_results').append(html);
-                    }
+                    // console.log(finalArraySp);
+
+                    // var array_date = [];
+                    // if(finalArraySp.length != 0) {
+                    //     for (let andex = 0; andex < finalArraySp.length; andex++) {
+                    //         var end_date = finalArraySp[andex].end_date;
+                    //         array_date.push(end_date)
+                            
+                    //     }
+                    // }
+
+
+                    // function addZero(i) {
+                    //     if (i < 10) {
+                    //       i = "0" + i;
+                    //     }
+                    //     return i;
+                    //   }
+                    //   var d = new Date();
+                    //   var yy = addZero(d.getFullYear());
+                    //   var mm = addZero(d.getMonth()+1);
+                    //   var dd = addZero(d.getDate());
+                    //   var h = addZero(d.getHours());
+                    //   var m = addZero(d.getMinutes());
+                    //   var s = addZero(d.getSeconds());
+                    //   var time_now = yy +'-'+mm+'-'+dd+' '+h + ":" + m + ':' + s;
+                    //   console.log(array_date.length != 0);
+                    // if(array_date.length == 0) {
+                        if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
+                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                            our_results.title = mannaggina[index].title;
+                            our_results.street = mannaggina[index].street;
+                            our_results.building_number = mannaggina[index].building_number;
+                            our_results.city = mannaggina[index].city;
+                            our_results.region = mannaggina[index].region;
+                            our_results.zip_code = mannaggina[index].zip_code;
+                            our_results.src = mannaggina[index].src;
+                            our_results.distance = mannaggina[index].distance;
+    
+                            var html = template(our_results);
+                            $('.our_results').append(html);
+
+                        } else if ( searched_services.length == 0) {
+                            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                            our_results.title = mannaggina[index].title;
+                            our_results.street = mannaggina[index].street;
+                            our_results.building_number = mannaggina[index].building_number;
+                            our_results.city = mannaggina[index].city;
+                            our_results.region = mannaggina[index].region;
+                            our_results.zip_code = mannaggina[index].zip_code;
+                            our_results.src = mannaggina[index].src;
+                            our_results.distance = mannaggina[index].distance;
+    
+                            var html = template(our_results);
+                            $('.our_results').append(html);
+                        }
+                    // } else if (array_date.length != 0) {
+                    //     if(array_date[array_date.length--] <= time_now ) {
+                    //         if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
+                    //             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                    //             our_results.title = mannaggina[index].title;
+                    //             our_results.street = mannaggina[index].street;
+                    //             our_results.building_number = mannaggina[index].building_number;
+                    //             our_results.city = mannaggina[index].city;
+                    //             our_results.region = mannaggina[index].region;
+                    //             our_results.zip_code = mannaggina[index].zip_code;
+                    //             our_results.src = mannaggina[index].src;
+                    //             our_results.distance = mannaggina[index].distance;
+        
+                    //             var html = template(our_results);
+                    //             $('.our_results').append(html);
+                    //         } else if ( searched_services.length == 0) {
+                    //             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+                    //             our_results.title = mannaggina[index].title;
+                    //             our_results.street = mannaggina[index].street;
+                    //             our_results.building_number = mannaggina[index].building_number;
+                    //             our_results.city = mannaggina[index].city;
+                    //             our_results.region = mannaggina[index].region;
+                    //             our_results.zip_code = mannaggina[index].zip_code;
+                    //             our_results.src = mannaggina[index].src;
+                    //             our_results.distance = mannaggina[index].distance;
+        
+                    //             var html = template(our_results);
+                    //             $('.our_results').append(html);
+                    //         }
+                    //     } 
+                    // }
                 }
             },
             error: function() {
@@ -289,6 +359,3 @@ $(document).ready(function(){
         })
     })
 })
-
-
-    

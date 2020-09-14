@@ -15,6 +15,7 @@ class ApartmentsTableSeeder extends Seeder
     {
         $datas = [
             [
+                'id' => 1,
                 'user_id'=>'1',
                 'title' =>'Corte Milanese Room Three',
                 'price'=>'49.99',
@@ -26,6 +27,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'corte-milanese-room-three'
             ],
             [
+                'id' => 2,
                 'user_id'=>'1',
                 'title' =>'Appartamento Da Vinci Milano',
                 'price'=>'63.00',
@@ -37,6 +39,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'appartamento-da-vinci-milano'
             ],
             [
+                'id' => 3,
                 'user_id'=>'1',
                 'title' =>'Villa Cheta',
                 'price'=>'40',
@@ -48,6 +51,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'villa-cheta'
             ],
             [
+                'id' => 4,
                 'user_id'=>'2',
                 'title' =>'Appartamento Milano Sesto Marelli',
                 'price'=>'80',
@@ -59,6 +63,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'appartamento-milano-sesto-marelli'
             ],
             [
+                'id' => 5,
                 'user_id'=>'2',
                 'title' =>'Repubblica Apartment Roma',
                 'price'=>'12',
@@ -70,6 +75,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'repubblica-apartment-roma'
             ],
             [
+                'id' => 6,
                 'user_id'=>'2',
                 'title' =>'Casa della Divina',
                 'price'=>'65',
@@ -81,6 +87,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'casa-della-divina'
             ],
             [
+                'id' => 7,
                 'user_id'=>'3',
                 'title' =>'Glamour Apartments',
                 'price'=>'180',
@@ -92,6 +99,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'glamour-apartments'
             ],
             [
+                'id' => 8,
                 'user_id'=>'3',
                 'title' =>'Appartamento Giardino',
                 'price'=>'65',
@@ -103,6 +111,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'appartamento-giardino'
             ],
             [
+                'id' => 9,
                 'user_id'=>'3',
                 'title' =>'Residence Milano Fiore',
                 'price'=>'32',
@@ -114,6 +123,7 @@ class ApartmentsTableSeeder extends Seeder
                 'slug'=>'residence-milano-fiore'
             ],
             [
+                'id' => 10,
                 'user_id'=>'3',
                 'title' =>'Panchina nel Parco',
                 'price'=>'1000',

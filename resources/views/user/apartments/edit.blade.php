@@ -100,7 +100,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <img src="https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/95403348_10219991356968130_5982707366779420672_o.jpg?_nc_cat=109&_nc_sid=09cbfe&_nc_ohc=VkPDXVFgHvQAX8XmYb5&_nc_oc=AQmRLPVIpSSdSNrXKMekBVFPHWrTAHP5Pl6koF4I_NxsCTqew9YyDYbNbh9-jQrMxgU&_nc_ht=scontent-mxp1-1.xx&oh=5d67488ca1a2e3ca6081ddc41d17cef5&oe=5F83FA24" alt="">
 
                     <button type="submit" class="btn btn-primary btn-submit">Salva</button>
                 </form>

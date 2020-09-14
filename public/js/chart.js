@@ -74699,7 +74699,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/chart.js */"./resources/js/chart.js");
+module.exports = __webpack_require__(/*! /var/www/html/Boolean/Final-project/BoolBnB/resources/js/chart.js */"./resources/js/chart.js");
 
 
 /***/ })

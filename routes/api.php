@@ -18,7 +18,8 @@ Route::namespace('Api')->group(function() {
     Route::get('/search', 'SearchController@index');
     Route::get('/stamp', 'SearchController@stamp');
     Route::get('/filtered', 'SearchController@filtered');
-    Route::get('/stats/{apartment}', 'ChartApiController@messagesChart');
+    Route::get('/stats/messages/{apartment}', 'ChartApiController@messagesChart');
+    Route::get('/stats/visualizations/{apartment}', 'ChartApiController@visualizationsChart');
 
 });
 

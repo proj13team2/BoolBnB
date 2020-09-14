@@ -1,24 +1,18 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-6 container-chart">
+    <h1 id='titolo-apt-stats' data-apartment='{{$apartment->id}}'>{{$apartment->title}}</h1>
+    <div class="row"> 
+        <div class="col-8 col-offset-2 container-chart">
             <h1>Visualizzazione totale</h1>
-            <canvas id="chartViews">
-
-
-            </canvas>
-        <h1 id='titolo-apt-stats' data-apartment='{{$apartment->id}}'>{{$apartment->title}}</h1>
-            @foreach ($visualizations as $visualization)
-            <p>{{$visualization->id}}</p>
-            @endforeach
+            <canvas id="chartViews"></canvas>
+            <h2 id='total-visualizations'>Totale visualizzazioni: <span></span> </h2>
         </div>
-        
-        <div class="col-6 container-chart">
-            <canvas id="chartMessages">
-
-
-            </canvas>
+    </div>
+    <div class="row">
+        <div class="col-8 col-offset-2 container-chart">
+            <h1>Visualizzazione totale</h1>
+            <canvas id="chartMessages"></canvas>
             <h2 id='total-messages'>Totale messaggi: <span></span> </h2>
         </div>
     </div>

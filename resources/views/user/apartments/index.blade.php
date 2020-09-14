@@ -53,9 +53,12 @@
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-small btn-danger" value="Elimina">
                                     </form>
+                                    <a class="btn btn-small"  href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}">
+                                        Disattiva
+                                    </a>
                                     @forelse ($user_apartment->sponsors as $sponsor)
                                     @if($sponsor->pivot->end_date > ($mutable ?? ''))
-                                    <img src="https://www.partinicolive.it/home1/wp-content/uploads/2019/12/sponsor.jpg" height="35px" alt="Money">
+                                        <img src="https://www.partinicolive.it/home1/wp-content/uploads/2019/12/sponsor.jpg" height="35px" alt="Money">
                                     @endif
                                     @empty
                                     @endforelse

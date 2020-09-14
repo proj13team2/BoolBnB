@@ -62,7 +62,7 @@
                 @csrf
                 <div class="form-group">
                     <label for="email">email</label>
-                    <input type="email" name="email" class="form-control" id="email" placeholder="email " value="{{ old('email') }}">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="email " value="{{ $user->email ?? old('email') }}">
                 </div>
                 <div class="form-group">
                     <label for="content">content</label>

@@ -24,7 +24,9 @@ class ApartmentController extends Controller
                 'visual_ip' => $ip
             ]);
         }
-        return view('guest.apartment.show', compact('apartment'));
+
+        $user = Auth::user();
+        return view('guest.apartment.show', compact('apartment', 'user'));
     }
 
 

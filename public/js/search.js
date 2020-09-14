@@ -42438,6 +42438,7 @@ $(document).ready(function () {
       'url': window.location.protocol + '//' + window.location.host + '/api/stamp',
       'method': 'GET',
       success: function success(dati) {
+        console.log(dati);
         $('.SPONSORIZED').empty();
 
         for (var index = 0; index < dati.results.length; index++) {
@@ -42512,7 +42513,8 @@ $(document).ready(function () {
               'lng': lon
             },
             success: function success(dati) {
-              //Ricerca contatti con click
+              console.log(dati); //Ricerca contatti con click
+
               $('button').click(function () {
                 // $('.SPONSORIZED').empty();
                 $('.our_results').empty();
@@ -42623,7 +42625,35 @@ $(document).ready(function () {
             if (sorted[_index2] == dati.results[endex].distance) {
               mannaggina.push(dati.results[endex]);
             }
-          }
+          } // var sponsors = dati.results[index].sponsors.pivot;
+          // var finalArraySp = dati.results[index].sponsors.map(function (sponsors) {
+          //     return sponsors.pivot;
+          // });
+          // console.log(finalArraySp);
+          // var array_date = [];
+          // if(finalArraySp.length != 0) {
+          //     for (let andex = 0; andex < finalArraySp.length; andex++) {
+          //         var end_date = finalArraySp[andex].end_date;
+          //         array_date.push(end_date)
+          //     }
+          // }
+          // function addZero(i) {
+          //     if (i < 10) {
+          //       i = "0" + i;
+          //     }
+          //     return i;
+          //   }
+          //   var d = new Date();
+          //   var yy = addZero(d.getFullYear());
+          //   var mm = addZero(d.getMonth()+1);
+          //   var dd = addZero(d.getDate());
+          //   var h = addZero(d.getHours());
+          //   var m = addZero(d.getMinutes());
+          //   var s = addZero(d.getSeconds());
+          //   var time_now = yy +'-'+mm+'-'+dd+' '+h + ":" + m + ':' + s;
+          //   console.log(array_date.length != 0);
+          // if(array_date.length == 0) {
+
 
           if (searched_services.every(function (elem) {
             return finalArray.indexOf(elem) > -1;
@@ -42651,7 +42681,36 @@ $(document).ready(function () {
             our_results.distance = mannaggina[_index2].distance;
             var html = template(our_results);
             $('.our_results').append(html);
-          }
+          } // } else if (array_date.length != 0) {
+          //     if(array_date[array_date.length--] <= time_now ) {
+          //         if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
+          //             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+          //             our_results.title = mannaggina[index].title;
+          //             our_results.street = mannaggina[index].street;
+          //             our_results.building_number = mannaggina[index].building_number;
+          //             our_results.city = mannaggina[index].city;
+          //             our_results.region = mannaggina[index].region;
+          //             our_results.zip_code = mannaggina[index].zip_code;
+          //             our_results.src = mannaggina[index].src;
+          //             our_results.distance = mannaggina[index].distance;
+          //             var html = template(our_results);
+          //             $('.our_results').append(html);
+          //         } else if ( searched_services.length == 0) {
+          //             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + mannaggina[index].slug;
+          //             our_results.title = mannaggina[index].title;
+          //             our_results.street = mannaggina[index].street;
+          //             our_results.building_number = mannaggina[index].building_number;
+          //             our_results.city = mannaggina[index].city;
+          //             our_results.region = mannaggina[index].region;
+          //             our_results.zip_code = mannaggina[index].zip_code;
+          //             our_results.src = mannaggina[index].src;
+          //             our_results.distance = mannaggina[index].distance;
+          //             var html = template(our_results);
+          //             $('.our_results').append(html);
+          //         }
+          //     } 
+          // }
+
         }
       },
       error: function error() {
@@ -42670,7 +42729,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

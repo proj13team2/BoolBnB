@@ -22,8 +22,8 @@ class AddressesTableSeeder extends Seeder
                 'zip_code'=>'20026',
                 'region'=>'Milano',
                 'country'=>'Italia',
-                'lat'=>'45.465454',
-                'lng'=>'9.186516',
+                'lat'=>'45.5305',
+                'lng'=>'9.13954',
             ],
             [
                 'id'=>'2',

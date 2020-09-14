@@ -33,6 +33,7 @@ class SponsorController extends Controller
     public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
         $time_now = Carbon::now();
         $active = '';
+        
         foreach($apartment->sponsors as $sponsor) {
             if( $sponsor->pivot->end_date <= Carbon::now()) {
                 $active = 0;

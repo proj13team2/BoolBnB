@@ -17,12 +17,30 @@ class ApartmentController extends Controller
         $apartments = Apartment::where('slug', $slug)->get();
         $apartment = $apartments[0];
         $ip = \Request::getClientIp();
-        $date = Carbon::now();
+
+        $not_visualized_apartments = Apartment::doesntHave('visualizations')->get();
+
+        
+            foreach ($not_visualized_apartments as $not_visualized_apartment) {
+                if((Auth::id() !== $apartment->user_id) || !Auth::check()) {
+                    if ($not_visualized_apartment->id == $apartment->id) {
+                        Visualization::create([ //aggiungo un record alla tabella visits
+                            'apartment_id' => $apartment->id,
+                            'visual_ip' => $ip
+                        ]);
+                    } 
+                }
+            }
+
+        $last_ip_visualization = Apartment::join('visualizations', 'visualizations.apartment_id','=','apartments.id')->where('visualizations.apartment_id', '=', $apartment->id)->where('visual_ip','=', $ip)->orderBy('visualizations.created_at', 'desc')->first()->created_at;
+
         if((Auth::id() !== $apartment->user_id) || !Auth::check()) {
-            Visualization::create([ //aggiungo un record alla tabella visits
-                'apartment_id' => $apartment->id,
-                'visual_ip' => $ip
-            ]);
+            if(Carbon::now()->addHours(-24) > $last_ip_visualization ) {
+                Visualization::create([ //aggiungo un record alla tabella visits
+                    'apartment_id' => $apartment->id,
+                    'visual_ip' => $ip
+                ]);
+            } 
         }
 
         $user = Auth::user();

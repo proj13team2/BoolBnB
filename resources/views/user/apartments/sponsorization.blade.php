@@ -47,6 +47,13 @@
                 </section>
                 <input id="nonce" name="payment_method_nonce" type="hidden" />
                 <button class="button" type="submit"><span>Proceed to payment</span></button>
+                {{-- @foreach ($apartment->sponsors as $sponsor)
+                @if( $active == 0)
+                    <button class="button" type="submit"><span>Proceed to payment</span></button>
+                @else
+                    <button class="button" type="submit" disabled><span>Proceed to payment</span></button>
+                @endif
+                @endforeach --}}
             </form>
         </div>
     </div>

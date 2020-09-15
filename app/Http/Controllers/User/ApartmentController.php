@@ -101,7 +101,7 @@ class ApartmentController extends Controller
         $new_apartment = new Apartment();
         $new_apartment->fill($dati_apartment);
         $new_apartment->save();
-        If(!empty($dati['service_id'])) {
+        if(!empty($dati['service_id'])) {
             $dati_apartment['service_id'] = $dati['service_id'];
             $new_apartment->services()->sync($dati_apartment['service_id']);
         }

@@ -80,26 +80,26 @@ class SponsorController extends Controller
             }
         }
 
-        if ($result->success) {
-            $transaction = $result->transaction;
+        // if ($result->success) {
+        //     $transaction = $result->transaction;
             
-            $apartment->sponsors()->attach(array($apartment->id => array(
-                'sponsor_id' => $sa['amount'],
-                'end_date' => $modifiedMutable,
-            )));
-            return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);
-        } else {
-            $errorString = "";
+            
+        //     return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);
+        // } else {
+        //     $errorString = "";
         
-            foreach ($result->errors->deepAll() as $error) {
-                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-            }
+        //     foreach ($result->errors->deepAll() as $error) {
+        //         $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+        //     }
         
-            return back()->withErrors('An error occured with the message: ' . $result->message);
-        }
+        //     return back()->withErrors('An error occured with the message: ' . $result->message);
+        // }
 
         
-
+        $apartment->sponsors()->attach(array($apartment->id => array(
+            'sponsor_id' => $sa['amount'],
+            'end_date' => $modifiedMutable,
+        )));
         return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
     }
 }

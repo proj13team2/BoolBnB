@@ -8,6 +8,25 @@
   margin-bottom: 0 !important;
 }
 
+.searchedinputresult {
+  width: 100%;
+}
+
+.searchedinputresult .FORM_SEARCH {
+  width: 20%;
+}
+
+.searchedinputresult .our_results {
+  width: 80%;
+}
+
+.apartment_result {
+  width: 200px;
+  padding: 5px;
+  margin: 10px;
+  height: 400px;
+}
+
 #marker {
   background-image: url("https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/house-icon.png");
   background-size: contain;

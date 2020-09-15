@@ -42626,12 +42626,10 @@ $(document).ready(function () {
           }
         }
 
-        console.log(mannaggina);
+        for (var _index3 = 0; _index3 < mannaggina.length; _index3++) {
+          var services = mannaggina[_index3].services;
 
-        for (var _index3 = 0; _index3 < dati.results.length; _index3++) {
-          var services = dati.results[_index3].services;
-
-          var finalArray = dati.results[_index3].services.map(function (services) {
+          var finalArray = mannaggina[_index3].services.map(function (services) {
             return services.type;
           });
 
@@ -42666,7 +42664,7 @@ $(document).ready(function () {
             our_results.src = mannaggina[_index3].src;
             our_results.distance = mannaggina[_index3].distance;
 
-            if (mannaggina[_index3].is_active == 1) {
+            if (mannaggina.is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }

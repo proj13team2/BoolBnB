@@ -255,15 +255,18 @@ $(document).ready(function(){
                         if(sorted[index] == dati.results[endex].distance) {
                             mannaggina.push(dati.results[endex]);
                         }
-                    }
+                    }  
                 }
-                console.log(mannaggina);
+
                 
-                for (let index = 0; index < dati.results.length; index++) {
-                    var services = dati.results[index].services;
-                    var finalArray = dati.results[index].services.map(function (services) {
+                for (let index = 0; index < mannaggina.length; index++) {
+                    var services = mannaggina[index].services;
+                    var finalArray = mannaggina[index].services.map(function (services) {
                         return services.type;
                     });
+
+                
+                    
 
                     console.log(finalArray);
 
@@ -296,7 +299,7 @@ $(document).ready(function(){
                             our_results.src = mannaggina[index].src;
                             our_results.distance = mannaggina[index].distance;
     
-                            if (mannaggina[index].is_active == 1) {
+                            if (mannaggina.is_active == 1) {
                                 var html = template(our_results);
                                 $('.our_results').append(html);
                             }

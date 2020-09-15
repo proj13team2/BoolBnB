@@ -17,13 +17,17 @@ class SearchController extends Controller
 
 
         $data = $request->all();
-        
+
         $lat = $data['lat'];
         $lng = $data['lng'];
 
         $sponsoreds = [];
         $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now());
         $apartment_query_sponsoreds = $apartment_sponsors->get();
+
+        foreach ($apartment_query_sponsoreds as $apartment_query_sponsored) {
+            array_push($sponsoreds, $apartment_query_sponsored);
+        }
         // $apartments = DB::table('apartments')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->doesntHave('sponsors');
         $apartment_query = Apartment::whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
         $apartment_query2 = Apartment::join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
@@ -32,31 +36,28 @@ class SearchController extends Controller
         $apartments2 = scopeIsWithinMaxDistance($apartment_query2,$lat , $lng, 20);
         // $apartments = $apartments1->merge($apartments2);
 
-        foreach ($apartment_query_sponsoreds as $apartment_query_sponsored) {
-            array_push($sponsoreds, $apartment_query_sponsored);
+
+        $array_spnsorizzati = [];
+        $array_vecchi = [];
+        $array_results = [];
+        foreach ($sponsoreds as $sponsored) {
+            array_push($array_spnsorizzati, $sponsored->apartment_id);
         }
 
-        $array_results = [];
+        foreach ($apartments2 as $apartment2){
+            if (!in_array($apartment2->apartment_id, $array_spnsorizzati)) {
+                if (!in_array($apartment2->apartment_id, $array_vecchi)) {
+                    array_push($array_vecchi, $apartment2->apartment_id);
+                    array_push($array_results, $apartment2);
+                }
+            }
+        }
 
         foreach ($apartments1 as $apartment1) {
             array_push($array_results, $apartment1);
         }
 
-        foreach ($sponsoreds as $sponsored) {
-            foreach ($apartments2 as $apartment2) {
-                if($apartment2->apartment_id == $sponsored->apartment_id) {
-                    
-                } elseif (in_array($apartment2, $array_results)) {
-
-                } else {
-                    array_push($array_results, $apartment2);
-                }
-            }
-        }
-        
-
     //    return view ('home', compact('apartments'))->render() ;
-
 
         return response()->json([
             'success' => true,
@@ -110,5 +111,3 @@ function scopeIsWithinMaxDistance($query, $lat, $lon, $radius) {
        ->selectRaw("{$calculationsForDistance} AS distance")
        ->whereRaw("{$calculationsForDistance} < ?", $radius)->get();
 }
-
-

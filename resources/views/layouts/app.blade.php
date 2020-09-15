@@ -26,22 +26,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+    <header id="app">
+        <div class=" container">
+          <nav class="pink navbar navbar-expand-md navbar-light">
+              {{-- ICON-TITLE - FLIZTBO --}}
+              <div class="home">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'BoolBnB') }}
                 </a>
+              </div>
+              {{-- MENU LOGIN(OR) PLUS TOGGLER--}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -81,12 +80,13 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
         </nav>
+        @yield('homepage_header_unique')
+        </div>
+    </header>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
-    </div>
 </body>
 </html>

@@ -11,6 +11,7 @@ return [
   'login' => 'Login',
   'register' => 'Register',
   'verify' => 'Verify' ,
-  'messages' => 'Messages'
+  'messages' => 'Messages',
+  'reset' => 'Reset Password'
 ];
  ?>

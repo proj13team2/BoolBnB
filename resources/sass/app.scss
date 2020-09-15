@@ -4,9 +4,16 @@
 // Variables
 @import 'variables';
 
+// VIEWS STYLES !!!!!!!!!!!!!!!!!
+@import 'homepage';
+@import 'guest/guestshow';
+@import 'auth/auth';
+@import 'admin/admin';
+
+
 
 // backgrounds
-// @import 'backgroundsgrid';
+@import 'backgroundsgrid';
 
 
 // Bootstrap
@@ -20,81 +27,34 @@
 }
 
 body {
-    background-color: white;
+    background-color: MintCream;
+    height: 100vh;
+    width: 100%;
 }
 
-main.py-4, main.pt-4, main.pb-4  {
-    padding-top: 10px !important;
-    padding-bottom: 0 !important;
-}
-.float {
-  padding: 10px;
-}
-
-.TOP_MAIN {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.yellow {
-  background-color:  lightyellow;
-}
-
-.our_results, .tomtom_results , .SPONSORIZED {
-    padding: 10px;
-}
-
-.our_results , .SPONSORIZED{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-
-.apartment_result {
-    padding: 20px;
-    width: 275px;
-}
-.tomtom_results {
-    background-color: whitesmoke;
-}
+// RECURRING DISABLED CLASSES //
 
 .disabled {
   display: none;
 }
 
-p {
-    margin-bottom: 0;
+.apartment-disabled {
+    background-color: grey;
+    opacity: 0.6;
 }
 
+// MEDIA QUERY PERSONALIZZATE
+@media (min-width: 1380px){
+.container {
+    max-width: 1300px;
+}}
 
-input, button {
-    margin: 10px 10px;
-}
+@media (min-width: 1580px){
+.container {
+    max-width: 1460px;
+}}
 
-h3 {
-    color: red;
-}
-
-#marker {
-    background-image: url('https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/house-icon.png');
-    background-size: contain;
-    width: 60px;
-    height: 60px;
-  }
-
-  #map {
-      margin: auto;
-  }
-
-
-  #ricerca_user {
-      color: black;
-      padding: 20px;
-  }
-
-  .apartment-disabled {
-      background-color: grey;
-      opacity: 0.6;
-  }
+@media (min-width: 1710px){
+.container {
+    max-width: 1620px;
+}}

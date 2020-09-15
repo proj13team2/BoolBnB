@@ -42438,7 +42438,6 @@ $(document).ready(function () {
       'url': window.location.protocol + '//' + window.location.host + '/api/stamp',
       'method': 'GET',
       success: function success(dati) {
-        console.log(dati);
         $('.SPONSORIZED').empty();
 
         for (var index = 0; index < dati.results.length; index++) {
@@ -42516,8 +42515,7 @@ $(document).ready(function () {
               'lng': lon
             },
             success: function success(dati) {
-              console.log(dati); //Ricerca contatti con click
-
+              //Ricerca contatti con click
               $('button').click(function () {
                 // $('.SPONSORIZED').empty();
                 $('.our_results').empty();
@@ -42529,7 +42527,6 @@ $(document).ready(function () {
                 }
 
                 var sorted = array.sort();
-                console.log(sorted);
                 var mannaggina = [];
 
                 for (var _index = 0; _index < dati.results.length; _index++) {
@@ -42597,8 +42594,8 @@ $(document).ready(function () {
       if ($(this).is(':checked')) {
         searched_services.push($(this).val());
       }
-    }); // console.log(searched_services);
-
+    });
+    console.log(searched_services);
     $.ajax({
       'url': window.location.protocol + '//' + window.location.host + '/api/filtered',
       'method': 'GET',
@@ -42622,47 +42619,54 @@ $(document).ready(function () {
         var mannaggina = [];
 
         for (var _index2 = 0; _index2 < dati.results.length; _index2++) {
-          var services = dati.results[_index2].services;
-
-          var finalArray = dati.results[_index2].services.map(function (services) {
-            return services.type;
-          });
-
           for (var endex = 0; endex < dati.results.length; endex++) {
             if (sorted[_index2] == dati.results[endex].distance) {
               mannaggina.push(dati.results[endex]);
             }
           }
+        }
+
+        console.log(mannaggina);
+
+        for (var _index3 = 0; _index3 < dati.results.length; _index3++) {
+          var services = dati.results[_index3].services;
+
+          var finalArray = dati.results[_index3].services.map(function (services) {
+            return services.type;
+          });
+
+          console.log(finalArray);
 
           if (searched_services.every(function (elem) {
             return finalArray.indexOf(elem) > -1;
           })) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index2].slug;
-            our_results.title = mannaggina[_index2].title;
-            our_results.street = mannaggina[_index2].street;
-            our_results.building_number = mannaggina[_index2].building_number;
-            our_results.city = mannaggina[_index2].city;
-            our_results.region = mannaggina[_index2].region;
-            our_results.zip_code = mannaggina[_index2].zip_code;
-            our_results.src = mannaggina[_index2].src;
-            our_results.distance = mannaggina[_index2].distance;
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index3].slug;
+            our_results.title = mannaggina[_index3].title;
+            our_results.street = mannaggina[_index3].street;
+            our_results.building_number = mannaggina[_index3].building_number;
+            our_results.city = mannaggina[_index3].city;
+            our_results.region = mannaggina[_index3].region;
+            our_results.zip_code = mannaggina[_index3].zip_code;
+            our_results.src = mannaggina[_index3].src;
+            our_results.distance = mannaggina[_index3].distance;
+            console.log(our_results.title);
 
-            if (mannaggina[_index2].is_active == 1) {
+            if (mannaggina[_index3].is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }
           } else if (searched_services.length == 0) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index2].slug;
-            our_results.title = mannaggina[_index2].title;
-            our_results.street = mannaggina[_index2].street;
-            our_results.building_number = mannaggina[_index2].building_number;
-            our_results.city = mannaggina[_index2].city;
-            our_results.region = mannaggina[_index2].region;
-            our_results.zip_code = mannaggina[_index2].zip_code;
-            our_results.src = mannaggina[_index2].src;
-            our_results.distance = mannaggina[_index2].distance;
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index3].slug;
+            our_results.title = mannaggina[_index3].title;
+            our_results.street = mannaggina[_index3].street;
+            our_results.building_number = mannaggina[_index3].building_number;
+            our_results.city = mannaggina[_index3].city;
+            our_results.region = mannaggina[_index3].region;
+            our_results.zip_code = mannaggina[_index3].zip_code;
+            our_results.src = mannaggina[_index3].src;
+            our_results.distance = mannaggina[_index3].distance;
 
-            if (mannaggina[_index2].is_active == 1) {
+            if (mannaggina[_index3].is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }

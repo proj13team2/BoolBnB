@@ -26,7 +26,7 @@ Route::prefix('user')->namespace('User')->name('user.')->middleware('auth')->gro
     Route::get('/messages', 'MessageController@index')->name('apartments.messages');
     Route::get('apartment/stats/{apartment}', 'StatsController@index')->name('apartments.stats');
     Route::resource('/apartments', 'ApartmentController');
-    Route::put('/apartments/{apartment}', 'ApartmentController@disable')->name('apartments.disable');
+    Route::put('/apartments/disable/{apartment}', 'ApartmentController@disable')->name('apartments.disable');
     /* BRAINTREE'S ROUTES */
     Route::get('apartment/sponsorization/{apartment}', 'SponsorController@show')->name('apartment.sponsorization');
     Route::post('apartment/sponsorization/{apartment}', 'SponsorController@checkout')->name('apartment.sponsorization');

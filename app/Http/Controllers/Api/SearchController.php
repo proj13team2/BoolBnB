@@ -82,21 +82,69 @@ class SearchController extends Controller
         $radius = $data['radius'];
         $lat = $data['lat'];
         $lng = $data['lng'];
-        if ($number_of_rooms == '' && $number_of_beds == '') {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id'),$lat,$lng,$radius);
-        } elseif($number_of_rooms == '' && $number_of_beds != '') {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds),$lat,$lng,$radius);
-        } elseif($number_of_rooms != '' && $number_of_beds == '') {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
-        } else {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
+
+        
+        
+        $sponsoreds = [];
+        $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now());
+        $apartment_query_sponsoreds = $apartment_sponsors->get();
+
+        foreach ($apartment_query_sponsoreds as $apartment_query_sponsored) {
+            array_push($sponsoreds, $apartment_query_sponsored);
         }
 
-        $results
+
+        if ($number_of_rooms == '' && $number_of_beds == '') {
+
+            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
+            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
+
+        } elseif($number_of_rooms == '' && $number_of_beds != '') {
+
+            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds);
+            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds);
+            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds),$lat,$lng,$radius);
+
+        } elseif($number_of_rooms != '' && $number_of_beds == '') {
+
+            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
+
+        } else {
+
+            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
+        }
+
+
+        $apartments1 = scopeIsWithinMaxDistance($apartment_query,$lat , $lng, $radius);
+        $apartments2 = scopeIsWithinMaxDistance($apartment_query2,$lat , $lng, $radius);
+
+        $array_sponsorizzati = [];
+        $array_vecchi = [];
+        $array_results = [];
+        foreach ($sponsoreds as $sponsored) {
+            array_push($array_sponsorizzati, $sponsored->apartment_id);
+        }
+
+        foreach ($apartments2 as $apartment2){
+            if (!in_array($apartment2->apartment_id, $array_sponsorizzati)) {
+                if (!in_array($apartment2->apartment_id, $array_vecchi)) {
+                    array_push($array_vecchi, $apartment2->apartment_id);
+                    array_push($array_results, $apartment2);
+                }
+            }
+        }
+
+        foreach ($apartments1 as $apartment1) {
+            array_push($array_results, $apartment1);
+        }
 
         return response()->json([
             'success' => true,
-            'results' => $results]);
+            'results' => $array_results]);
     }
 }
 

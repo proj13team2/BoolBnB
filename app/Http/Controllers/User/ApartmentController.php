@@ -288,4 +288,14 @@ class ApartmentController extends Controller
             return abort('404');
         }
     }
+
+    public function disable($id) {
+        $apartment = Apartment::find($id);
+        if($apartment->is_active == 1) {
+            Apartment::where('id', $id)->update(array('is_active' => 0));
+        } else {
+            Apartment::where('id', $id)->update(array('is_active' => 1));
+        }
+        return redirect()->route('user.apartments.index');
+    }
 }

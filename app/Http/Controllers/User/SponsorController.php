@@ -33,23 +33,12 @@ class SponsorController extends Controller
     public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
         $time_now = Carbon::now();
         $active = '';
-        
-        foreach($apartment->sponsors as $sponsor) {
-            if( $sponsor->pivot->end_date <= Carbon::now()) {
-                $active = 0;
-            } else {
-                $active = 1;
-                return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
-            }
-        }
-       
-
-    
 
     $mutable = Carbon::now();
     $sa = $request->all();
     $sponsor = Sponsor::find($sa['amount']);
     $sponsor_price = $sponsor['price'];
+
 
     if ($sponsor_price == 2.99) {
        $modifiedMutable = $mutable->add(1, 'day');
@@ -61,18 +50,7 @@ class SponsorController extends Controller
        $modifiedMutable = $mutable->add(6, 'day');
    };
 
-//    foreach($apartment->sponsors as $sponsor) {
-//         if ($sponsor->pivot->end_date > Carbon::now()) {
-//          $active = 1;
-//         } else {
-//          $active = 0;
-//         }
-//     }
-
-    $apartment->sponsors()->attach(array($apartment->id => array(
-        'sponsor_id' => $sa['amount'],
-        'end_date' => $modifiedMutable,
-    )));
+  
 
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -93,21 +71,34 @@ class SponsorController extends Controller
             ]
         ]);
 
-        // if ($result->success) {
-        //     $transaction = $result->transaction;
-        //
-        //     return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);
-        // } else {
-        //     $errorString = "";
-        //
-        //     foreach ($result->errors->deepAll() as $error) {
-        //         $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-        //     }
-        //
-        //     // $_SESSION["errors"] = $errorString;
-        //     // header("Location: " . $baseUrl . "index.php");
-        //     return back()->withErrors('An error occured with the message: ' . $result->message);
-        // }
+        foreach($apartment->sponsors as $sponsor) {
+            if( $sponsor->pivot->end_date <= Carbon::now()) {
+                $active = 0;
+            } else {
+                $active = 1;
+                return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
+            }
+        }
+
+        if ($result->success) {
+            $transaction = $result->transaction;
+            
+            $apartment->sponsors()->attach(array($apartment->id => array(
+                'sponsor_id' => $sa['amount'],
+                'end_date' => $modifiedMutable,
+            )));
+            return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);
+        } else {
+            $errorString = "";
+        
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+        
+            return back()->withErrors('An error occured with the message: ' . $result->message);
+        }
+
+        
 
         return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
     }

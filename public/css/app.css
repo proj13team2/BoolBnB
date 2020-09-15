@@ -10993,3 +10993,8 @@ h3 {
   padding: 20px;
 }
 
+.apartment-disabled {
+  background-color: grey;
+  opacity: 0.6;
+}
+

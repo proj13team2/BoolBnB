@@ -25,7 +25,10 @@
                     </thead>
                     <tbody>
                         @forelse ($user_apartments as $user_apartment)
-                            <tr>
+                            <tr 
+                            @if ($user_apartment->is_active == 0)
+                                class='apartment-disabled'
+                            @endif>
                                 <td>   <img src="{{ asset('storage/' . $user_apartment->src) }}" height="80px" alt=""></td>
                                 <td>{{ $user_apartment->title }}</td>
                                 <td>{{ $user_apartment->address->street}} {{$user_apartment->address->building_number}}, {{$user_apartment->address->city}}</td>
@@ -53,9 +56,15 @@
                                         @method('DELETE')
                                         <input type="submit" class="btn btn-small btn-danger" value="Elimina">
                                     </form>
-                                    <a class="btn btn-small"  href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}">
-                                        Disattiva
-                                    </a>
+                                    <form class="d-inline" action="{{ route('user.apartments.disable', ['apartment' => $user_apartment->id]) }}" method="post">
+                                        @csrf
+                                        @method('PUT')
+                                        @if ($user_apartment->is_active == 0)
+                                            <input type="submit" class="btn btn-small" value="Attiva">
+                                        @else 
+                                            <input type="submit" class="btn btn-small" value="Disattiva">
+                                        @endif
+                                    </form>
                                     @forelse ($user_apartment->sponsors as $sponsor)
                                     @if($sponsor->pivot->end_date > ($mutable ?? ''))
                                         <img src="https://www.partinicolive.it/home1/wp-content/uploads/2019/12/sponsor.jpg" height="35px" alt="Money">

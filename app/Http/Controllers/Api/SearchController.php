@@ -85,12 +85,14 @@ class SearchController extends Controller
         if ($number_of_rooms == '' && $number_of_beds == '') {
             $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id'),$lat,$lng,$radius);
         } elseif($number_of_rooms == '' && $number_of_beds != '') {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '=', $number_of_beds),$lat,$lng,$radius);
+            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds),$lat,$lng,$radius);
         } elseif($number_of_rooms != '' && $number_of_beds == '') {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
+            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
         } else {
-            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '=', $number_of_beds)->where('apartments.number_of_rooms', '=', $number_of_rooms),$lat,$lng,$radius);
+            $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
         }
+
+        $results
 
         return response()->json([
             'success' => true,

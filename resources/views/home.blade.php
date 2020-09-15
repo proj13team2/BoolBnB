@@ -72,10 +72,11 @@
 
       </div>
     <script id="our_results" type="text/x-handlebars-template">
-      <div class="apartment_result">
-        <img src="storage/@{{src}}" width="200px" height="125px">
-      <h4><a  href="@{{link}}"> @{{title}} </a></h4>
-        <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
+    <div class="apartment_result">
+      <img src="storage/@{{src}}" width="200px" height="125px">
+    <h4><a  href="@{{link}}"> @{{title}} </a></h4>
+      <p> Address : @{{street}} @{{building_number}} @{{city}} @{{region}}  @{{zip_code}} </p>
+    </div>
     </script>
     <script id="SPONSORIZED" type="text/x-handlebars-template">
       <div class="apartment_sponsorized yellow">

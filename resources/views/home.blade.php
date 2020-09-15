@@ -5,19 +5,26 @@
 @endsection
 
 @section('homepage_header_unique')
-  <div class="TOP_MAIN  greensea  d-flex justify-content-center align-items-center">
+  <div class="TOP_MAIN    d-flex justify-content-center align-items-center">
       <div class="input_search float">
-            <input id='input' type="text">
+            <input  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='input' type="text">
             <button>Cerca</button>
-            <div class="tomtom_results gray">
+            <div class="tomtom_results gray dropdown-menu"  aria-labelledby="input">
 
             </div>
         </div>
   </div>
+  <div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
 @endsection
 
 @section('content')
-<div class="">
+<div class="container">
   <div class="FORM_SEARCH float yellow">
     <div class="form_fallovede disabled">
       <form class="" action="index.html" method="post">
@@ -73,7 +80,8 @@
     </div>
  </div>
   <p class="brown" id="ricerca_user"></p>
-      <div class="SPONSORIZED d-flex justify-content-center align-items-center pink">
+      <div class="SPONSORIZED d-flex justify-content-center align-items-center blue
+      .">
       </div>
       <div class='our_results d-flex justify-content-center align-items-center gray'>
       </div>

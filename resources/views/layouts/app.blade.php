@@ -28,7 +28,7 @@
 <body>
     <header id="app">
         <div class=" container">
-          <nav class="pink navbar navbar-expand-md navbar-light">
+          <nav class="navbar navbar-expand-md navbar-light">
               {{-- ICON-TITLE - FLIZTBO --}}
               <div class="home">
                 <a class="navbar-brand" href="{{ url('/') }}">

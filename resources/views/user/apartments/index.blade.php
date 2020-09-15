@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page_title')
+  <title>{{ config('pagetitle.main_title') }} -  {{ config('pagetitle.dashboard') }}</title>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -25,7 +29,7 @@
                     </thead>
                     <tbody>
                         @forelse ($user_apartments as $user_apartment)
-                            <tr 
+                            <tr
                             @if ($user_apartment->is_active == 0)
                                 class='apartment-disabled'
                             @endif>
@@ -61,7 +65,7 @@
                                         @method('PUT')
                                         @if ($user_apartment->is_active == 0)
                                             <input type="submit" class="btn btn-small" value="Attiva">
-                                        @else 
+                                        @else
                                             <input type="submit" class="btn btn-small" value="Disattiva">
                                         @endif
                                     </form>

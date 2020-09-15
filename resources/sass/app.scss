@@ -4,8 +4,14 @@
 // Variables
 @import 'variables';
 
+
+// backgrounds
+// @import 'backgroundsgrid';
+
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
 
 * {
     margin: 0;
@@ -44,8 +50,6 @@ main.py-4, main.pt-4, main.pb-4  {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    background-color: lightgrey;
-    color: white;
 }
 
 .apartment_result {

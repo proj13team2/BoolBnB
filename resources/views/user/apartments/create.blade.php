@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page_title')
+  <title>{{ config('pagetitle.main_title') }} -  {{ config('pagetitle.dashboard') }} - {{ config('pagetitle.create') }}</title>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

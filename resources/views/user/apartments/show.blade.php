@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('page_title')
+  <title>{{ config('pagetitle.main_title') }} -  {{ config('pagetitle.dashboard') }} - {{ $apartment->title }}</title>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -56,7 +60,7 @@
                         -
                     @endforelse
                 </p>
-                
+
                 @if($active == 0 || $active = '')
                     <a class="btn btn-small btn-info"  href="{{ route('user.apartment.sponsorization', ['apartment' => $apartment->id]) }} ">  Sponsorizza </a>
                 @else

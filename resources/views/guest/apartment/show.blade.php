@@ -1,4 +1,9 @@
 @extends('layouts.app')
+
+@section('page_title')
+  <title>{{ config('pagetitle.main_title') }} -  {{ $apartment->title }}</title>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">

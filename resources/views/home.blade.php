@@ -1,8 +1,12 @@
 @extends('layouts.app')
 
+@section('page_title')
+  <title>{{ config('pagetitle.main_title') }}</title>
+@endsection
+
 @section('content')
-  <div class="TOP_MAIN">
-      <div class="input_search float yellow">
+  <div class="TOP_MAIN blue">
+      <div class="input_search float">
             <input id='input' type="text">
             <button>Cerca</button>
             <div class="tomtom_results">
@@ -65,11 +69,10 @@
        </div>
 </div>
 <main>
-  <p id="ricerca_user"></p>
-      <div class="SPONSORIZED">
+  <p class="brown" id="ricerca_user"></p>
+      <div class="SPONSORIZED pink">
       </div>
-      <div class='our_results'>
-
+      <div class='our_results gray'>
       </div>
     <script id="our_results" type="text/x-handlebars-template">
     <div class="apartment_result">

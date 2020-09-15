@@ -6,12 +6,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'BoolBnB') }}</title>
+    {{-- icon --}}
+    <link rel="icon" href="https://i.ibb.co/Gs4gvyH/logo2.png">
+    {{-- PAGE title --}}
+    @yield('page_title')
 
     <!-- Scripts -->
     @stack('head')
-    {{-- NB su tutte le rotte si collega app.js tranne 
+    {{-- NB su tutte le rotte si collega app.js tranne
         he sulla home, là si collega search.js,
          POSSIBILI CAMBIAMENTI IN CORSO D'OPERA,
          guardare dopo endsection di ogni view --}}

@@ -12,19 +12,83 @@
   width: 100%;
 }
 
-.searchedinputresult .FORM_SEARCH {
-  width: 20%;
-}
-
-.searchedinputresult .our_results {
-  width: 80%;
-}
-
-.apartment_result {
-  width: 200px;
+.apartment_result,
+.apartment_result-sponsored {
+  width: 100%;
   padding: 5px;
-  margin: 10px;
+  margin: 10px 0px;
   height: 400px;
+}
+
+.apartment_result .card-img,
+.apartment_result-sponsored .card-img {
+  width: 400px;
+  height: 300px;
+}
+
+.apartment_result img,
+.apartment_result-sponsored img {
+  width: 400px;
+  height: 300px;
+}
+
+.apartment_result .card-body,
+.apartment_result-sponsored .card-body {
+  height: 300px;
+}
+
+.apartment_result-sponsored {
+  background-color: lightyellow !important;
+}
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-item {
+  height: 32rem;
+}
+
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.marketing h2 {
+  font-weight: 400;
+}
+
+.marketing .col-lg-4 p {
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.05rem;
 }
 
 #marker {
@@ -10991,7 +11055,7 @@ body {
 }
 
 .disabled {
-  display: none;
+  display: none !important;
 }
 
 .apartment-disabled {

@@ -35,7 +35,7 @@ body {
 // RECURRING DISABLED CLASSES //
 
 .disabled {
-  display: none;
+  display: none!important;
 }
 
 .apartment-disabled {

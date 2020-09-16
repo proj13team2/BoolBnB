@@ -6,6 +6,7 @@ const { log } = require('handlebars');
 $(document).ready(function(){
 
 
+
   //SLIDER
   var slider = $("#km_slider");
   var output = $("#slider_range");
@@ -36,6 +37,10 @@ $(document).ready(function(){
     var source_Sponsorized = $("#SPONSORIZED").html();
     var template_Sponsorized = Handlebars.compile(source_Sponsorized);
 
+    // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
+    var source_carousel = $("#carousel-data-slide").html();
+    var template_carousel = Handlebars.compile(source_carousel);
+
 
 
     // Obje HANDLEBARS appartamenti
@@ -52,6 +57,7 @@ $(document).ready(function(){
         price: ''
     }
 
+
     // funzione per stampare gli appartamenti sponsorizzati in pagina.
     Stamp_A_sponsored();
 
@@ -60,7 +66,7 @@ $(document).ready(function(){
         'url' : window.location.protocol + '//' + window.location.host  + '/api/stamp',
         'method': 'GET',
         success:function(dati) {
-            $('.SPONSORIZED').empty();
+            $('.carousel-inner').empty();
             for (let index = 0; index < dati.results.length; index++) {
                 our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
                 our_results.title = dati.results[index].title;
@@ -74,9 +80,14 @@ $(document).ready(function(){
                 our_results.price = dati.results[index].price;
 
                 if(dati.results[index].is_active == 1) {
+                    var html = template_carousel(our_results);
+                    $('.carousel-inner').append(html);
+                    $('.carousel-indicators').append('<li class="carousel-indicator-li" data-target="#myCarousel" data-slide-to="' + index +'"></li>');
                     var html = template_Sponsorized(our_results);
                     $('.SPONSORIZED').append(html);
                 }
+                $('.carousel-item').first().addClass('active');
+                $('.carousel-indicator-li').first().addClass('active');
             };
           },
         error: function() {
@@ -157,9 +168,9 @@ $(document).ready(function(){
                         success: function(dati) {
                             //Ricerca contatti con click
                             $('button').click(function(){
-                                // $('.SPONSORIZED').empty();
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
+                                $('.SPONSORIZED').removeClass('disabled');
 
                                 var array = []
                                 for (let index = 0; index < dati.results.length; index++) {
@@ -176,7 +187,7 @@ $(document).ready(function(){
                                             ordered_results.push(dati.results[endex]);
                                         }
                                     }
-                                     
+
                                     our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + ordered_results[index].slug;
                                     our_results.title = ordered_results[index].title;
                                     our_results.street = ordered_results[index].street;
@@ -191,6 +202,7 @@ $(document).ready(function(){
                                     if (ordered_results[index].is_active == 1) {
                                         var html = template(our_results);
                                         $('.our_results').append(html);
+
                                     }
 
                                     $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
@@ -265,18 +277,18 @@ $(document).ready(function(){
                         if(sorted[index] == dati.results[endex].distance) {
                             ordered_results.push(dati.results[endex]);
                         }
-                    }  
+                    }
                 }
 
-                
+
                 for (let index = 0; index < ordered_results.length; index++) {
                     var services = ordered_results[index].services;
                     var finalArray = ordered_results[index].services.map(function (services) {
                         return services.type;
                     });
 
-                
-                    
+
+
 
                     console.log(finalArray);
 
@@ -292,7 +304,7 @@ $(document).ready(function(){
                             our_results.distance = ordered_results[index].distance;
                             our_results.price = ordered_results[index].price;
 
-                            
+
                             console.log(our_results.title);
 
                             if (ordered_results[index].is_active == 1) {
@@ -312,7 +324,7 @@ $(document).ready(function(){
                             our_results.distance = ordered_results[index].distance;
                             our_results.price = ordered_results[index].price;
 
-    
+
                             if (ordered_results.is_active == 1) {
                                 var html = template(our_results);
                                 $('.our_results').append(html);

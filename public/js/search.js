@@ -42417,7 +42417,10 @@ $(document).ready(function () {
   var template = Handlebars.compile(source); // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
 
   var source_Sponsorized = $("#SPONSORIZED").html();
-  var template_Sponsorized = Handlebars.compile(source_Sponsorized); // Obje HANDLEBARS appartamenti
+  var template_Sponsorized = Handlebars.compile(source_Sponsorized); // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
+
+  var source_carousel = $("#carousel-data-slide").html();
+  var template_carousel = Handlebars.compile(source_carousel); // Obje HANDLEBARS appartamenti
 
   var our_results = {
     title: '',
@@ -42439,7 +42442,7 @@ $(document).ready(function () {
       'url': window.location.protocol + '//' + window.location.host + '/api/stamp',
       'method': 'GET',
       success: function success(dati) {
-        $('.SPONSORIZED').empty();
+        $('.carousel-inner').empty();
 
         for (var index = 0; index < dati.results.length; index++) {
           our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results[index].slug;
@@ -42454,9 +42457,15 @@ $(document).ready(function () {
           our_results.price = dati.results[index].price;
 
           if (dati.results[index].is_active == 1) {
+            var html = template_carousel(our_results);
+            $('.carousel-inner').append(html);
+            $('.carousel-indicators').append('<li class="carousel-indicator-li" data-target="#myCarousel" data-slide-to="' + index + '"></li>');
             var html = template_Sponsorized(our_results);
             $('.SPONSORIZED').append(html);
           }
+
+          $('.carousel-item').first().addClass('active');
+          $('.carousel-indicator-li').first().addClass('active');
         }
 
         ;
@@ -42545,9 +42554,9 @@ $(document).ready(function () {
             success: function success(dati) {
               //Ricerca contatti con click
               $('button').click(function () {
-                // $('.SPONSORIZED').empty();
                 $('.our_results').empty();
                 $('.form_fallovede').removeClass('disabled');
+                $('.SPONSORIZED').removeClass('disabled');
                 var array = [];
 
                 for (var index = 0; index < dati.results.length; index++) {

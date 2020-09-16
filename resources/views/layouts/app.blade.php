@@ -32,7 +32,7 @@
               {{-- ICON-TITLE - FLIZTBO --}}
               <div class="home">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'BoolBnB') }}
+                  {{ config('pagetitle.main_title') }}
                 </a>
               </div>
               {{-- MENU LOGIN(OR) PLUS TOGGLER--}}

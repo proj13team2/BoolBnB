@@ -34,23 +34,21 @@ class SponsorController extends Controller
         $time_now = Carbon::now();
         $active = '';
 
-    $mutable = Carbon::now();
-    $sa = $request->all();
-    $sponsor = Sponsor::find($sa['amount']);
-    $sponsor_price = $sponsor['price'];
+        $mutable = Carbon::now();
+        $sa = $request->all();
+        $sponsor = Sponsor::find($sa['amount']);
+        $sponsor_price = $sponsor['price'];
 
 
-    if ($sponsor_price == 2.99) {
-       $modifiedMutable = $mutable->add(1, 'day');
-   }
-   elseif ($sponsor_price == 5.99) {
-       $modifiedMutable = $mutable->add(3, 'day');
-   }
-   else {
-       $modifiedMutable = $mutable->add(6, 'day');
-   };
-
-  
+        if ($sponsor_price == 2.99) {
+            $modifiedMutable = $mutable->add(1, 'day');
+        }
+        elseif ($sponsor_price == 5.99) {
+            $modifiedMutable = $mutable->add(3, 'day');
+        }
+        else {
+            $modifiedMutable = $mutable->add(6, 'day');
+        };
 
         $gateway = new Braintree\Gateway([
             'environment' => config('services.braintree.environment'),

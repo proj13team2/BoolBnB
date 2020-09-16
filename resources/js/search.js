@@ -5,7 +5,12 @@ const { log } = require('handlebars');
 
 $(document).ready(function(){
 
-
+  // SCROLL DOWN AUTO FOR SEARCH
+   $("#button_search").click(function (){
+       $('html, body').animate({
+           scrollTop: $("#results").offset().top
+       }, 1300);
+   });
 
   //SLIDER
   var slider = $("#km_slider");
@@ -18,7 +23,7 @@ $(document).ready(function(){
 
 
   // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  $('#input').val('Piazza Cesare Beccaria Mil');
+  $('#input').val('Piazza Cesare Beccaria Milano');
   $('#input').click(function(){
       $('.tomtom_results').empty();
       research();
@@ -167,7 +172,7 @@ $(document).ready(function(){
                         },
                         success: function(dati) {
                             //Ricerca contatti con click
-                            $('button').click(function(){
+                            $('#button_search').click(function(){
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
                                 $('.SPONSORIZED').removeClass('disabled');

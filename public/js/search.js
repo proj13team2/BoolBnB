@@ -42396,7 +42396,13 @@ var _require = __webpack_require__(/*! handlebars */ "./node_modules/handlebars/
     log = _require.log;
 
 $(document).ready(function () {
-  //SLIDER
+  // SCROLL DOWN AUTO FOR SEARCH
+  $("#button_search").click(function () {
+    $('html, body').animate({
+      scrollTop: $("#results").offset().top
+    }, 1300);
+  }); //SLIDER
+
   var slider = $("#km_slider");
   var output = $("#slider_range");
   $("#slider_range").html(slider.val());
@@ -42404,7 +42410,7 @@ $(document).ready(function () {
     output.html($(this).val());
   }); // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  $('#input').val('Piazza Cesare Beccaria Mil');
+  $('#input').val('Piazza Cesare Beccaria Milano');
   $('#input').click(function () {
     $('.tomtom_results').empty();
     research();
@@ -42553,7 +42559,7 @@ $(document).ready(function () {
             },
             success: function success(dati) {
               //Ricerca contatti con click
-              $('button').click(function () {
+              $('#button_search').click(function () {
                 $('.our_results').empty();
                 $('.form_fallovede').removeClass('disabled');
                 $('.SPONSORIZED').removeClass('disabled');
@@ -42727,7 +42733,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ })

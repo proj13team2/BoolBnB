@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- icon --}}
-    <link rel="icon" href="https://i.ibb.co/Gs4gvyH/logo2.png">
+    <link rel="icon" href="https://i.ibb.co/Nx8y17C/NEW-LOGO.png">
     {{-- PAGE title --}}
     @yield('page_title')
 
@@ -21,17 +21,20 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel='stylesheet' type='text/css' href='https://api.tomtom.com/maps-sdk-for-web/cdn/5.x/5.64.0/maps/maps.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&family=Roboto:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <header id="app">
-        <div class=" container">
+        <div class="header-log-home">
+        <div class="container">
           <nav class="navbar navbar-expand-md navbar-light">
               {{-- ICON-TITLE - FLIZTBO --}}
               <div class="home" id="navbar">
                 <a class="navbar-brand" href="{{ url('/') }}">
+                  <i class="fas fa-home"></i>
                   {{ config('pagetitle.main_title') }}
                 </a>
               </div>
@@ -50,16 +53,15 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link nav-link-register" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    <i class="fas fa-user"></i> {{ Auth::user()->name }}
                                 </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-user" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('user.apartments.index') }}">
                                         {{ __('Dashboard') }}
                                     </a>
@@ -81,12 +83,16 @@
                     </ul>
                 </div>
         </nav>
+      </div>
+      </div>
+      <div class="container">
         @yield('homepage_header_unique')
-        </div>
+      </div>
     </header>
 
         <main>
             @yield('content')
         </main>
+<script src="https://kit.fontawesome.com/912c80e664.js" crossorigin="anonymous"></script>
 </body>
 </html>

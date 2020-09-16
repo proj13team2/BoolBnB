@@ -5,10 +5,10 @@
 @endsection
 
 @section('homepage_header_unique')
-  <div class="TOP_MAIN  d-flex justify-content-center align-items-center" id="search_input">
-      <div class="input_search float">
-            <input  autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='input' type="text">
-            <button>Cerca</button>
+  <div class="TOP_MAIN" id="search_input">
+      <div class="input_search  pt-5 d-flex justify-content-center align-items-center">
+            <input  id='input' autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  type="text">
+            <button id="button_search"><i class="fas fa-search"></i> Cerca </button>
             <div class="tomtom_results gray dropdown-menu"  aria-labelledby="input">
 
             </div>
@@ -17,7 +17,7 @@
   <div class="jumbotron">
   <h1 class="display-4">Hello, world!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
+ 
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
@@ -42,12 +42,15 @@
 @endsection
 
 @section('content')
+  <div class="d-flex justify-content-center align-items-center">
+    <span class="separator"></span>
+  </div>
+  <div class="carousel_container">
+    @yield('carousel')
+  </div>
 <div class="container">
-      <div class="carousel_container">
-        @yield('carousel')
-      </div>
     <p class="brown" id="ricerca_user"></p>
-  <div class="filter_container">
+  <div id="results" class="filter_container">
     <div class="FORM_SEARCH  MistyRose" id="filter">
       <div class="form_fallovede disabled">
         <form class="" action="index.html" method="post">
@@ -103,10 +106,10 @@
       </div>
    </div>
   </div>
-  <div class="searchedinputresult ">
-    <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center blue disabled">
+  <div  class="searchedinputresult">
+    <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center disabled">
     </div>
-   <div class='our_results  gray'>
+   <div class='our_results'>
    </div>
   </div>
 </div>
@@ -138,7 +141,7 @@
 </script>
 <script id="carousel-data-slide" type="text/x-handlebars-template">
           <div class="carousel-item ">
-            <img id="carousel_img" class="bd-placeholder-img" width="100%" height="100%" src="storage/@{{src}}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img>
+            <img id="carousel_img" class="img-fluid bd-placeholder-img" width="100%" height="100%" src="storage/@{{src}}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img>
             <div class="container">
               <div class="carousel-caption text-left">
                 <h1>@{{title}}</h1>

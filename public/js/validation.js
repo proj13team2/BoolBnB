@@ -37379,7 +37379,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/validation.js */"./resources/js/validation.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\validation.js */"./resources/js/validation.js");
 
 
 /***/ })

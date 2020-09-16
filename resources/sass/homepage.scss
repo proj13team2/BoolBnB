@@ -1,17 +1,59 @@
 //!!!!!!!!!!!!!!!!!!!!!HOMEPAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+//   !!!!!!!!!!!!!!!  INPUTS  AND IDS  !!!!!!!!!!!
+
 #ricerca_user {
   margin-bottom: 0!important;
 }
 
+#button_search {
+  background: rgb(255, 56, 92) !important;
+  border: 0px ;
+  margin: 0px ;
+  border-radius: 24px;
+  height: 48px !important;
+  color: white;
+  padding: 12px;
+  margin-left: 20px;
+}
+
+#button_search:focus {
+    outline: none!important;
+}
+
+#input {
+  border: 1px solid rgb(221, 221, 221) !important;
+  border-radius: 32px !important;
+  padding: 10px 20px;
+  width: 35%;
+}
+
+.input_search {
+  width: 100%;
+}
+
+.header-log-home {
+  background: rgb(125,187,255);
+  background: linear-gradient(180deg, rgba(125,187,255,1) 0%, rgba(125,187,255,1) 35%, rgba(125,187,255,0.8127626050420168) 95%);
+}
+
+//   !!!!!!!!!!!!!!!  JUMBOTRON AND RESULTS  !!!!!!!!!!!
+
 .jumbotron {
+  color: white!important;
   margin-bottom: 0!important;
+  background: transparent!important;
 }
 
 .searchedinputresult{
   width: 100%;
 }
 
-
+.tomtom_results {
+  top: 10px!important;
+  padding: 10px!important;
+  border-radius: 15px !important;
+}
 
 .apartment_result , .apartment_result-sponsored{
   width: 100%;
@@ -31,12 +73,30 @@
         }
 }
 
+
+
+
+
 .apartment_result-sponsored {
   background-color: lightyellow!important;
 }
 
 
 // !!!!!!!!  CAROUSEL  !!!!!!!! //
+
+.carousel_container {
+  padding: 100px 0px 100px;
+
+  .carousel-inner {
+    overflow: visible!important;
+  }
+
+  .carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+}
 
 .bd-placeholder-img {
   font-size: 1.125rem;

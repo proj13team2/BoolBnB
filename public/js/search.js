@@ -42727,7 +42727,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

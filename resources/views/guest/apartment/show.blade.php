@@ -85,5 +85,5 @@
 @push('head')
   <script src="{{ asset('js/app.js')}}"></script>
    <script src="{{ asset('js/validation.js')}}"></script>
-   <script src="../../jquery-validation/dist/jquery.validate.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 @endpush

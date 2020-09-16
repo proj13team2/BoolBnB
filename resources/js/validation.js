@@ -2,6 +2,31 @@ require('./bootstrap');
 const $ = require('jquery');
 
 $(document).ready(function(){
+
+  var emailExp = new RegExp(/^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i);
+
+ $.validator.addMethod(
+  /* The value you can use inside the email object in the validator. */
+  "regex",
+
+  /* The function that tests a given string against a given regEx. */
+  function(value, element, regexp)  {
+      /* Check if the value is truthy (avoid null.constructor) & if it's not a RegEx. (Edited: regex --> regexp)*/
+
+      if (regexp && regexp.constructor != RegExp) {
+         /* Create a new regular expression using the regex argument. */
+         regexp = new RegExp(regexp);
+      }
+
+      /* Check whether the argument is global and, if so set its last index to 0. */
+      else if (regexp.global) regexp.lastIndex = 0;
+
+      /* Return whether the element is optional or the result of the validation. */
+      return this.optional(element) || regexp.test(value);
+  }
+);
+
+
     $(function() {
       // Initialize form validation on the registration form.
       // It has the name attribute "registration"
@@ -15,7 +40,8 @@ $(document).ready(function(){
             required: true,
             // Specify that email should be validated
             // by the built-in "email" rule
-            email: true
+            email: true,
+            regex: /^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
           },
           content: {
             required: true,

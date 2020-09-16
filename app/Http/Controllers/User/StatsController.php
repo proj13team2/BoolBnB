@@ -28,23 +28,6 @@ class StatsController extends Controller
         return view('user.apartments.stats', $data);
 
     }
-    
-    //function to get the months from the db
-    public function getMonth(){
-        $monthArray = [];
-        $monthsMessage = Message::orderby('created_at', 'ASC')->pluck('created_at');
-        if(!empty($monthMessage)) {
-            foreach ($monthsMessage as $month){
-                $month->date->format('M');
-                return $month;
-            }
-        }
-    }
-
-    //function to get the messages(count) x month
-    public function getData(){
-
-    }
 
 }
 
@@ -53,6 +36,6 @@ class StatsController extends Controller
 //QUERY PER LA SELEZIONE DELLE SPONSORIZZAZIONI
 // SELECT * FROM sponsors
 // JOIN apartment_sponsor
-// ON sponsors.id = apartment_sponsor.sponsor_id 
+// ON sponsors.id = apartment_sponsor.sponsor_id
 // JOIN apartments ON apartment_sponsor.apartment_id = apartments.id
-// WHERE apartments.id = 
+// WHERE apartments.id =

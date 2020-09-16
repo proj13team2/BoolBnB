@@ -9,17 +9,81 @@
 
 .searchedinputresult{
   width: 100%;
-           .FORM_SEARCH {
-             width: 20%;
-           }
-           .our_results {
-             width: 80%;
-           }
 }
 
-.apartment_result {
-  width: 200px;
+
+
+.apartment_result , .apartment_result-sponsored{
+  width: 100%;
   padding: 5px;
-  margin: 10px;
+  margin: 10px 0px;
   height: 400px;
+        .card-img {
+          width: 400px;
+          height: 300px;
+        }
+        img {
+          width: 400px;
+          height: 300px;
+        }
+        .card-body {
+          height: 300px;
+        }
 }
+
+.apartment_result-sponsored {
+  background-color: lightyellow!important;
+}
+
+
+// !!!!!!!!  CAROUSEL  !!!!!!!! //
+
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+
+.featurette-divider {
+  margin: 5rem 0;
+}
+
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.05rem;
+}
+
+// !!!!!!!! END CAROUSEL  !!!!!!!! //

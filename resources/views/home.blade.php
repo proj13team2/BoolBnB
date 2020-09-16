@@ -5,7 +5,7 @@
 @endsection
 
 @section('homepage_header_unique')
-  <div class="TOP_MAIN    d-flex justify-content-center align-items-center">
+  <div class="TOP_MAIN  d-flex justify-content-center align-items-center" id="search_input">
       <div class="input_search float">
             <input  autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='input' type="text">
             <button>Cerca</button>
@@ -23,13 +23,32 @@
 </div>
 @endsection
 
+@section('carousel')
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+        </ol>
+        <div class="carousel-inner">
+
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+</div>
+@endsection
+
 @section('content')
 <div class="container">
-  <p class="brown" id="ricerca_user"></p>
-      <div class="SPONSORIZED d-flex justify-content-center align-items-center blue.">
+      <div class="carousel_container">
+        @yield('carousel')
       </div>
-  <div class="searchedinputresult d-flex ">
-    <div class="FORM_SEARCH  float yellow">
+    <p class="brown" id="ricerca_user"></p>
+  <div class="filter_container">
+    <div class="FORM_SEARCH  MistyRose" id="filter">
       <div class="form_fallovede disabled">
         <form class="" action="index.html" method="post">
           @csrf
@@ -83,31 +102,51 @@
         </form>
       </div>
    </div>
-   <div class='our_results d-flex justify-content-center align-items-center flex-wrap gray'>
+  </div>
+  <div class="searchedinputresult ">
+    <div class="SPONSORIZED d-flex justify-content-center align-items-center blue disabled">
+    </div>
+   <div class='our_results  gray'>
    </div>
   </div>
 </div>
 <script id="our_results" type="text/x-handlebars-template">
-<div class="card apartment_result">
-        <img class="card-img-top" src="storage/@{{src}}" width="200px" height="125px">
-   <div class="card-body">
+<div class="card flex-row align-items-center apartment_result p-5">
+   <div class="card-body ">
        <h4 class="card-title"><a  href="@{{link}}"> @{{title}} </a></h4>
        <p class="card-text"> Address : @{{street}} @{{building_number}} </p>
        <p class="card-text">  @{{city}}</p>
        <a href="@{{link}}" class="btn btn-primary">Go Visit</a>
   </div>
+  <div class="card-img">
+    <img class="" src="storage/@{{src}}">
+  </div>
 </div>
 </script>
 <script id="SPONSORIZED" type="text/x-handlebars-template">
-  <div class="card apartment_result">
-          <img class="card-img-top" src="storage/@{{src}}" width="200px" height="125px">
+  <div class="card flex-row align-items-center p-5 apartment_result-sponsored yellow">
      <div class="card-body">
          <h4 class="card-title"><a  href="@{{link}}"> @{{title}} </a></h4>
          <p class="card-text"> Address : @{{street}} @{{building_number}}</p>
          <p class="card-text"> @{{city}}</p>
          <a href="@{{link}}" class="btn btn-primary">Go Visit</a>
     </div>
+    <div class="card-img">
+      <img class="" src="storage/@{{src}}">
+    </div>
   </div>
+</script>
+<script id="carousel-data-slide" type="text/x-handlebars-template">
+          <div class="carousel-item ">
+            <img id="carousel_img" class="bd-placeholder-img" width="100%" height="100%" src="storage/@{{src}}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img>
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>@{{title}}</h1>
+                <p>@{{street}} @{{building_number}} @{{city}}</p>
+                <p><a class="btn btn-lg btn-primary" href="@{{link}}" role="button">Go visit!</a></p>
+              </div>
+            </div>
+          </div>
 </script>
 @endsection
 @push('head')

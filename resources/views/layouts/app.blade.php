@@ -30,7 +30,7 @@
         <div class=" container">
           <nav class="navbar navbar-expand-md navbar-light">
               {{-- ICON-TITLE - FLIZTBO --}}
-              <div class="home">
+              <div class="home" id="navbar">
                 <a class="navbar-brand" href="{{ url('/') }}">
                   {{ config('pagetitle.main_title') }}
                 </a>
@@ -40,7 +40,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="text-white collapse navbar-collapse" id="navbarSupportedContent" >
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->

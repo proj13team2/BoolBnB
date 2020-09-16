@@ -5,11 +5,9 @@
 @endsection
 
 @section('content')
-@forelse ($apartment->sponsors as $sponsor)
-    @if($sponsor->pivot->end_date > \Carbon\Carbon::now())
+    @if($array_sponsorizzati_attuali != [])
         <h1>L'appartamento è sponsorizzato</h1>
-    @endif
-@empty
+    @else
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -63,7 +61,8 @@
             </div>
         </div>
     </div>
-@endforelse
+    @endif
+    
 
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 <script>

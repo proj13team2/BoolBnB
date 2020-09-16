@@ -26,7 +26,15 @@ class SponsorController extends Controller
 
       $token = $gateway->ClientToken()->generate();
 
-      return view('user.apartments.sponsorization', compact('apartment', 'sponsors', 'token') );
+      $array_sponsorizzati_attuali = [];
+            foreach ($apartment->sponsors as $sponsor) {
+                if($sponsor->pivot->end_date > Carbon::now()) {
+                    array_push($array_sponsorizzati_attuali, $sponsor);
+                }
+            }
+    
+
+      return view('user.apartments.sponsorization', compact('apartment', 'sponsors','array_sponsorizzati_attuali', 'token') );
     }
 
 

@@ -5,60 +5,65 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h4> Seleziona la stanza "{{$apartment->title}}"</h4>
-            <p>Seleziona la modalità di sponsorizzazione:</p>
+@forelse ($apartment->sponsors as $sponsor)
+    @if($sponsor->pivot->end_date > \Carbon\Carbon::now())
+        <h1>L'appartamento è sponsorizzato</h1>
+    @endif
+@empty
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4> Seleziona la stanza "{{$apartment->title}}"</h4>
+                <p>Seleziona la modalità di sponsorizzazione:</p>
 
-            @if (session('success_message'))
-            <div class="alert alert-success">
-                {{ session('success_message') }}
-            </div>
-            @endif
-
-            @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li> {{ $error }} </li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-
-            <form method="post" id="payment-form" action="{{route('user.apartment.sponsorization', ['apartment' => $apartment->id])}}">
-                @csrf
-                <section>
-                  <div class="form-group">
-                      @foreach ($sponsors as $sponsor)
-                      <div class="form-check">
-                          <label for="amount" class="form-check-label">
-                              <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio"  value=" {{ $sponsor->id }}">
-                              {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
-                          </label>
-                      </div>
-                      @endforeach
-                  </div>
-
-                    <div class="bt-drop-in-wrapper">
-                        <div id="bt-dropin"></div>
-                    </div>
-                </section>
-                <input id="nonce" name="payment_method_nonce" type="hidden" />
-                <button class="button" type="submit"><span>Proceed to payment</span></button>
-                {{-- @foreach ($apartment->sponsors as $sponsor)
-                @if( $active == 0)
-                    <button class="button" type="submit"><span>Proceed to payment</span></button>
-                @else
-                    <button class="button" type="submit" disabled><span>Proceed to payment</span></button>
+                @if (session('success_message'))
+                <div class="alert alert-success">
+                    {{ session('success_message') }}
+                </div>
                 @endif
-                @endforeach --}}
-            </form>
+
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li> {{ $error }} </li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <form method="post" id="payment-form" action="{{route('user.apartment.sponsorization', ['apartment' => $apartment->id])}}">
+                    @csrf
+                    <section>
+                    <div class="form-group">
+                        @foreach ($sponsors as $sponsor)
+                        <div class="form-check">
+                            <label for="amount" class="form-check-label">
+                                <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio"  value=" {{ $sponsor->id }}">
+                                {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+
+                        <div class="bt-drop-in-wrapper">
+                            <div id="bt-dropin"></div>
+                        </div>
+                    </section>
+                    <input id="nonce" name="payment_method_nonce" type="hidden" />
+                    <button class="button" type="submit"><span>Proceed to payment</span></button>
+                    {{-- @foreach ($apartment->sponsors as $sponsor)
+                    @if( $active == 0)
+                        <button class="button" type="submit"><span>Proceed to payment</span></button>
+                    @else
+                        <button class="button" type="submit" disabled><span>Proceed to payment</span></button>
+                    @endif
+                    @endforeach --}}
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+@endforelse
 
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 <script>

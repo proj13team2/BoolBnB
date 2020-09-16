@@ -7,7 +7,7 @@
 @section('homepage_header_unique')
   <div class="TOP_MAIN    d-flex justify-content-center align-items-center">
       <div class="input_search float">
-            <input  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='input' type="text">
+            <input  autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id='input' type="text">
             <button>Cerca</button>
             <div class="tomtom_results gray dropdown-menu"  aria-labelledby="input">
 

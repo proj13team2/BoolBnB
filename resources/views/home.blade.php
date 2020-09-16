@@ -104,7 +104,7 @@
    </div>
   </div>
   <div class="searchedinputresult ">
-    <div class="SPONSORIZED d-flex justify-content-center align-items-center blue disabled">
+    <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center blue disabled">
     </div>
    <div class='our_results  gray'>
    </div>

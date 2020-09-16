@@ -63,7 +63,7 @@
 
             </div>
             <div class="col-6">
-            <form action="{{route('guest.message', ['apartment' => $apartment->id])}}" method="post">
+            <form action="{{route('guest.message', ['apartment' => $apartment->id])}}" method="post" name = "message">
                 @csrf
                 <div class="form-group">
                     <label for="email">email</label>
@@ -84,4 +84,6 @@
 @endsection
 @push('head')
   <script src="{{ asset('js/app.js')}}"></script>
+   <script src="{{ asset('js/validation.js')}}"></script>
+   <script src="../../jquery-validation/dist/jquery.validate.min.js"></script>
 @endpush

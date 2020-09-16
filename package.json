@@ -27,6 +27,7 @@
         "@tomtom-international/web-sdk-plugin-zoomcontrols": "^1.0.11",
         "@tomtom-international/web-sdk-services": "^5.64.0",
         "chart.js": "^2.9.3",
-        "handlebars": "^4.7.6"
+        "handlebars": "^4.7.6",
+        "jquery-validation": "^1.19.2"
     }
 }

@@ -42428,7 +42428,8 @@ $(document).ready(function () {
     zip_code: '',
     src: '',
     link: '',
-    distance: ''
+    distance: '',
+    price: ''
   }; // funzione per stampare gli appartamenti sponsorizzati in pagina.
 
   Stamp_A_sponsored();
@@ -42450,6 +42451,7 @@ $(document).ready(function () {
           our_results.zip_code = dati.results[index].zip_code;
           our_results.src = dati.results[index].src;
           our_results.distance = dati.results[index].distance;
+          our_results.price = dati.results[index].price;
 
           if (dati.results[index].is_active == 1) {
             var html = template_Sponsorized(our_results);
@@ -42483,15 +42485,41 @@ $(document).ready(function () {
       'method': 'GET',
       'data': {
         'key': key,
-        'idxSet': 'Str'
+        'limit': 5,
+        'countrySet': 'IT',
+        'typeahead': true,
+        'storeResult': true
       },
       success: function success(data) {
         //stampo velocememente a schermo i risultati della chiamata ajax
         for (var i = 0; i < data.results.length; i++) {
           console.log(data.results);
-          var indirizzo_corrente = data.results[i].address; // ------- DA SOSTITUIRE CON HANDLEBARS --------
 
-          var tomtomresults = '<div class="tomtom_result" data-lat="' + data.results[i].position.lat + '" data-lon="' + data.results[i].position.lon + '" +  >' + '<span>' + indirizzo_corrente.streetName + ',</span>' + '<span>' + indirizzo_corrente.municipality + ',</span>' + '<span>' + indirizzo_corrente.countrySecondarySubdivision + ',</span>' + '<span>' + indirizzo_corrente.countrySubdivision + ',</span>' + '<span>' + indirizzo_corrente.country + '</span>' + '</div>';
+          if (!data.results[i].address.streetName) {
+            data.results[i].address.streetName = '';
+          }
+
+          ;
+
+          if (!data.results[i].address.municipality) {
+            data.results[i].address.municipality = '';
+          }
+
+          ;
+
+          if (!data.results[i].address.countrySecondarySubdivision) {
+            data.results[i].address.countrySecondarySubdivision = '';
+          }
+
+          ;
+
+          if (!data.results[i].address.countrySubdivision) {
+            data.results[i].address.countrySubdivision = '';
+          }
+
+          ; // ------- DA SOSTITUIRE CON HANDLEBARS --------
+
+          var tomtomresults = '<div class="tomtom_result" data-lat="' + data.results[i].position.lat + '" data-lon="' + data.results[i].position.lon + '" +  >' + '<span>' + data.results[i].address.streetName + ' </span>' + '<span>' + data.results[i].address.municipality + ' </span>' + '<span>' + data.results[i].address.countrySecondarySubdivision + ' </span>' + '<span>' + data.results[i].address.countrySubdivision + ' </span>';
           $('.tomtom_results').append(tomtomresults);
         } //al click su un risutlato recupero i suoi valori e li stampo nell'input
 
@@ -42527,26 +42555,27 @@ $(document).ready(function () {
                 }
 
                 var sorted = array.sort();
-                var mannaggina = [];
+                var ordered_results = [];
 
                 for (var _index = 0; _index < dati.results.length; _index++) {
                   for (var endex = 0; endex < dati.results.length; endex++) {
                     if (sorted[_index] == dati.results[endex].distance) {
-                      mannaggina.push(dati.results[endex]);
+                      ordered_results.push(dati.results[endex]);
                     }
                   }
 
-                  our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index].slug;
-                  our_results.title = mannaggina[_index].title;
-                  our_results.street = mannaggina[_index].street;
-                  our_results.building_number = mannaggina[_index].building_number;
-                  our_results.city = mannaggina[_index].city;
-                  our_results.region = mannaggina[_index].region;
-                  our_results.zip_code = mannaggina[_index].zip_code;
-                  our_results.src = mannaggina[_index].src;
-                  our_results.distance = mannaggina[_index].distance;
+                  our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index].slug;
+                  our_results.title = ordered_results[_index].title;
+                  our_results.street = ordered_results[_index].street;
+                  our_results.building_number = ordered_results[_index].building_number;
+                  our_results.city = ordered_results[_index].city;
+                  our_results.region = ordered_results[_index].region;
+                  our_results.zip_code = ordered_results[_index].zip_code;
+                  our_results.src = ordered_results[_index].src;
+                  our_results.distance = ordered_results[_index].distance;
+                  our_results.price = ordered_results[_index].price;
 
-                  if (mannaggina[_index].is_active == 1) {
+                  if (ordered_results[_index].is_active == 1) {
                     var html = template(our_results);
                     $('.our_results').append(html);
                   }
@@ -42616,20 +42645,20 @@ $(document).ready(function () {
         }
 
         var sorted = array.sort();
-        var mannaggina = [];
+        var ordered_results = [];
 
         for (var _index2 = 0; _index2 < dati.results.length; _index2++) {
           for (var endex = 0; endex < dati.results.length; endex++) {
             if (sorted[_index2] == dati.results[endex].distance) {
-              mannaggina.push(dati.results[endex]);
+              ordered_results.push(dati.results[endex]);
             }
           }
         }
 
-        for (var _index3 = 0; _index3 < mannaggina.length; _index3++) {
-          var services = mannaggina[_index3].services;
+        for (var _index3 = 0; _index3 < ordered_results.length; _index3++) {
+          var services = ordered_results[_index3].services;
 
-          var finalArray = mannaggina[_index3].services.map(function (services) {
+          var finalArray = ordered_results[_index3].services.map(function (services) {
             return services.type;
           });
 
@@ -42638,33 +42667,35 @@ $(document).ready(function () {
           if (searched_services.every(function (elem) {
             return finalArray.indexOf(elem) > -1;
           })) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index3].slug;
-            our_results.title = mannaggina[_index3].title;
-            our_results.street = mannaggina[_index3].street;
-            our_results.building_number = mannaggina[_index3].building_number;
-            our_results.city = mannaggina[_index3].city;
-            our_results.region = mannaggina[_index3].region;
-            our_results.zip_code = mannaggina[_index3].zip_code;
-            our_results.src = mannaggina[_index3].src;
-            our_results.distance = mannaggina[_index3].distance;
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index3].slug;
+            our_results.title = ordered_results[_index3].title;
+            our_results.street = ordered_results[_index3].street;
+            our_results.building_number = ordered_results[_index3].building_number;
+            our_results.city = ordered_results[_index3].city;
+            our_results.region = ordered_results[_index3].region;
+            our_results.zip_code = ordered_results[_index3].zip_code;
+            our_results.src = ordered_results[_index3].src;
+            our_results.distance = ordered_results[_index3].distance;
+            our_results.price = ordered_results[_index3].price;
             console.log(our_results.title);
 
-            if (mannaggina[_index3].is_active == 1) {
+            if (ordered_results[_index3].is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }
           } else if (searched_services.length == 0) {
-            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + mannaggina[_index3].slug;
-            our_results.title = mannaggina[_index3].title;
-            our_results.street = mannaggina[_index3].street;
-            our_results.building_number = mannaggina[_index3].building_number;
-            our_results.city = mannaggina[_index3].city;
-            our_results.region = mannaggina[_index3].region;
-            our_results.zip_code = mannaggina[_index3].zip_code;
-            our_results.src = mannaggina[_index3].src;
-            our_results.distance = mannaggina[_index3].distance;
+            our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index3].slug;
+            our_results.title = ordered_results[_index3].title;
+            our_results.street = ordered_results[_index3].street;
+            our_results.building_number = ordered_results[_index3].building_number;
+            our_results.city = ordered_results[_index3].city;
+            our_results.region = ordered_results[_index3].region;
+            our_results.zip_code = ordered_results[_index3].zip_code;
+            our_results.src = ordered_results[_index3].src;
+            our_results.distance = ordered_results[_index3].distance;
+            our_results.price = ordered_results[_index3].price;
 
-            if (mannaggina.is_active == 1) {
+            if (ordered_results.is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }
@@ -42687,7 +42718,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

@@ -71,7 +71,7 @@ $(document).ready(function(){
                 our_results.zip_code = dati.results[index].zip_code;
                 our_results.src = dati.results[index].src;
                 our_results.distance = dati.results[index].distance;
-                our_results.price = ordered_results[index].price;
+                our_results.price = dati.results[index].price;
 
                 if(dati.results[index].is_active == 1) {
                     var html = template_Sponsorized(our_results);
@@ -107,21 +107,28 @@ $(document).ready(function(){
             'method': 'GET',
             'data': {
                 'key': key,
-                'idxSet': 'Str'
+                'limit': 5,
+                'countrySet': 'IT',
+                'typeahead': true,
+                'storeResult' : true
             },
             success: function(data) {
                 //stampo velocememente a schermo i risultati della chiamata ajax
                 for (let i = 0; i < data.results.length; i++) {
                     console.log(data.results);
-                    var indirizzo_corrente = data.results[i].address;
+
+                    if (!data.results[i].address.streetName) {data.results[i].address.streetName = '' };
+                    if (!data.results[i].address.municipality) {data.results[i].address.municipality = '' };
+                    if (!data.results[i].address.countrySecondarySubdivision) {data.results[i].address.countrySecondarySubdivision = '' };
+                    if (!data.results[i].address.countrySubdivision) {data.results[i].address.countrySubdivision = '' };
+
 
                     // ------- DA SOSTITUIRE CON HANDLEBARS --------
                     var tomtomresults = '<div class="tomtom_result" data-lat="' + data.results[i].position.lat + '" data-lon="' + data.results[i].position.lon + '" +  >' +
-                    '<span>' + indirizzo_corrente.streetName + ',</span>' +
-                    '<span>' + indirizzo_corrente.municipality + ',</span>' +
-                    '<span>' + indirizzo_corrente.countrySecondarySubdivision + ',</span>' +
-                    '<span>' + indirizzo_corrente.countrySubdivision + ',</span>' +
-                    '<span>' + indirizzo_corrente.country + '</span>' + '</div>';
+                    '<span>' + data.results[i].address.streetName + ' </span>' +
+                    '<span>' + data.results[i].address.municipality + ' </span>' +
+                    '<span>' + data.results[i].address.countrySecondarySubdivision + ' </span>' +
+                    '<span>' + data.results[i].address.countrySubdivision + ' </span>';
 
                     $('.tomtom_results').append(tomtomresults);
                 }

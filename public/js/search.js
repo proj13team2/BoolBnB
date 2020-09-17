@@ -42569,7 +42569,9 @@ $(document).ready(function () {
                   array.push(dati.results[index].distance);
                 }
 
-                var sorted = array.sort();
+                var sorted = array.sort(function (a, b) {
+                  return a - b;
+                });
                 var ordered_results = [];
 
                 for (var _index = 0; _index < dati.results.length; _index++) {
@@ -42659,7 +42661,10 @@ $(document).ready(function () {
           array.push(dati.results[index].distance);
         }
 
-        var sorted = array.sort();
+        var sorted = array.sort(function (a, b) {
+          return a - b;
+        });
+        console.log(sorted);
         var ordered_results = [];
 
         for (var _index2 = 0; _index2 < dati.results.length; _index2++) {
@@ -42733,7 +42738,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /var/www/html/boolean/esercizi/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

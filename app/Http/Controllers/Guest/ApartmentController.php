@@ -32,9 +32,9 @@ class ApartmentController extends Controller
                 }
             }
 
-        $last_ip_visualization = Apartment::join('visualizations', 'visualizations.apartment_id','=','apartments.id')->where('visualizations.apartment_id', '=', $apartment->id)->where('visual_ip','=', $ip)->orderBy('visualizations.created_at', 'desc')->first()->created_at;
 
         if((Auth::id() !== $apartment->user_id)) {
+            $last_ip_visualization = Apartment::join('visualizations', 'visualizations.apartment_id','=','apartments.id')->where('visualizations.apartment_id', '=', $apartment->id)->where('visual_ip','=', $ip)->orderBy('visualizations.created_at', 'desc')->first()->created_at;
             if(Carbon::now()->addHours(-24) > $last_ip_visualization ) {
                 $new_visualization = new Visualization();
                 $new_visualization['apartment_id'] = $apartment->id;

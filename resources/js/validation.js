@@ -1,7 +1,17 @@
 require('./bootstrap');
+
 const $ = require('jquery');
 
 $(document).ready(function(){
+
+  $('#navbarDropdown').on('click',function(){
+    $('.dropdown-menu').toggleClass('superfunzionante');
+    
+  })
+
+  $('.navbar-toggler-icon').on('click',function(){
+    $('.navbar-collapse.collapse').toggle();
+  })
 
 //funzione per  verificare l'email oltre la @
   var emailExp = new RegExp(/^\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i);
@@ -26,7 +36,6 @@ $(document).ready(function(){
       return this.optional(element) || regexp.test(value);
   }
 );
-
 
     $(function() {
       // Initialize form validation on the registration form.
@@ -91,7 +100,7 @@ $(document).ready(function(){
         }
       });
 
-      $("form[name = 'form_apartment'] ").validate({
+      $("form[name ='form_apartment'] ").validate({
         // Specify validation rules
         rules: {
           // The key name on the left side is the name attribute
@@ -99,6 +108,11 @@ $(document).ready(function(){
           // on the right side
             title: {
             required: true,
+            minlength: 2
+            },
+            street: {
+            required: true,
+            minlength: 2
             },
             building_number: {
             required: true,
@@ -106,6 +120,7 @@ $(document).ready(function(){
             },
             city: {
             required: true,
+            minlength: 2
             },
             zip_code: {
             required: true,
@@ -113,9 +128,11 @@ $(document).ready(function(){
             },
             region: {
             required: true,
+            minlength: 2
             },
             country: {
             required: true,
+            minlength: 2
             },
             lat: {
             required: true,
@@ -134,6 +151,11 @@ $(document).ready(function(){
             min: 1,
             digits: true
             },
+            number_of_beds: {
+            required: true,
+            min: 1,
+            digits: true
+            },
             number_of_bathrooms: {
             required: true,
             min: 1,
@@ -144,16 +166,75 @@ $(document).ready(function(){
             min: 1,
             digits: true
             },
-            // src: {
-            //     if (window.location.pathname == '/user/apartments/create') {
-            //         required: true
-            //     }
-            // },
+            src: {
+            accept: "image/*",
+            required: true
+            },
 
         },
         // Specify validation error messages
         messages: {
-          email: "Please enter a valid email address"
+          title: {
+            required: 'The title is required',
+            minlength: 'Minimum length is 2'
+          },
+          street: {
+            required: 'The street is required',
+            minlength: 'Minimum length is 2'
+          },
+          building_number: {
+            required: 'The building number is required',
+            digits: 'Please enter only digits',
+          },
+          city: {
+            required: 'The city is required',
+            minlength: 'Minimum length is 2'
+          } ,
+          zip_code: {
+            required: 'The zip code is required',
+            digits: 'Please enter only digits',
+          },
+          region: {
+            required: 'The region is required',
+            minlength: 'Minimum length is 2'
+          },
+          country: {
+          required: 'The country is required',
+          minlength: 'Minimum length is 2'
+          },
+          lat: {
+            required: 'The lat is required',
+            number: 'Please enter only numbers',
+          },
+          lng: {
+            required: 'The lng is required',
+            number: 'Please enter only numbers',
+          },
+          price: {
+            required: 'The price is required',
+            min: 'The price must be at least 1'
+          },
+          number_of_rooms: {
+            required: 'The number of rooms is required',
+            min: 'The number of rooms must be at least 1',
+            digits: 'Please enter only digits'
+            
+          },
+          number_of_bathrooms: {
+            required: 'The number of bathrooms is required',
+            min: 'The number of bathrooms must be at least 1',
+            digits:'Please enter only digits'
+          },
+          number_of_beds: {
+            required: 'The number of beds is required',
+            min: 'The number of beds must be at least 1',
+            digits: 'Please enter only digits'
+          },
+          square_meters: {
+            required: 'Square meters are required',
+            min: 'Square meters must be at least 1',
+            digits: 'Please enter only digits'
+          }
         },
         // Make sure the form is submitted to the destination defined
         // in the "action" attribute of the form when valid

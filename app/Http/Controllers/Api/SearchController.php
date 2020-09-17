@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Builder;
 class SearchController extends Controller
 {
 
+    // ------------- INDEX : stampa appartamenti non filtrati ------------- //
+
     public function index (Request $request) {
 
 
@@ -21,48 +23,35 @@ class SearchController extends Controller
         $lat = $data['lat'];
         $lng = $data['lng'];
 
-        $sponsoreds = [];
-        $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now());
-        $apartment_query_sponsoreds = $apartment_sponsors->get();
+        //array per gli appartamenti attualmente sponsorizzati
+        $active_sponsors = [];
 
-        foreach ($apartment_query_sponsoreds as $apartment_query_sponsored) {
-            array_push($sponsoreds, $apartment_query_sponsored);
-        }
-        // $apartments = DB::table('apartments')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->doesntHave('sponsors');
-        $apartment_query = Apartment::whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
-        $apartment_query2 = Apartment::join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
+        $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now())->get();
 
-        $apartments1 = scopeIsWithinMaxDistance($apartment_query,$lat , $lng, 20);
-        $apartments2 = scopeIsWithinMaxDistance($apartment_query2,$lat , $lng, 20);
-        // $apartments = $apartments1->merge($apartments2);
-
-
-        $array_spnsorizzati = [];
-        $array_vecchi = [];
-        $array_results = [];
-        foreach ($sponsoreds as $sponsored) {
-            array_push($array_spnsorizzati, $sponsored->apartment_id);
+        foreach ($apartment_sponsors as $apartment_sponsor) {
+            array_push($active_sponsors, $apartment_sponsor);
         }
 
-        foreach ($apartments2 as $apartment2){
-            if (!in_array($apartment2->apartment_id, $array_spnsorizzati)) {
-                if (!in_array($apartment2->apartment_id, $array_vecchi)) {
-                    array_push($array_vecchi, $apartment2->apartment_id);
-                    array_push($array_results, $apartment2);
-                }
-            }
-        }
+        //query per ottenere gli appartamenti che non sono mai stati sponsorizzati
+        $never_sponsorized_apts = Apartment::whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
 
-        foreach ($apartments1 as $apartment1) {
-            array_push($array_results, $apartment1);
-        }
+        //query per ottenere gli appartmenti con sponsorizzazioni scadute
+        $expired_sponsorizations = Apartment::join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
 
-    //    return view ('home', compact('apartments'))->render() ;
+        //query filtrate in base al raggio (20km per la ricerca base)
+        $never_sponsorized_apts_near = scopeIsWithinMaxDistance($never_sponsorized_apts,$lat , $lng, 20);
+        $expired_sponsorizations_near = scopeIsWithinMaxDistance($expired_sponsorizations,$lat , $lng, 20);
+
+        //funzione per generare risultati
+        
 
         return response()->json([
             'success' => true,
-            'results' => $array_results ]);
+            'results' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near)]);
     }
+
+
+    // ------------- STAMP : stampa appartamenti sponsorizzati ------------- //
 
       public function stamp (Request $request) {
 
@@ -75,6 +64,10 @@ class SearchController extends Controller
             'results' => $apartments ]);
     }
 
+
+    // ------------- FILTERED : stampa appartamenti filtrati ------------- //
+
+
     public function filtered (Request $request){
         $data = $request->all();
         $number_of_beds = $data['number_of_beds'];
@@ -84,70 +77,57 @@ class SearchController extends Controller
         $lng = $data['lng'];
 
         
-        
-        $sponsoreds = [];
-        $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now());
-        $apartment_query_sponsoreds = $apartment_sponsors->get();
+        //array per gli appartamenti attualmente sponsorizzati
+        $active_sponsors = [];
 
-        foreach ($apartment_query_sponsoreds as $apartment_query_sponsored) {
-            array_push($sponsoreds, $apartment_query_sponsored);
+        $apartment_sponsors = Apartment::join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '>', Carbon::now())->get();
+
+        foreach ($apartment_sponsors as $apartment_sponsor) {
+            array_push($active_sponsors, $apartment_sponsor);
         }
 
+
+
+        //condizioni per verificare i filtri scelti dall'utente (esclusi i servizi)
 
         if ($number_of_rooms == '' && $number_of_beds == '') {
 
-            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
-            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
+            //query per ottenere gli appartamenti che non sono mai stati sponsorizzati
+            $never_sponsorized_apts = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id');
+            //query per ottenere gli appartmenti con sponsorizzazioni scadute
+            $expired_sponsorizations = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now());
 
-        } elseif($number_of_rooms == '' && $number_of_beds != '') {
+        } elseif ($number_of_rooms == '' && $number_of_beds != '') {
 
-            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds);
-            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds);
-            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds),$lat,$lng,$radius);
+            $never_sponsorized_apts = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds);
+            $expired_sponsorizations = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds);
 
-        } elseif($number_of_rooms != '' && $number_of_beds == '') {
+        } elseif ($number_of_rooms != '' && $number_of_beds == '') {
 
-            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms);
-            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_rooms', '>=', $number_of_rooms);
-            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
+            $never_sponsorized_apts = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            $expired_sponsorizations = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_rooms', '>=', $number_of_rooms);
 
         } else {
 
-            $apartment_query = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
-            $apartment_query2 = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
-            // $results = scopeIsWithinMaxDistance(Apartment::with('services','sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms),$lat,$lng,$radius);
+            $never_sponsorized_apts = Apartment::with('services')->whereDoesntHave('sponsors')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
+            $expired_sponsorizations = Apartment::with('services')->join('addresses','addresses.apartment_id', '=', 'apartments.id')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id')->where('end_date', '<=', Carbon::now())->where('apartments.number_of_beds', '>=', $number_of_beds)->where('apartments.number_of_rooms', '>=', $number_of_rooms);
         }
 
+        //query filtrate in base al raggio (variabile tra 1km e 100km)
+        $never_sponsorized_apts_near = scopeIsWithinMaxDistance($never_sponsorized_apts,$lat , $lng, $radius);
+        $expired_sponsorizations_near = scopeIsWithinMaxDistance($expired_sponsorizations,$lat , $lng, $radius);
 
-        $apartments1 = scopeIsWithinMaxDistance($apartment_query,$lat , $lng, $radius);
-        $apartments2 = scopeIsWithinMaxDistance($apartment_query2,$lat , $lng, $radius);
-
-        $array_sponsorizzati = [];
-        $array_vecchi = [];
-        $array_results = [];
-        foreach ($sponsoreds as $sponsored) {
-            array_push($array_sponsorizzati, $sponsored->apartment_id);
-        }
-
-        foreach ($apartments2 as $apartment2){
-            if (!in_array($apartment2->apartment_id, $array_sponsorizzati)) {
-                if (!in_array($apartment2->apartment_id, $array_vecchi)) {
-                    array_push($array_vecchi, $apartment2->apartment_id);
-                    array_push($array_results, $apartment2);
-                }
-            }
-        }
-
-        foreach ($apartments1 as $apartment1) {
-            array_push($array_results, $apartment1);
-        }
+        //funzione per generare risultati
+        
 
         return response()->json([
             'success' => true,
-            'results' => $array_results]);
+            'results' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near)]);
+        
     }
 }
 
+//funzione per trovare gli appartamenti con distanza inferiore al raggio scelto
 function scopeIsWithinMaxDistance($query, $lat, $lon, $radius) {
 
     $calculationsForDistance = "(6371 * acos(cos(radians($lat))
@@ -160,4 +140,33 @@ function scopeIsWithinMaxDistance($query, $lat, $lon, $radius) {
        ->select("*")
        ->selectRaw("{$calculationsForDistance} AS distance")
        ->whereRaw("{$calculationsForDistance} < ?", $radius)->get();
+}
+
+
+function results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near) {
+        $array_sponsorized_apts = [];
+        $array_old_apts = [];
+        $array_results = [];
+
+        //popolo l'array con gli appartamenti attualmente sponsorizzati
+        foreach ($active_sponsors as $active_sponsor) {
+            array_push($array_sponsorized_apts, $active_sponsor->apartment_id);
+        }
+
+        //popolo l'array dei risultati solo se gli appartamenti con sponsorizzazioni scadute non solo attualmente sponsorizzati
+        foreach ($expired_sponsorizations_near as $expired_sponsorization_near){
+            if (!in_array($expired_sponsorization_near->apartment_id, $array_sponsorized_apts)) {
+                if (!in_array($expired_sponsorization_near->apartment_id, $array_old_apts)) {
+                    array_push($array_old_apts, $expired_sponsorization_near->apartment_id);
+                    array_push($array_results, $expired_sponsorization_near);
+                }
+            }
+        }
+
+        //inserisco nell'array dei risultati gli appartamenti mai sponsorizzati
+        foreach ($never_sponsorized_apts_near as $never_sponsorized_apt_near) {
+            array_push($array_results, $never_sponsorized_apt_near);
+        }
+
+        return $array_results;
 }

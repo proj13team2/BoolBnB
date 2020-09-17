@@ -9,8 +9,8 @@ $(document).ready(function(){
     //CHIAMATA API PER CREATE E UPDATE
 
     
-    $('button.btn-submit').on('click','btn-submit',function(e){
-        e.preventDefault()
+    $('button.btn-submit').click('btn-submit',function(evento){
+        evento.preventDefault()
         var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val()
         + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' +
         $('#region').val() + ' ' + $('#country').val() ;

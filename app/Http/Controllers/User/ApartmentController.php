@@ -21,9 +21,12 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        //recupero la lista degli appartamenti per ciascun utente
+
         $mutable = Carbon::now();
         $user = Auth::id();
+
         $user_apartments = Apartment::with('services','address')->where('apartments.user_id', '=', $user)->get();
         return view('user.apartments.index', compact('user_apartments', 'mutable'));
     }
@@ -35,6 +38,7 @@ class ApartmentController extends Controller
      */
     public function create()
     {
+        //passo i servizi disponibili per la creazione del nuovo appartamento
         $services = Service::all();
         $dati = ['services' => $services];
         return view('user.apartments.create', $dati);
@@ -49,35 +53,28 @@ class ApartmentController extends Controller
      */
     public function store(Request $request, Apartment $apartment)
     {
+        //validazione degli input inseriti dall'utente
         $request->validate([
-           'title' => 'required|max:255|unique:apartments,title',
-           'street'=>'required|max:255',
+            'title' => 'required|max:255|unique:apartments,title',
+            'street'=>'required|max:255',
             'building_number'=>'required',
             'city'=>'required|max:255',
             'zip_code'=>'required|numeric',
             'region'=>'required|max:255',
             'country'=>'required|max:255',
-           'price' => 'required|numeric',
-           'number_of_rooms' => 'required|numeric|between:1,10',
-           'number_of_beds' => 'required|numeric|between:1,10',
-           'number_of_bathrooms' => 'required|numeric|between:1,10',
-           'square_meters' => 'required|numeric|min:1',
-           'src' => 'image|max:1024'
+            'price' => 'required|numeric',
+            'number_of_rooms' => 'required|numeric|between:1,10',
+            'number_of_beds' => 'required|numeric|between:1,10',
+            'number_of_bathrooms' => 'required|numeric|between:1,10',
+            'square_meters' => 'required|numeric|min:1',
+            'src' => 'image|max:1024'
         ]);
-
+        
+        //recupero tutti i dati
         $dati = $request->all();
-        $slug = Str::of($dati['title'])->slug('-');
-        $slug_originale = $slug;
-
-        $apartment_trovato = Apartment::where('slug', $slug)->first();
-        $contatore = 0;
-        while($apartment_trovato) {
-            $contatore++;
-
-            $slug = $slug_originale . '-' . $contatore;
-            $apartment_trovato = Apartment::where('slug', $slug)->first();
-        }
-
+        
+        
+        //controllo per salvare l'immagine
         if($dati['src']) {
 
            $img_path = Storage::put('uploads', $dati['src']);
@@ -93,14 +90,15 @@ class ApartmentController extends Controller
            'number_of_bathrooms' => $dati['number_of_bathrooms'],
            'square_meters' => $dati['square_meters'],
            'src' => $dati['src'],
-           'slug' => $slug,
+           'slug' => slug_generator($dati)
        ];
 
-
-
+       //creo un nuovo appartamento
         $new_apartment = new Apartment();
         $new_apartment->fill($dati_apartment);
         $new_apartment->save();
+
+        //se ci sono servizi selezionati li salvo nel database
         if(!empty($dati['service_id'])) {
             $dati_apartment['service_id'] = $dati['service_id'];
             $new_apartment->services()->sync($dati_apartment['service_id']);
@@ -134,31 +132,33 @@ class ApartmentController extends Controller
     public function show($id)
     {
         $apartment = Apartment::find($id);
+
+        //recupero gli id degli appartamenti con sponsorizzazioni
         $apartment_sponsors = DB::table('apartment_sponsor')->select('apartment_id')->get();
         $sponsorized_apartments = [];
         $active = '';
 
-
-            foreach ( $apartment_sponsors  as $apartment_sponsor) {
-                if (!in_array( $apartment_sponsor->apartment_id, $sponsorized_apartments)) {
-                    array_push($sponsorized_apartments, $apartment_sponsor->apartment_id );
-                }
+        //creo un array con gli id (unici) degli appartamenti sponsorizzati
+        foreach ( $apartment_sponsors  as $apartment_sponsor) {
+            if (!in_array( $apartment_sponsor->apartment_id, $sponsorized_apartments)) {
+                array_push($sponsorized_apartments, $apartment_sponsor->apartment_id );
             }
+        }
 
-
-            foreach ($apartment_sponsors  as $apartment_sponsor) {
-                if (in_array($apartment_sponsor->apartment_id, $sponsorized_apartments)) {
-                    foreach($apartment->sponsors as $sponsor) {
-                        if ($sponsor->pivot->end_date > Carbon::now()) {
-                         $active = 1;
-                        } else {
-                         $active = 0;
-                        }
+        //
+        foreach ($apartment_sponsors  as $apartment_sponsor) {
+            if (in_array($apartment_sponsor->apartment_id, $sponsorized_apartments)) {
+                foreach($apartment->sponsors as $sponsor) {
+                    if ($sponsor->pivot->end_date > Carbon::now()) {
+                        $active = 1;
+                    } else {
+                        $active = 0;
                     }
-                } else {
-                    $active = 0;
                 }
+            } else {
+                $active = 0;
             }
+        }
 
 
             
@@ -200,33 +200,23 @@ class ApartmentController extends Controller
     public function update(Request $request, Apartment $apartment)
     {
         $request->validate([
-           'title' => 'required|max:255|unique:apartments,title,'.$apartment->id,
-           'street'=>'required|max:255',
-           'building_number'=>'required',
-           'city'=>'required|max:255',
-           'zip_code'=>'required|numeric',
-           'region'=>'required|max:255',
-           'country'=>'required|max:255',
-          'price' => 'required|numeric',
-          'number_of_rooms' => 'required|numeric|between:1,10',
-          'number_of_beds' => 'required|numeric|between:1,10',
-          'number_of_bathrooms' => 'required|numeric|between:1,10',
-          'square_meters' => 'required|numeric|min:1',
-          'src' => 'image|max:1024'
+            'title' => 'required|max:255|unique:apartments,title,'.$apartment->id,
+            'street'=>'required|max:255',
+            'building_number'=>'required',
+            'city'=>'required|max:255',
+            'zip_code'=>'required|numeric',
+            'region'=>'required|max:255',
+            'country'=>'required|max:255',
+            'price' => 'required|numeric',
+            'number_of_rooms' => 'required|numeric|between:1,10',
+            'number_of_beds' => 'required|numeric|between:1,10',
+            'number_of_bathrooms' => 'required|numeric|between:1,10',
+            'square_meters' => 'required|numeric|min:1',
+            'src' => 'image|max:1024'
         ]);
 
         $dati = $request->all();
-        $slug = Str::of($dati['title'])->slug('-');
-        $slug_originale = $slug;
-
-        $apartment_trovato = Apartment::where('slug', $slug)->first();
-        $contatore = 0;
-        while($apartment_trovato) {
-            $contatore++;
-
-            $slug = $slug_originale . '-' . $contatore;
-            $apartment_trovato = Apartment::where('slug', $slug)->first();
-        }
+        
 
         if($request->hasFile('src')) {
 
@@ -245,7 +235,7 @@ class ApartmentController extends Controller
             'number_of_bathrooms' => $dati['number_of_bathrooms'],
             'square_meters' => $dati['square_meters'],
             'src' => $dati['src'],
-            'slug' => $slug,
+            'slug' => slug_generator($dati)
         ];
 
         $apartment->update($dati_apartment);
@@ -300,4 +290,22 @@ class ApartmentController extends Controller
         }
         return redirect()->route('user.apartments.index');
     }
+}
+
+//funzione per generare lo slug
+function slug_generator($dati) {
+
+    $slug = Str::of($dati['title'])->slug('-');
+    $slug_originale = $slug;
+
+    $apartment_trovato = Apartment::where('slug', $slug)->first();
+    $contatore = 0;
+    while($apartment_trovato) {
+        $contatore++;
+
+        $slug = $slug_originale . '-' . $contatore;
+        $apartment_trovato = Apartment::where('slug', $slug)->first();
+    }
+
+    return $slug;
 }

@@ -37271,8 +37271,8 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 $(document).ready(function () {
   var key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1'; //CHIAMATA API PER CREATE E UPDATE
 
-  $('button.btn-submit').on('click', 'btn-submit', function (e) {
-    e.preventDefault();
+  $('button.btn-submit').click('btn-submit', function (evento) {
+    evento.preventDefault();
     var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val() + ' ' + $('#city').val() + ' ' + $('#zip_code').val() + ' ' + $('#region').val() + ' ' + $('#country').val();
     console.log(indirizzo_inserito);
     $.ajax({
@@ -37361,8 +37361,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/html/boolean/esercizi/BoolBnB/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/html/boolean/esercizi/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

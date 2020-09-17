@@ -42569,9 +42569,7 @@ $(document).ready(function () {
                   array.push(dati.results[index].distance);
                 }
 
-                var sorted = array.sort(function (a, b) {
-                  return a - b;
-                });
+                var sorted = array.sort();
                 var ordered_results = [];
 
                 for (var _index = 0; _index < dati.results.length; _index++) {
@@ -42661,10 +42659,7 @@ $(document).ready(function () {
           array.push(dati.results[index].distance);
         }
 
-        var sorted = array.sort(function (a, b) {
-          return a - b;
-        });
-        console.log(sorted);
+        var sorted = array.sort();
         var ordered_results = [];
 
         for (var _index2 = 0; _index2 < dati.results.length; _index2++) {

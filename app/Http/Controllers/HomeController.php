@@ -24,8 +24,6 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        // $apartments = $request->all();
-        // return view ('home', compact('apartments'));
         $apartments = DB::table('apartments')->join('apartment_service','apartment_service.apartment_id' , '=', 'apartments.id' )->join('services' , 'services.id' , '=' , 'apartment_service.service_id')->get();
         $services = Service::all();
         $apartments = Apartment::all();

@@ -33,5 +33,5 @@ class Apartment extends Model
         return $this->hasOne('App\Address');
     }
 
-    protected $fillable = ['user_id','title', 'address', 'price', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'src', 'slug', 'address_lat', 'address_lng'];
+    protected $fillable = ['user_id','title', 'price', 'number_of_rooms', 'number_of_beds', 'number_of_bathrooms', 'square_meters', 'src', 'slug',];
 }

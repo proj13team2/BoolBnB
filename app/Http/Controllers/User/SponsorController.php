@@ -89,7 +89,10 @@ class SponsorController extends Controller
             }
         }
 
+        //se il pagamento va a buon fine
         if ($result->success) {
+            //salvo la sponsorizzazione nel database
+
             $apartment->sponsors()->attach(array($apartment->id => array(
                 'sponsor_id' => $dati['amount'],
                 'end_date' => $modifiedMutable,
@@ -97,6 +100,8 @@ class SponsorController extends Controller
     
             return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
         } else {
+            //riconduco alla stessa pagina con segnalazione dell'errore
+
             $errorString = "";
 
             foreach ($result->errors->deepAll() as $error) {

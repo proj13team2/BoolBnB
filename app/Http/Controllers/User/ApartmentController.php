@@ -74,12 +74,13 @@ class ApartmentController extends Controller
         $dati = $request->all();
         
         
-        //controllo per salvare l'immagine
-        if($dati['src']) {
-
+        if(!$request->hasFile('src')) {
+            $img_path = 'uploads/no-img.png';
+            $dati['src'] = $img_path;
+        }else {
            $img_path = Storage::put('uploads', $dati['src']);
            $dati['src'] = $img_path;
-       }
+       } 
 
        $dati_apartment = [
            'user_id' => Auth::id(),

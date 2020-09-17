@@ -15,6 +15,8 @@ class SponsorController extends Controller
 
       $mutable = Carbon::now();
       $sponsors = Sponsor::all();
+
+      //recupero i dati necessari per braintree
       $gateway = new Braintree\Gateway([
           'environment' => config('services.braintree.environment'),
           'merchantId' => config('services.braintree.merchantId'),
@@ -22,10 +24,9 @@ class SponsorController extends Controller
           'privateKey' => config('services.braintree.privateKey')
       ]);
 
-
-
       $token = $gateway->ClientToken()->generate();
 
+      //creo un array da riempire con la sponsorizzazione attuale dell'appartamento (se esiste)
       $array_sponsorizzati_attuali = [];
             foreach ($apartment->sponsors as $sponsor) {
                 if($sponsor->pivot->end_date > Carbon::now()) {
@@ -33,21 +34,20 @@ class SponsorController extends Controller
                 }
             }
     
-
       return view('user.apartments.sponsorization', compact('apartment', 'sponsors','array_sponsorizzati_attuali', 'token') );
     }
 
 
     public function checkout(Request $request, Apartment $apartment, Sponsor $sponsor){
-        $time_now = Carbon::now();
-        $active = '';
 
+        $time_now = Carbon::now();
         $mutable = Carbon::now();
-        $sa = $request->all();
-        $sponsor = Sponsor::find($sa['amount']);
+        $active = '';
+        $dati = $request->all();
+        $sponsor = Sponsor::find($dati['amount']);
         $sponsor_price = $sponsor['price'];
 
-
+        //verifichiamo il prezzo della sponsorizzazione e definiamo l'end_date
         if ($sponsor_price == 2.99) {
             $modifiedMutable = $mutable->add(1, 'day');
         }
@@ -68,7 +68,7 @@ class SponsorController extends Controller
         $amount = $sponsor_price;
         $nonce = $_POST["payment_method_nonce"];
 
-
+        //restituzione del risultato di braintree
         $result = $gateway->transaction()->sale([
             'amount' => $amount,
             'paymentMethodNonce' => $nonce,
@@ -76,9 +76,12 @@ class SponsorController extends Controller
                 'submitForSettlement' => true
             ]
         ]);
-
+        
+        //per ogni sponsorizzazione controllo la data di scadenza
         foreach($apartment->sponsors as $sponsor) {
+            
             if( $sponsor->pivot->end_date <= Carbon::now()) {
+                //se è scaduta
                 $active = 0;
             } else {
                 $active = 1;
@@ -86,26 +89,21 @@ class SponsorController extends Controller
             }
         }
 
-        // if ($result->success) {
-        //     $transaction = $result->transaction;
-            
-            
-        //     return back()->with('success_message', 'Transaction successful. The ID is:  ' . $transaction->id);
-        // } else {
-        //     $errorString = "";
-        
-        //     foreach ($result->errors->deepAll() as $error) {
-        //         $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
-        //     }
-        
-        //     return back()->withErrors('An error occured with the message: ' . $result->message);
-        // }
+        if ($result->success) {
+            $apartment->sponsors()->attach(array($apartment->id => array(
+                'sponsor_id' => $dati['amount'],
+                'end_date' => $modifiedMutable,
+            )));
+    
+            return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
+        } else {
+            $errorString = "";
 
-        
-        $apartment->sponsors()->attach(array($apartment->id => array(
-            'sponsor_id' => $sa['amount'],
-            'end_date' => $modifiedMutable,
-        )));
-        return redirect()->route('user.apartments.show', compact('apartment', 'active', 'time_now'));
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+
+            return back()->withErrors('An error occured with the message: ' . $result->message);
+        }
     }
 }

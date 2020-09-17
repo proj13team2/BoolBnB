@@ -27,7 +27,7 @@ class ApartmentController extends Controller
         $mutable = Carbon::now();
         $user = Auth::id();
 
-        $user_apartments = Apartment::with('services','address')->where('apartments.user_id', '=', $user)->get();
+        $user_apartments = Apartment::with('services','address')->where('apartments.user_id', '=', $user)->orderBy('apartments.created_at', 'desc')->get();
         return view('user.apartments.index', compact('user_apartments', 'mutable'));
     }
 
@@ -116,6 +116,7 @@ class ApartmentController extends Controller
             'lng' => $dati['lng'],
         ];
 
+        //creo un nuovo appartamento
         $new_address = new Address();
         $new_address->fill($dati_address);
         $new_address->save();
@@ -145,7 +146,7 @@ class ApartmentController extends Controller
             }
         }
 
-        //
+        //verifico se l'appartmento è attualmente sponsorizzato (se si active = 1 altrimenti active = 0, useremo active nelle view)
         foreach ($apartment_sponsors  as $apartment_sponsor) {
             if (in_array($apartment_sponsor->apartment_id, $sponsorized_apartments)) {
                 foreach($apartment->sponsors as $sponsor) {
@@ -217,12 +218,15 @@ class ApartmentController extends Controller
 
         $dati = $request->all();
         
-
+        
+        //verifico se l'utente ha inserito un'immagine
         if($request->hasFile('src')) {
 
+            //se l'ha inserita la salvo come nuova immagine dell'appartamento
            $img_path = Storage::put('uploads', $dati['src']);
            $dati['src'] = $img_path;
         } else {
+            //altrimenti recupero l'immagine vecchia
             $dati['src'] = $apartment->src;
         }
 
@@ -240,10 +244,13 @@ class ApartmentController extends Controller
 
         $apartment->update($dati_apartment);
 
+        //se l'utente ha inserito servizi
         if($request->has('service_id')) {
+            //sincronizzo i servizi inseriti
             $dati_apartment['service_id'] = $dati['service_id'];
             $apartment->services()->sync($dati_apartment['service_id']);
         } else {
+            //non ci sono servizi selezionati, svuoto i servizi dell'appartamento
             $apartment->services()->sync([]);
         }
 
@@ -281,11 +288,16 @@ class ApartmentController extends Controller
         }
     }
 
+
+    //funzione per disabilitare momentaneamente l'appartamento
     public function disable($id) {
         $apartment = Apartment::find($id);
+        //verifico se l'appartamento è attivo o meno
         if($apartment->is_active == 1) {
+            //lo rendo disattivo
             Apartment::where('id', $id)->update(array('is_active' => 0));
         } else {
+            //altrimenti lo riattivo
             Apartment::where('id', $id)->update(array('is_active' => 1));
         }
         return redirect()->route('user.apartments.index');

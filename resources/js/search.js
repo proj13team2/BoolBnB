@@ -182,7 +182,8 @@ $(document).ready(function(){
                                     array.push(dati.results[index].distance)
                                 }
 
-                                var sorted = array.sort()
+                                var sorted = array.sort(function(a, b){return a-b});
+
                                 var ordered_results = [];
 
                                 for (let index = 0; index < dati.results.length; index++) {
@@ -274,7 +275,8 @@ $(document).ready(function(){
                 for (let index = 0; index < dati.results.length; index++) {
                     array.push(dati.results[index].distance)
                 }
-                var sorted = array.sort()
+                var sorted = array.sort(function(a, b){return a-b});
+
                 var ordered_results = [];
 
                 for (let index = 0; index < dati.results.length; index++) {

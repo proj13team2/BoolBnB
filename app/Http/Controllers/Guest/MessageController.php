@@ -23,3 +23,5 @@ class MessageController extends Controller
         return redirect()->route('guest.apartment.show', ['slug'=> $apartment->slug]);
     }
 }
+
+

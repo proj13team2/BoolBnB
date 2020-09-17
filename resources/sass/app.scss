@@ -7,6 +7,9 @@
 // Variables
 @import 'variables';
 
+// Animations
+@import 'animations';
+
 // VIEWS STYLES !!!!!!!!!!!!!!!!!
 @import 'homepage';
 @import 'guest/guestshow';
@@ -20,7 +23,7 @@
 @import 'backgroundsgrid';
 
 
-
+// Appartment bug fix
 @import 'test';
 
 
@@ -89,24 +92,3 @@ header {
     background-color: grey;
     opacity: 0.6;
 }
-
-
-
-
-
-
-
-@media(min-width: 1200px){
-.container {
-    max-width: 1090px;
-}}
-
-@media(min-width: 1380px){
-.container {
-    max-width: 1180px;
-}}
-
-@media(min-width: 1620px){
-.container {
-    max-width: 1380px;
-}}

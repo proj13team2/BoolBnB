@@ -8,7 +8,7 @@ $(document).ready(function(){
   // SCROLL DOWN AUTO FOR SEARCH
    $("#button_search").click(function (){
        $('html, body').animate({
-           scrollTop: $("#results").offset().top
+           scrollTop: $("#ricerca_user").offset().top
        }, 1300);
    });
 
@@ -211,9 +211,8 @@ $(document).ready(function(){
                                         $('.our_results').append(html);
 
                                     }
-
-                                    $('#ricerca_user').text('Ricerca effettuata : ' + ricerca_utente);
                                 }
+                                $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">'+ ' ' + ricerca_utente +'</span>');
                             })
                             //faccio la stessa cosa ma con l'enter
                             // $('input').keyup(function(event) {

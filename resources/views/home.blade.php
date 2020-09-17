@@ -9,7 +9,7 @@
       <div class="input_search  pt-5 d-flex justify-content-center align-items-center">
             <input  id='input' autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  type="text">
             <button id="button_search"><i class="fas fa-search"></i> Cerca </button>
-            <div class="tomtom_results gray dropdown-menu"  aria-labelledby="input">
+            <div class="tomtom_results dropdown-menu"  aria-labelledby="input">
 
             </div>
         </div>
@@ -17,8 +17,6 @@
   <div class="jumbotron">
   <h1 class="display-4">Hello, world!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
 @endsection
@@ -42,28 +40,29 @@
 @endsection
 
 @section('section-first')
-  <div class="section-first-container row">
-    <div class="section-first-l col-6">
-    </div>
-    <div class="section-first-d text-center col-6">
-      <div class="descript">
-        <h4 class="descript-title pl-3 pt-5">Find your style!</h4>
-        <p class="descript-text  pt-5">Assisti a performance live interattive e partecipa a conversazioni con persone di Broadway e non solo. Tutto senza uscire di casa.</p>
+    <div class="section-first-container d-flex flex-wrap">
+      <div class="section-first-l  col-lg-6 col-md-6  col-sm-12 ">
+        <div class="section-first-l-img"></div>
       </div>
-    </div>
+      <div class="section-first-d text-center col-lg-6  col-md-6 col-sm-12">
+        <div class="descript">
+          <h4 class="descript-title pl-3 pt-5">Find your style!</h4>
+          <p class="descript-text  pt-5">Assisti a performance live interattive e partecipa a conversazioni con persone di Broadway e non solo. Tutto senza uscire di casa.</p>
+        </div>
+      </div>
     </div>
 @endsection
 
 @section('content')
 <div class="container">
-  <div class="d-flex justify-content-center align-items-center">
-    <span class="separator"></span>
-  </div>
-  <div class="carousel_container">
+<div class="row">
+  <div class="carousel_container col-12">
     @yield('carousel')
   </div>
-  <div class="pop-up-results  mt-5">
-    <p class="brown" id="ricerca_user"></p>
+  <div class="pop-up-results col-12 mt-5">
+  <div class="results-for-p text-center">
+      <h3 class="" id="ricerca_user"></h3>
+  </div>
   <div id="results" class="filter_container">
     <div class="FORM_SEARCH  MistyRose" id="filter">
       <div class="form_fallovede disabled">
@@ -121,48 +120,76 @@
    </div>
   </div>
     <div  class="searchedinputresult">
-      <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center disabled"></div>
-      <div class='our_results'></div>
+      <div class="SPONSORIZED row pt-5 disabled"></div>
+      <div class='our_results row'></div>
     </div>
   </div>
   @yield('section-first')
 </div>
-<script id="our_results" type="text/x-handlebars-template">
-<div class="card flex-row align-items-center apartment_result p-5">
-   <div class="card-body ">
-       <h4 class="card-title"><a  href="@{{link}}"> @{{title}} </a></h4>
-       <p class="card-text"> Address : @{{street}} @{{building_number}} </p>
-       <p class="card-text">  @{{city}}</p>
-       <a href="@{{link}}" class="btn btn-primary">Go Visit</a>
-  </div>
-  <div class="card-img">
-    <img class="" src="storage/@{{src}}">
-  </div>
 </div>
+<script id="our_results" type="text/x-handlebars-template">
+  <div class="apartment-grid col-4">
+          <div class="apartment-image">
+              <a href="@{{link}}">
+                  <img width="300px" class="pic-1" src="storage/@{{src}}">
+                  <img width="300px" class="pic-2" src="storage/@{{src}}">
+              </a>
+              <ul class="social">
+                  <li><a href="@{{link}}"><i class="fa fa-shopping-bag"></i></a></li>
+                  <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
+              </ul>
+          </div>
+          <div class="apartment-content">
+              <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>
+              <div class="price">
+                  @{{price}} $
+              </div>
+              <ul class="rating">
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+              </ul>
+          </div>
+      </div>
 </script>
 <script id="SPONSORIZED" type="text/x-handlebars-template">
-  <div class="card flex-row align-items-center p-5 apartment_result-sponsored yellow">
-     <div class="card-body">
-         <h4 class="card-title"><a  href="@{{link}}"> @{{title}} </a></h4>
-         <p class="card-text"> Address : @{{street}} @{{building_number}}</p>
-         <p class="card-text"> @{{city}}</p>
-         <a href="@{{link}}" class="btn btn-primary">Go Visit</a>
-    </div>
-    <div class="card-img">
-      <img class="" src="storage/@{{src}}">
-    </div>
-  </div>
+  <div class="apartment-grid col-4">
+          <div class="apartment-image">
+              <a href="@{{link}}">
+                  <img width="300px" class="pic-1" src="storage/@{{src}}">
+                  <img width="300px" class="pic-2" src="storage/@{{src}}">
+              </a>
+              <ul class="social">
+                  <li><a href="@{{link}}"><i class="fa fa-shopping-bag"></i></a></li>
+                  <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
+              </ul>
+               <span class="apartment-new-label">Sponsored</span>
+          </div>
+          <div class="apartment-content">
+              <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>
+              <div class="price">
+                  @{{price}} $
+              </div>
+              <ul class="rating">
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+                  <li class="fa fa-star"></li>
+              </ul>
+          </div>
+      </div>
 </script>
 <script id="carousel-data-slide" type="text/x-handlebars-template">
-          <div class="carousel-item ">
-            <img id="carousel_img" class="img-fluid bd-placeholder-img" width="100%" height="100%" src="storage/@{{src}}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></img>
-            <div class="container">
+          <div class="carousel-item">
+            <img id="carousel_img" class="img-fluid bd-placeholder-img" width="100%" height="100%" src="storage/@{{src}}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"></img>
               <div class="carousel-caption text-left">
                 <h1>@{{title}}</h1>
                 <p>@{{street}} @{{building_number}} @{{city}}</p>
                 <p><a class="btn btn-lg btn-primary" href="@{{link}}" role="button">Go visit!</a></p>
               </div>
-            </div>
           </div>
 </script>
 @endsection

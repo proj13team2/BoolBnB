@@ -2,8 +2,10 @@
 
 //   !!!!!!!!!!!!!!!  INPUTS  AND IDS  !!!!!!!!!!!
 
+
 #ricerca_user {
   margin-bottom: 0!important;
+  line-height: 80px;
 }
 
 #button_search {
@@ -28,7 +30,11 @@
   width: 35%;
 }
 
-.input_search {
+#input:focus {
+  outline: none!important;
+}
+.input_searc
+h {
   width: 100%;
 }
 
@@ -50,31 +56,8 @@
   border-radius: 15px !important;
 }
 
-.apartment_result , .apartment_result-sponsored{
-  width: 100%;
-  padding: 5px;
-  margin: 10px 0px;
-  height: 400px;
-        .card-img {
-          width: 400px;
-          height: 300px;
-        }
-        img {
-          width: 400px;
-          height: 300px;
-        }
-        .card-body {
-          height: 300px;
-        }
-}
 
 
-
-
-
-.apartment_result-sponsored {
-  background-color: lightyellow!important;
-}
 
 // !!!!!!!!  SECTION FIRST  !!!!!!!! //
 .section-first-container {
@@ -87,12 +70,15 @@
   }
 }
 
-.section-first-l {
+.section-first-l-img {
   background-image: url(https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/101273481_2905790046203982_2909085992163999744_o.jpg?_nc_cat=101&_nc_sid=730e14&_nc_ohc=jXwzhueosT4AX92ZhaU&_nc_ht=scontent-mxp1-1.xx&oh=e7cf049461c357c3995036f68aa66c82&oe=5F8981C5);
   background-size: cover;
   background-position: center;
   border-radius: 40px 7px 40px 0px;
+  width: 100%;
+  height: 100%;
 }
+
 .section-first-d {
    .descript {
      height: 100%;
@@ -108,21 +94,24 @@
    }
 }
 
+// RISULTATI PER : ricerca-user //
+
+.results-for-p {
+  padding: 10px ;
+  font-weight: lighter;
+
+  .results-for-span {
+    font-size: 20px;
+    font-style: italic;
+  }
+}
+
+
+
 
 
 // !!!!!!!!  CAROUSEL  !!!!!!!! //
 
-.carousel_container {
-  padding: 10px 0px 10px;
-
-
-
-  .carousel-item img {
-    max-width: 100%;
-    max-height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-}
 
 .bd-placeholder-img {
   font-size: 1.125rem;
@@ -139,7 +128,9 @@
 }
 
 .carousel-item {
-  height: 32rem;
+  border-radius: 15px;
+  background-color: black!important;
+  height: 27rem;
 }
 .carousel-item > img {
   position: absolute;
@@ -147,6 +138,10 @@
   left: 0;
   min-width: 100%;
   height: 32rem;
+  opacity: 0.73;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .marketing .col-lg-4 {

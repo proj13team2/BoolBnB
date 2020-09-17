@@ -17,7 +17,7 @@
   <div class="jumbotron">
   <h1 class="display-4">Hello, world!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
- 
+
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
@@ -41,14 +41,28 @@
 </div>
 @endsection
 
+@section('section-first')
+  <div class="section-first-container row">
+    <div class="section-first-l col-6">
+    </div>
+    <div class="section-first-d text-center col-6">
+      <div class="descript">
+        <h4 class="descript-title pl-3 pt-5">Find your style!</h4>
+        <p class="descript-text  pt-5">Assisti a performance live interattive e partecipa a conversazioni con persone di Broadway e non solo. Tutto senza uscire di casa.</p>
+      </div>
+    </div>
+    </div>
+@endsection
+
 @section('content')
+<div class="container">
   <div class="d-flex justify-content-center align-items-center">
     <span class="separator"></span>
   </div>
   <div class="carousel_container">
     @yield('carousel')
   </div>
-<div class="container">
+  <div class="pop-up-results  mt-5">
     <p class="brown" id="ricerca_user"></p>
   <div id="results" class="filter_container">
     <div class="FORM_SEARCH  MistyRose" id="filter">
@@ -106,12 +120,12 @@
       </div>
    </div>
   </div>
-  <div  class="searchedinputresult">
-    <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center disabled">
+    <div  class="searchedinputresult">
+      <div class="SPONSORIZED d-flex flex-column justify-content-center align-items-center disabled"></div>
+      <div class='our_results'></div>
     </div>
-   <div class='our_results'>
-   </div>
   </div>
+  @yield('section-first')
 </div>
 <script id="our_results" type="text/x-handlebars-template">
 <div class="card flex-row align-items-center apartment_result p-5">

@@ -42562,6 +42562,7 @@ $(document).ready(function () {
               $('#button_search').click(function () {
                 $('.our_results').empty();
                 $('.form_fallovede').removeClass('disabled');
+                $('.pop-up-results').removeClass('disabled');
                 $('.SPONSORIZED').removeClass('disabled');
                 var array = [];
 

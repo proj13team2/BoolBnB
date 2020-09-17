@@ -27,7 +27,7 @@ class MessagesTableSeeder extends Seeder
                 'content' => 'Buongiorno, a quanto dista il parcheggio più vicino?',
             ],
             [
-                'content' => 'Buonasera, sapreste congliarmi un itinerario nelle vicinzane per i giorni in cui soggiornerò da voi? Grazie.'
+                'content' => 'Buonasera, sapreste consigliarmi un itinerario nelle vicinanze per i giorni in cui soggiornerò da voi? Grazie.'
             ],
         ];
 

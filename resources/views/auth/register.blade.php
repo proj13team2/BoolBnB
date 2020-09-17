@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" name = "form_register" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -107,3 +107,8 @@
     </div>
 </div>
 @endsection
+
+@push('head')
+    <script src="{{ asset('js/validation.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+@endpush

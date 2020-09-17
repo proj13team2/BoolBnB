@@ -37,7 +37,7 @@
                         @foreach ($sponsors as $sponsor)
                         <div class="form-check">
                             <label for="amount" class="form-check-label">
-                                <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio"  value=" {{ $sponsor->id }}">
+                                <input id="amount" name="amount" class="form-check-input sponsorship-level" type="radio"  value=" {{ $sponsor->id }}" checked>
                                 {{ $sponsor->price }} € per {{($sponsor->duration) * 24}} ore di sponsorizzazione
                             </label>
                         </div>
@@ -62,7 +62,7 @@
         </div>
     </div>
     @endif
-    
+
 
 <script src="https://js.braintreegateway.com/web/dropin/1.23.0/js/dropin.min.js"></script>
 <script>

@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                 @endif
-                <form class='apartment-form' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data">
+                <form class='apartment-form' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data" name = 'form_apartment'>
                     @csrf
                     @method('PUT')
 
@@ -113,4 +113,6 @@
 @endsection
 @push('head')
   <script src="{{ asset('js/app.js')}}"></script>
+  <script src="{{ asset('js/validation.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 @endpush

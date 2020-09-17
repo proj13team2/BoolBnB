@@ -1,6 +1,9 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
 // Variables
 @import 'variables';
 
@@ -12,12 +15,13 @@
 
 
 
+
 // backgrounds
 @import 'backgroundsgrid';
 
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
+@import 'test';
 
 
 * {
@@ -47,7 +51,7 @@ header {
 }
 // ELEMENTI HEADER
 
-.navbar-brand , .nav-link ,  {
+.navbar-brand , .nav-link   {
   color: white!important;
   font-size: 20px;
 }

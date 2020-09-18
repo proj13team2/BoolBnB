@@ -11478,6 +11478,7 @@ img {
   margin: auto;
   border: 5px solid #007b5e;
   overflow: auto;
+  background-color: snow;
 }
 
 .form-register {
@@ -11488,6 +11489,7 @@ img {
   margin: auto;
   border: 5px solid #007b5e;
   overflow: auto;
+  background-color: snow;
 }
 
 .form-signin .checkbox {
@@ -11523,7 +11525,7 @@ img {
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #ecd7be;
   font-family: "Roboto", sans-serif;
 }
 

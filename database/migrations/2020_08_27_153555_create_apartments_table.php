@@ -22,6 +22,7 @@ class CreateApartmentsTable extends Migration
             $table->smallInteger('square_meters');
             $table->string('src')->unique();
             $table->string('slug')->unique();
+            $table->smallInteger('rating');
             $table->timestamps();
         });
     }

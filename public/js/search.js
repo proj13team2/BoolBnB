@@ -42438,7 +42438,9 @@ $(document).ready(function () {
     src: '',
     link: '',
     distance: '',
-    price: ''
+    price: '',
+    rating: '',
+    sponsored: ''
   }; // funzione per stampare gli appartamenti sponsorizzati in pagina.
 
   Stamp_A_sponsored();
@@ -42567,6 +42569,12 @@ $(document).ready(function () {
                 $('.SPONSORIZED').removeClass('disabled');
 
                 for (var index = 0; index < dati.results.sponsored.length; index++) {
+                  var stelle = '';
+
+                  for (var endex = 1; endex <= dati.results.sponsored[index].rating; endex++) {
+                    stelle += '<li class="fa fa-star"></li>';
+                  }
+
                   our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results.sponsored[index].slug;
                   our_results.title = dati.results.sponsored[index].title;
                   our_results.street = dati.results.sponsored[index].street;
@@ -42577,11 +42585,12 @@ $(document).ready(function () {
                   our_results.src = dati.results.sponsored[index].src;
                   our_results.distance = dati.results.sponsored[index].distance;
                   our_results.price = dati.results.sponsored[index].price;
+                  our_results.rating = stelle;
+                  our_results.sponsored = '<span class="apartment-new-label">Sponsored</span>';
 
                   if (dati.results.sponsored[index].is_active == 1) {
                     var html = template(our_results);
                     $('.our_results').append(html);
-                    $('.apartment-image').append('<span class="apartment-new-label">Sponsored</span>');
                   }
                 }
 
@@ -42597,10 +42606,16 @@ $(document).ready(function () {
                 var ordered_results = [];
 
                 for (var _index2 = 0; _index2 < dati.results.no_sponsored.length; _index2++) {
-                  for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-                    if (sorted[_index2] == dati.results.no_sponsored[endex].distance) {
-                      ordered_results.push(dati.results.no_sponsored[endex]);
+                  for (var _endex = 0; _endex < dati.results.no_sponsored.length; _endex++) {
+                    if (sorted[_index2] == dati.results.no_sponsored[_endex].distance) {
+                      ordered_results.push(dati.results.no_sponsored[_endex]);
                     }
+                  }
+
+                  var stelle = '';
+
+                  for (var _endex2 = 1; _endex2 <= ordered_results[_index2].rating; _endex2++) {
+                    stelle += '<li class="fa fa-star"></li>';
                   }
 
                   our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index2].slug;
@@ -42613,6 +42628,7 @@ $(document).ready(function () {
                   our_results.src = ordered_results[_index2].src;
                   our_results.distance = ordered_results[_index2].distance;
                   our_results.price = ordered_results[_index2].price;
+                  our_results.rating = stelle;
 
                   if (ordered_results[_index2].is_active == 1) {
                     var html = template(our_results);
@@ -42679,7 +42695,14 @@ $(document).ready(function () {
         $('.our_results').empty();
 
         for (var index = 0; index < dati.results.sponsored.length; index++) {
+          var stelle = '';
+
+          for (var endex = 1; endex <= dati.results.sponsored[index].rating; endex++) {
+            stelle += '<li class="fa fa-star"></li>';
+          }
+
           our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + dati.results.sponsored[index].slug;
+          our_results.id = dati.results.sponsored[index].id;
           our_results.title = dati.results.sponsored[index].title;
           our_results.street = dati.results.sponsored[index].street;
           our_results.building_number = dati.results.sponsored[index].building_number;
@@ -42689,6 +42712,7 @@ $(document).ready(function () {
           our_results.src = dati.results.sponsored[index].src;
           our_results.distance = dati.results.sponsored[index].distance;
           our_results.price = dati.results.sponsored[index].price;
+          our_results.rating = stelle;
 
           if (dati.results.sponsored[index].is_active == 1) {
             var html = template(our_results);
@@ -42708,9 +42732,9 @@ $(document).ready(function () {
         var ordered_results = [];
 
         for (var _index4 = 0; _index4 < dati.results.no_sponsored.length; _index4++) {
-          for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-            if (sorted[_index4] == dati.results.no_sponsored[endex].distance) {
-              ordered_results.push(dati.results.no_sponsored[endex]);
+          for (var _endex3 = 0; _endex3 < dati.results.no_sponsored.length; _endex3++) {
+            if (sorted[_index4] == dati.results.no_sponsored[_endex3].distance) {
+              ordered_results.push(dati.results.no_sponsored[_endex3]);
             }
           }
         }
@@ -42727,6 +42751,12 @@ $(document).ready(function () {
           if (searched_services.every(function (elem) {
             return finalArray.indexOf(elem) > -1;
           })) {
+            var stelle = '';
+
+            for (var _endex4 = 1; _endex4 <= ordered_results[_index5].rating; _endex4++) {
+              stelle += '<li class="fa fa-star"></li>';
+            }
+
             our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index5].slug;
             our_results.title = ordered_results[_index5].title;
             our_results.street = ordered_results[_index5].street;
@@ -42737,13 +42767,19 @@ $(document).ready(function () {
             our_results.src = ordered_results[_index5].src;
             our_results.distance = ordered_results[_index5].distance;
             our_results.price = ordered_results[_index5].price;
-            console.log(our_results.title);
+            our_results.rating = stelle;
 
             if (ordered_results[_index5].is_active == 1) {
               var html = template(our_results);
               $('.our_results').append(html);
             }
           } else if (searched_services.length == 0) {
+            var stelle = '';
+
+            for (var _endex5 = 1; _endex5 <= ordered_results[_index5].rating; _endex5++) {
+              stelle += '<li class="fa fa-star"></li>';
+            }
+
             our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index5].slug;
             our_results.title = ordered_results[_index5].title;
             our_results.street = ordered_results[_index5].street;
@@ -42754,6 +42790,7 @@ $(document).ready(function () {
             our_results.src = ordered_results[_index5].src;
             our_results.distance = ordered_results[_index5].distance;
             our_results.price = ordered_results[_index5].price;
+            our_results.rating = stelle;
 
             if (ordered_results.is_active == 1) {
               var html = template(our_results);

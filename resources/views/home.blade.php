@@ -432,18 +432,15 @@
                   <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
               </ul>
           </div>
-          <div class="apartment-content">
-              <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>
+          <div class="apartment-content"'>
+            <h3 class="title" '><a href="@{{link}}">@{{title}}</a></h3>
               <div class="price">
                   @{{price}} $
               </div>
               <ul class="rating">
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
+                @{{{rating}}}
               </ul>
+              @{{{sponsored}}}
           </div>
       </div>
 </script>

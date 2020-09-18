@@ -24,7 +24,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'70',
                 'src'=>'uploads/apt1.jpg',
-                'slug'=>'corte-milanese-room-three'
+                'slug'=>'corte-milanese-room-three',
+                'rating'=> 3
             ],
             [
                 'id' => 2,
@@ -36,7 +37,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'80',
                 'src'=>'uploads/apt2.jpg',
-                'slug'=>'appartamento-da-vinci-milano'
+                'slug'=>'appartamento-da-vinci-milano',
+                'rating'=> 5
             ],
             [
                 'id' => 3,
@@ -48,7 +50,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'50',
                 'src'=>'uploads/apt3.jpg',
-                'slug'=>'villa-cheta'
+                'slug'=>'villa-cheta',
+                'rating'=> 3
             ],
             [
                 'id' => 4,
@@ -60,7 +63,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'100',
                 'src'=>'uploads/apt4.jpg',
-                'slug'=>'appartamento-milano-sesto-marelli'
+                'slug'=>'appartamento-milano-sesto-marelli',
+                'rating'=> 2
             ],
             [
                 'id' => 5,
@@ -72,7 +76,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'45',
                 'src'=>'uploads/apt5.jpg',
-                'slug'=>'repubblica-apartment-roma'
+                'slug'=>'repubblica-apartment-roma',
+                'rating'=> 3
             ],
             [
                 'id' => 6,
@@ -84,7 +89,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'65',
                 'src'=>'uploads/apt6.jpg',
-                'slug'=>'casa-della-divina'
+                'slug'=>'casa-della-divina',
+                'rating'=> 5
             ],
             [
                 'id' => 7,
@@ -96,7 +102,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'105',
                 'src'=>'uploads/apt7.jpg',
-                'slug'=>'glamour-apartments'
+                'slug'=>'glamour-apartments',
+                'rating'=> 5
             ],
             [
                 'id' => 8,
@@ -108,7 +115,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'5',
                 'square_meters'=>'150',
                 'src'=>'uploads/apt8.jpg',
-                'slug'=>'appartamento-giardino'
+                'slug'=>'appartamento-giardino',
+                'rating'=> 4
             ],
             [
                 'id' => 9,
@@ -120,7 +128,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'73',
                 'src'=>'uploads/apt9.jpg',
-                'slug'=>'residence-milano-fiore'
+                'slug'=>'residence-milano-fiore',
+                'rating'=> 3
             ],
             [
                 'id' => 10,
@@ -132,7 +141,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'1',
                 'src'=>'uploads/apt10.jpg',
-                'slug'=>'panchina-nel-parco'
+                'slug'=>'panchina-nel-parco',
+                'rating'=> 5
             ],
             [
                 'id' => 11,
@@ -144,7 +154,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'55',
                 'src'=>'uploads/apt11.jpg',
-                'slug'=>'la-mansardina-torino-centro'
+                'slug'=>'la-mansardina-torino-centro',
+                'rating'=> 1
             ],
             [
                 'id' => 12,
@@ -156,7 +167,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'85',
                 'src'=>'uploads/apt12.jpg',
-                'slug'=>'attico-torino-parco-tesoreria'
+                'slug'=>'attico-torino-parco-tesoreria',
+                'rating'=> 4
             ],
             [
                 'id' => 13,
@@ -168,7 +180,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'56',
                 'src'=>'uploads/apt13.jpg',
-                'slug'=>'appartamento-cascine-di-corte'
+                'slug'=>'appartamento-cascine-di-corte',
+                'rating'=> 2
             ],
             [
                 'id' => 14,
@@ -180,7 +193,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'78',
                 'src'=>'uploads/apt14.jpg',
-                'slug'=>'residence-fioroni-vista-lago'
+                'slug'=>'residence-fioroni-vista-lago',
+                'rating'=> 3
             ],
             [
                 'id' => 15,
@@ -192,7 +206,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'123',
                 'src'=>'uploads/apt15.jpg',
-                'slug'=>'appartamento-san-vigilio'
+                'slug'=>'appartamento-san-vigilio',
+                'rating'=> 5
             ],
             [
                 'id' => 16,
@@ -204,7 +219,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'4',
                 'square_meters'=>'200',
                 'src'=>'uploads/apt16.jpg',
-                'slug'=>'florence-apartment'
+                'slug'=>'florence-apartment',
+                'rating'=> 3
             ],
             [
                 'id' => 17,
@@ -216,7 +232,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'45',
                 'src'=>'uploads/apt17.jpg',
-                'slug'=>'casa-sui-tetti'
+                'slug'=>'casa-sui-tetti',
+                'rating'=> 4
             ],
             [
                 'id' => 18,
@@ -228,7 +245,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'134',
                 'src'=>'uploads/apt18.jpg',
-                'slug'=>'appartamento-bellosguardo'
+                'slug'=>'appartamento-bellosguardo',
+                'rating'=> 1
             ],
             [
                 'id' => 19,
@@ -240,7 +258,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'97',
                 'src'=>'uploads/apt19.jpg',
-                'slug'=>'luxury-apartment-prato'
+                'slug'=>'luxury-apartment-prato',
+                'rating'=> 5
             ],
             [
                 'id' => 20,
@@ -252,7 +271,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'55',
                 'src'=>'uploads/apt20.jpg',
-                'slug'=>'casa-hotel-aria-di-mare'
+                'slug'=>'casa-hotel-aria-di-mare',
+                'rating'=> 3
             ],
             [
                 'id' => 21,
@@ -264,7 +284,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'5',
                 'square_meters'=>'240',
                 'src'=>'uploads/apt21.jpg',
-                'slug'=>'aran-blu-casa-vacanze'
+                'slug'=>'aran-blu-casa-vacanze',
+                'rating'=> 3
             ],
             [
                 'id' => 22,
@@ -276,7 +297,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'4',
                 'square_meters'=>'179',
                 'src'=>'uploads/apt22.jpg',
-                'slug'=>'villa-clodia'
+                'slug'=>'villa-clodia',
+                'rating'=> 4
             ],
             [
                 'id' => 23,
@@ -288,7 +310,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'33',
                 'src'=>'uploads/apt23.jpg',
-                'slug'=>'appartamento-le-sequoie'
+                'slug'=>'appartamento-le-sequoie',
+                'rating'=> 2
             ],
             [
                 'id' => 24,
@@ -300,7 +323,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'66',
                 'src'=>'uploads/apt24.jpg',
-                'slug'=>'casa-vacanze-centro-storico-palermo'
+                'slug'=>'casa-vacanze-centro-storico-palermo',
+                'rating'=> 4
             ],
             [
                 'id' => 25,
@@ -312,7 +336,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'5',
                 'square_meters'=>'133',
                 'src'=>'uploads/apt25.jpg',
-                'slug'=>'villa-anni-20'
+                'slug'=>'villa-anni-20',
+                'rating'=> 5
             ],
             [
                 'id' => 26,
@@ -324,7 +349,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'145',
                 'src'=>'uploads/apt26.jpg',
-                'slug'=>'la-casa-di-benny'
+                'slug'=>'la-casa-di-benny',
+                'rating'=> 3
             ],
             [
                 'id' => 27,
@@ -336,7 +362,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'65',
                 'src'=>'uploads/apt27.jpg',
-                'slug'=>'home-club-mare-flat'
+                'slug'=>'home-club-mare-flat',
+                'rating'=> 4
             ],
             [
                 'id' => 28,
@@ -348,7 +375,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'137',
                 'src'=>'uploads/apt28.jpg',
-                'slug'=>'rifugio-romantico'
+                'slug'=>'rifugio-romantico',
+                'rating'=> 5
             ],
             [
                 'id' => 29,
@@ -360,7 +388,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'180',
                 'src'=>'uploads/apt29.jpg',
-                'slug'=>'casa-nonna-carmela'
+                'slug'=>'casa-nonna-carmela',
+                'rating'=> 3
             ],
             [
                 'id' => 30,
@@ -372,7 +401,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'76',
                 'src'=>'uploads/apt30.jpg',
-                'slug'=>'the-milky-house-milan'
+                'slug'=>'the-milky-house-milan',
+                'rating'=> 4
             ],
             [
                 'id' => 31,
@@ -384,7 +414,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'113',
                 'src'=>'uploads/apt31.jpg',
-                'slug'=>'home-sweet-home'
+                'slug'=>'home-sweet-home',
+                'rating'=> 5
             ],
             [
                 'id' => 32,
@@ -396,7 +427,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'4',
                 'square_meters'=>'333',
                 'src'=>'uploads/apt32.jpg',
-                'slug'=>'mulino-di-prada'
+                'slug'=>'mulino-di-prada',
+                'rating'=> 3
             ],
             [
                 'id' => 33,
@@ -408,7 +440,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'2',
                 'square_meters'=>'80',
                 'src'=>'uploads/apt33.jpg',
-                'slug'=>'south-italy-house-apartment'
+                'slug'=>'south-italy-house-apartment',
+                'rating'=> 4
             ],
             [
                 'id' => 34,
@@ -420,7 +453,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'1',
                 'square_meters'=>'45',
                 'src'=>'uploads/apt34.jpg',
-                'slug'=>'appartamento-avogadro'
+                'slug'=>'appartamento-avogadro',
+                'rating'=> 5
             ],
             [
                 'id' => 35,
@@ -432,7 +466,8 @@ class ApartmentsTableSeeder extends Seeder
                 'number_of_bathrooms'=>'3',
                 'square_meters'=>'78',
                 'src'=>'uploads/apt35.jpg',
-                'slug'=>'villa-est-da-irene'
+                'slug'=>'villa-est-da-irene',
+                'rating'=> 3
             ],
         ];
 
@@ -447,6 +482,7 @@ class ApartmentsTableSeeder extends Seeder
             $newApartment->square_meters = $data['square_meters'];
             $newApartment->src = $data['src'];
             $newApartment->slug = $data['slug'];
+            $newApartment->rating = $data['rating'];
             $newApartment->save();
         }
         

@@ -20,27 +20,11 @@ $(document).ready(function(){
     output.html($(this).val());
   });
 
-
-
-  // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  $('#input').val('Piazza Cesare Beccaria Milano');
-  $('#input').click(function(){
-      $('.tomtom_results').empty();
-      research();
-  });
-    // DA CANCELLARE !!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
     const Handlebars = require("handlebars");
 
     // // handlebars per our results - CHIAMATA SEARCH
     var source = $("#our_results").html();
     var template = Handlebars.compile(source);
-
-    // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
-    // var source_Sponsorized = $("#SPONSORIZED").html();
-    // var template_Sponsorized = Handlebars.compile(source_Sponsorized);
 
     // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
     var source_carousel = $("#carousel-data-slide").html();
@@ -61,7 +45,6 @@ $(document).ready(function(){
         distance: '',
         price: '',
         rating:'',
-        sponsored: ''
     }
 
 
@@ -201,11 +184,11 @@ $(document).ready(function(){
                                     our_results.distance = dati.results.sponsored[index].distance;
                                     our_results.price = dati.results.sponsored[index].price;
                                     our_results.rating = stelle;
-                                    our_results.sponsored = '<span class="apartment-new-label">Sponsored</span>'
                                     
                                     if (dati.results.sponsored[index].is_active == 1) {
                                         var html = template(our_results);
                                         $('.our_results').append(html);
+                                        $('.apartment-content').append('<span class="apartment-new-label">Sponsored</span>')
                                     }
                                 }
 
@@ -246,8 +229,10 @@ $(document).ready(function(){
                                     if (ordered_results[index].is_active == 1) {
                                         var html = template(our_results);
                                         $('.our_results').append(html);
+                                        
                                     }
                                 }
+                                $('#ricerca_user').empty();
                                 $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">'+ ' ' + ricerca_utente +'</span>');
                             })
                             //faccio la stessa cosa ma con l'enter
@@ -330,6 +315,7 @@ $(document).ready(function(){
                     if (dati.results.sponsored[index].is_active == 1) {
                         var html = template(our_results);
                         $('.our_results').append(html);
+                        $('.apartment-content').append('<span class="apartment-new-label">Sponsored</span>')
                     }
                     
                 }

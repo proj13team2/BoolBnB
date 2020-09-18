@@ -134,7 +134,7 @@
           <div class="card-block block-1">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>
@@ -143,7 +143,7 @@
           <div class="card-block block-2">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>
@@ -152,7 +152,7 @@
           <div class="card-block block-3">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>
@@ -163,7 +163,7 @@
           <div class="card-block block-4">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>
@@ -172,7 +172,7 @@
           <div class="card-block block-5">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>
@@ -181,7 +181,7 @@
           <div class="card-block block-6">
             <h3 class="card-title">Special title</h3>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+            <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
       </div>

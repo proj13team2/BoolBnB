@@ -12,17 +12,36 @@ class ServicesTableSeeder extends Seeder
     public function run()
     {
         $services = [
-            ['type'=>'Wifi'],
-            ['type'=>'Posto macchina'],
-            ['type'=>'Piscina'],
-            ['type'=>'Portineria'],
-            ['type'=>'Sauna'],
-            ['type'=>'Vista mare'],
+            [
+              'type'=>'Wifi',
+              'description'=>'wifi'
+            ],
+            [
+              'type'=>'Posto macchina',
+              'description'=>'car'
+            ],
+            [
+              'type'=>'Piscina',
+              'description'=>'swimming-pool'
+            ],
+            [
+              'type'=>'Portineria',
+              'description'=>'clipboard-list'
+            ],
+            [
+              'type'=>'Sauna',
+              'description'=>'hot-tub'
+            ],
+            [
+              'type'=>'Mare',
+              'description'=>'fish'
+            ]
         ];
-        
+
         foreach ($services as $service) {
             $newService = new Service();
             $newService->type = $service['type'];
+            $newService->description = $service['description'];
             $newService->save();
         }
     }

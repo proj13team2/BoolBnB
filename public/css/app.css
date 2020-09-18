@@ -11241,6 +11241,7 @@ section .section-title {
 
 #what-we-do {
   background: #ffffff;
+  border-radius: 20px;
 }
 
 #what-we-do .card {
@@ -11464,11 +11465,85 @@ img {
   border: none !important;
 }
 
+#img-apartment-show {
+  height: auto;
+  border-radius: 50px;
+  width: 100%;
+  position: relative;
+}
+
+#square_meters {
+  position: absolute;
+  bottom: 3%;
+  left: 12%;
+}
+
+#square_meters span {
+  padding-left: 5px;
+  font-size: 20px;
+}
+
 #marker {
   background-image: url("https://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/house-icon.png");
   background-size: contain;
   width: 60px;
   height: 60px;
+}
+
+#map {
+  outline: none !important;
+  border-radius: 50%;
+  border: 8px solid #007b5e !important;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+  margin: 180px 100px !important;
+}
+
+.mapboxgl-popup-content {
+  border-radius: 10px;
+  border: 3px solid #007b5e !important;
+  padding: 10px 10px 15px;
+}
+
+.mapboxgl-popup-close-button {
+  right: 6%;
+  top: 2.5%;
+}
+
+.apt-services,
+.apt-img {
+  height: auto;
+  max-width: 40%;
+  border-radius: 50px;
+}
+
+.apt-services i,
+.apt-img i {
+  font-size: 50px;
+}
+
+.apt-services {
+  background: #B0C4DE;
+}
+
+#no-services {
+  font-size: 80px;
+}
+
+.number-of {
+  font-size: 50px;
+}
+
+.style-the-icon i {
+  font-size: 40px;
+}
+
+.form-message-touser {
+  border-radius: 20px;
+  padding: 25px;
+  width: 100%;
+  vertical-align: middle;
 }
 
 .form-signin {
@@ -11479,6 +11554,7 @@ img {
   border: 5px solid #007b5e;
   overflow: auto;
   background-color: snow;
+  z-index: 99999999999;
 }
 
 .form-register {
@@ -11490,6 +11566,7 @@ img {
   border: 5px solid #007b5e;
   overflow: auto;
   background-color: snow;
+  z-index: 99999999999;
 }
 
 .form-signin .checkbox {
@@ -11527,6 +11604,7 @@ img {
   align-items: center;
   background-color: #ecd7be;
   font-family: "Roboto", sans-serif;
+  z-index: 99999999999;
 }
 
 .body-auth {
@@ -11752,12 +11830,28 @@ how to remove the virtical space around the range input in IE*/
   background-color: Moccasin;
 }
 
+.icons-h1 {
+  font-size: 2.5rem;
+}
+
 .green-text {
   color: #007b5e !important;
 }
 
+.brown-text {
+  color: SaddleBrown !important;
+}
+
+.white-text {
+  color: snow !important;
+}
+
 .green-text-bold {
   font-weight: bolder;
+}
+
+.border-apartment {
+  padding: 50px 100px;
 }
 
 .green-text-light {
@@ -11766,6 +11860,10 @@ how to remove the virtical space around the range input in IE*/
 
 .green-background {
   background-color: #007b5e !important;
+}
+
+.white-background {
+  background-color: #fff !important;
 }
 
 .green-border {
@@ -11790,6 +11888,7 @@ body {
   height: 100vh;
   width: 100%;
   position: relative;
+  background-color: snow;
 }
 
 main {

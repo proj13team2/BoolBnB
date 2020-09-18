@@ -8,6 +8,7 @@
   border: 5px solid #007b5e;
   overflow: auto;
   background-color:  snow;
+    z-index: 99999999999;
 }
 .form-register {
   width: 100%;
@@ -18,6 +19,7 @@
   border: 5px solid #007b5e;
   overflow: auto;
   background-color:  snow;
+    z-index: 99999999999;
 }
 .form-signin .checkbox {
   font-weight: 400;
@@ -52,6 +54,7 @@
   align-items: center;
   background-color:   #ecd7be;
   font-family: 'Roboto', sans-serif;
+  z-index: 99999999999;
 }
 
 .body-auth {

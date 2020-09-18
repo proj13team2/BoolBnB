@@ -40,12 +40,28 @@
 
 // fonts
 
+.icons-h1 {
+  font-size: 2.5rem;
+}
+
 .green-text {
  color: #007b5e!important;
 }
 
+.brown-text {
+ color: SaddleBrown!important;
+}
+
+.white-text {
+ color: snow!important;
+}
+
 .green-text-bold {
  font-weight:bolder;
+}
+
+.border-apartment {
+  padding: 50px 100px;
 }
 
 .green-text-light {
@@ -54,6 +70,10 @@
 
 .green-background {
   background-color: #007b5e!important;
+}
+
+.white-background {
+  background-color: #fff!important;
 }
 
 .green-border {

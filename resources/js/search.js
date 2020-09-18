@@ -39,8 +39,8 @@ $(document).ready(function(){
     var template = Handlebars.compile(source);
 
     // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
-    var source_Sponsorized = $("#SPONSORIZED").html();
-    var template_Sponsorized = Handlebars.compile(source_Sponsorized);
+    // var source_Sponsorized = $("#SPONSORIZED").html();
+    // var template_Sponsorized = Handlebars.compile(source_Sponsorized);
 
     // // handlebars per SPONSORIZED - appartamenti sponsorizzati gia in pagina
     var source_carousel = $("#carousel-data-slide").html();
@@ -88,8 +88,8 @@ $(document).ready(function(){
                     var html = template_carousel(our_results);
                     $('.carousel-inner').append(html);
                     $('.carousel-indicators').append('<li class="carousel-indicator-li" data-target="#myCarousel" data-slide-to="' + index +'"></li>');
-                    var html = template_Sponsorized(our_results);
-                    $('.SPONSORIZED').append(html);
+                    // var html = template_Sponsorized(our_results);
+                    // $('.SPONSORIZED').append(html);
                 }
                 $('.carousel-item').first().addClass('active');
                 $('.carousel-indicator-li').first().addClass('active');
@@ -171,7 +171,9 @@ $(document).ready(function(){
                             'lng': lon
                         },
                         success: function(dati) {
+                            console.log(dati);
                             //Ricerca contatti con click
+
                             $('#button_search').click(function(){
                                 $('.our_results').empty();
                                 $('.form_fallovede').removeClass('disabled');
@@ -179,20 +181,39 @@ $(document).ready(function(){
                                 $('#go').removeClass('disabled');
                                 $('.SPONSORIZED').removeClass('disabled');
 
+                                for (let index = 0; index < dati.results.sponsored.length; index++) {
+                                    our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results.sponsored[index].slug;
+                                    our_results.title = dati.results.sponsored[index].title;
+                                    our_results.street = dati.results.sponsored[index].street;
+                                    our_results.building_number = dati.results.sponsored[index].building_number;
+                                    our_results.city = dati.results.sponsored[index].city;
+                                    our_results.region = dati.results.sponsored[index].region;
+                                    our_results.zip_code = dati.results.sponsored[index].zip_code;
+                                    our_results.src = dati.results.sponsored[index].src;
+                                    our_results.distance = dati.results.sponsored[index].distance;
+                                    our_results.price = dati.results.sponsored[index].price;
+
+                                    if (dati.results.sponsored[index].is_active == 1) {
+                                        var html = template(our_results);
+                                        $('.our_results').append(html);
+                                    }
+                                    
+                                }
+
                                 var array = []
-                                for (let index = 0; index < dati.results.length; index++) {
-                                    array.push(dati.results[index].distance)
+                                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+                                    array.push(dati.results.no_sponsored[index].distance)
                                 }
 
                                 var sorted = array.sort(function(a, b){return a-b});
 
                                 var ordered_results = [];
 
-                                for (let index = 0; index < dati.results.length; index++) {
+                                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
 
-                                    for (let endex = 0; endex < dati.results.length; endex++) {
-                                        if(sorted[index] == dati.results[endex].distance) {
-                                            ordered_results.push(dati.results[endex]);
+                                    for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+                                        if(sorted[index] == dati.results.no_sponsored[endex].distance) {
+                                            ordered_results.push(dati.results.no_sponsored[endex]);
                                         }
                                     }
 
@@ -215,6 +236,27 @@ $(document).ready(function(){
                                 }
                                 $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">'+ ' ' + ricerca_utente +'</span>');
                             })
+                            //faccio la stessa cosa ma con l'enter
+                            // $('input').keyup(function(event) {
+                                // verifico se l'utente ha digitato "ENTER"
+                                //  if(event.which == 13) {
+                                //     $('.our_results').empty();
+                                //     for (let index = 0; index < dati.results.length; index++) {
+                                //         our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
+                                //         our_results.title = dati.results[index].title;
+                                //         our_results.street = dati.results[index].street;
+                                //         our_results.building_number = dati.results[index].building_number;
+                                //         our_results.city = dati.results[index].city;
+                                //         our_results.region = dati.results[index].region;
+                                //         our_results.zip_code = dati.results[index].zip_code;
+                                //         our_results.src = dati.results[index].src;
+                                //         var html = template(our_results);
+                                //         $('.apartment_result>a').attr('href', link )
+                                //         $('.our_results').append(html);
+                                //     }
+                                //     $('input').val('');
+                                // }
+                            // })
                         },
                         error: function() {
                             console.log('error');
@@ -250,19 +292,39 @@ $(document).ready(function(){
             success: function(dati) {
                 console.log(dati);
                 $('.our_results').empty();
+
+                for (let index = 0; index < dati.results.sponsored.length; index++) {
+                    our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results.sponsored[index].slug;
+                    our_results.title = dati.results.sponsored[index].title;
+                    our_results.street = dati.results.sponsored[index].street;
+                    our_results.building_number = dati.results.sponsored[index].building_number;
+                    our_results.city = dati.results.sponsored[index].city;
+                    our_results.region = dati.results.sponsored[index].region;
+                    our_results.zip_code = dati.results.sponsored[index].zip_code;
+                    our_results.src = dati.results.sponsored[index].src;
+                    our_results.distance = dati.results.sponsored[index].distance;
+                    our_results.price = dati.results.sponsored[index].price;
+
+                    if (dati.results.sponsored[index].is_active == 1) {
+                        var html = template(our_results);
+                        $('.our_results').append(html);
+                    }
+                    
+                }
+
                 var array = [];
 
-                for (let index = 0; index < dati.results.length; index++) {
-                    array.push(dati.results[index].distance)
+                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+                    array.push(dati.results.no_sponsored[index].distance)
                 }
                 var sorted = array.sort(function(a, b){return a-b});
 
                 var ordered_results = [];
 
-                for (let index = 0; index < dati.results.length; index++) {
-                    for (let endex = 0; endex < dati.results.length; endex++) {
-                        if(sorted[index] == dati.results[endex].distance) {
-                            ordered_results.push(dati.results[endex]);
+                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+                    for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+                        if(sorted[index] == dati.results.no_sponsored[endex].distance) {
+                            ordered_results.push(dati.results.no_sponsored[endex]);
                         }
                     }
                 }

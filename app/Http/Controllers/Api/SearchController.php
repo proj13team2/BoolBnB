@@ -42,12 +42,18 @@ class SearchController extends Controller
         $never_sponsorized_apts_near = scopeIsWithinMaxDistance($never_sponsorized_apts,$lat , $lng, 20);
         $expired_sponsorizations_near = scopeIsWithinMaxDistance($expired_sponsorizations,$lat , $lng, 20);
 
-        //funzione per generare risultati
+        //inseriamo gli appartamenti sponsorizzati indipendentemente dalla distanza
+        $mutable = Carbon::now();
+        $sponsorized_apartments = DB::table('apartments')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id' )->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('end_date' , '>' , $mutable)->limit(6)->get();
         
+        $dati = [
+            'no_sponsored' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near),
+            'sponsored' => $sponsorized_apartments
+        ];
 
         return response()->json([
             'success' => true,
-            'results' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near)]);
+            'results' => $dati ]);
     }
 
 
@@ -56,7 +62,7 @@ class SearchController extends Controller
       public function stamp (Request $request) {
 
         $mutable = Carbon::now();
-        $apartments = DB::table('apartments')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id' )->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('end_date' , '>' , $mutable)->get();
+        $apartments = DB::table('apartments')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id' )->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('end_date' , '>' , $mutable)->limit(6)->get();
 
         return response()->json([
             'success' => true,
@@ -117,12 +123,18 @@ class SearchController extends Controller
         $never_sponsorized_apts_near = scopeIsWithinMaxDistance($never_sponsorized_apts,$lat , $lng, $radius);
         $expired_sponsorizations_near = scopeIsWithinMaxDistance($expired_sponsorizations,$lat , $lng, $radius);
 
-        //funzione per generare risultati
+        $mutable = Carbon::now();
+        $sponsorized_apartments = DB::table('apartments')->join('apartment_sponsor','apartment_sponsor.apartment_id' , '=', 'apartments.id' )->join('addresses','addresses.apartment_id', '=', 'apartments.id')->where('end_date' , '>' , $mutable)->limit(6)->get();
+
+        $dati = [
+            'no_sponsored' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near),
+            'sponsored' => $sponsorized_apartments
+        ];
         
 
         return response()->json([
             'success' => true,
-            'results' => results_maker($active_sponsors,$expired_sponsorizations_near,$never_sponsorized_apts_near)]);
+            'results' => $dati]);
         
     }
 }

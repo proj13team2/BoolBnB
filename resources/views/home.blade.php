@@ -161,34 +161,8 @@
                   <li><a href="@{{link}}"><i class="fa fa-shopping-bag"></i></a></li>
                   <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
               </ul>
-          </div>
-          <div class="apartment-content">
-              <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>
-              <div class="price">
-                  @{{price}} $
-              </div>
-              <ul class="rating">
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-                  <li class="fa fa-star"></li>
-              </ul>
-          </div>
-      </div>
-</script>
-<script id="SPONSORIZED" type="text/x-handlebars-template">
-  <div class="apartment-grid col-4">
-          <div class="apartment-image">
-              <a href="@{{link}}">
-                  <img width="300px" class="pic-1" src="storage/@{{src}}">
-                  <img width="300px" class="pic-2" src="storage/@{{src}}">
-              </a>
-              <ul class="social">
-                  <li><a href="@{{link}}"><i class="fa fa-shopping-bag"></i></a></li>
-                  <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
-              </ul>
-               <span class="apartment-new-label">Sponsored</span>
+              {{-- da fare controllo sponsorizzazione attuale --}}
+              <span class="apartment-new-label">Sponsored</span>
           </div>
           <div class="apartment-content">
               <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>

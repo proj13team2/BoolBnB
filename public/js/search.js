@@ -42581,6 +42581,7 @@ $(document).ready(function () {
                   if (dati.results.sponsored[index].is_active == 1) {
                     var html = template(our_results);
                     $('.our_results').append(html);
+                    $('.apartment-image').append('<span class="apartment-new-label">Sponsored</span>');
                   }
                 }
 

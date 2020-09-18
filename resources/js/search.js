@@ -192,12 +192,12 @@ $(document).ready(function(){
                                     our_results.src = dati.results.sponsored[index].src;
                                     our_results.distance = dati.results.sponsored[index].distance;
                                     our_results.price = dati.results.sponsored[index].price;
-
+                                    
                                     if (dati.results.sponsored[index].is_active == 1) {
                                         var html = template(our_results);
                                         $('.our_results').append(html);
+                                        $('.apartment-image').append('<span class="apartment-new-label">Sponsored</span>')
                                     }
-                                    
                                 }
 
                                 var array = []

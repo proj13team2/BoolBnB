@@ -161,8 +161,6 @@
                   <li><a href="@{{link}}"><i class="fa fa-shopping-bag"></i></a></li>
                   <li><a href="@{{link}}"><i class="fas fa-location-arrow"></i></a></li>
               </ul>
-              {{-- da fare controllo sponsorizzazione attuale --}}
-              <span class="apartment-new-label">Sponsored</span>
           </div>
           <div class="apartment-content">
               <h3 class="title"><a href="@{{link}}">@{{title}}</a></h3>

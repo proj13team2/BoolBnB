@@ -133,8 +133,6 @@ $(document).ready(function(){
                     '<span>' + data.results[i].address.countrySubdivision + ' </span>';
 
                     $('.tomtom_results').append(tomtomresults);
-                    
-
                 }
 
                 //al click su un risutlato recupero i suoi valori e li stampo nell'input
@@ -169,48 +167,12 @@ $(document).ready(function(){
                                 $('#go').removeClass('disabled');
                                 $('.SPONSORIZED').removeClass('disabled');
 
+                                //funzione per generare i template degli appartamenti sponsorizzati
                                 sponsored_generator(dati);
 
-                                var array = []
-                                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
-                                    array.push(dati.results.no_sponsored[index].distance)
-                                }
+                                //funzione che restituisce come risultatigli appartmaneti non attualmente sponsorizzati
+                                no_sponsored_generator(dati);
 
-                                var sorted = array.sort(function(a, b){return a-b});
-
-                                var ordered_results = [];
-
-                                for (let index = 0; index < dati.results.no_sponsored.length; index++) {
-
-                                    for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-                                        if(sorted[index] == dati.results.no_sponsored[endex].distance) {
-                                            ordered_results.push(dati.results.no_sponsored[endex]);
-                                        }
-                                    }
-
-                                    var stelle ='';
-                                    for (let endex = 1; endex <= ordered_results[index].rating; endex++) {
-                                        stelle += '<li class="fa fa-star"></li>'
-                                    } 
-
-                                    our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + ordered_results[index].slug;
-                                    our_results.title = ordered_results[index].title;
-                                    our_results.street = ordered_results[index].street;
-                                    our_results.building_number = ordered_results[index].building_number;
-                                    our_results.city = ordered_results[index].city;
-                                    our_results.region = ordered_results[index].region;
-                                    our_results.zip_code = ordered_results[index].zip_code;
-                                    our_results.src = ordered_results[index].src;
-                                    our_results.distance = ordered_results[index].distance;
-                                    our_results.price = ordered_results[index].price;
-                                    our_results.rating = stelle;
-
-                                    if (ordered_results[index].is_active == 1) {
-                                        var html = template(our_results);
-                                        $('.our_results').append(html);
-                                        
-                                    }
-                                }
                                 $('#ricerca_user').empty();
                                 $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">'+ ' ' + ricerca_utente +'</span>');
                             })
@@ -236,7 +198,6 @@ $(document).ready(function(){
                     searched_services.push($(this).val());
                 }
             })
-            console.log(searched_services);
     
             $.ajax({
                 'url': window.location.protocol + '//' + window.location.host  + '/api/filtered',
@@ -254,86 +215,9 @@ $(document).ready(function(){
     
                     sponsored_generator(dati);
 
-                    var array = [];
-    
-                    for (let index = 0; index < dati.results.no_sponsored.length; index++) {
-                        array.push(dati.results.no_sponsored[index].distance)
-                    }
-                    var sorted = array.sort(function(a, b){return a-b});
-    
-                    var ordered_results = [];
-    
-                    for (let index = 0; index < dati.results.no_sponsored.length; index++) {
-                        for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-                            if(sorted[index] == dati.results.no_sponsored[endex].distance) {
-                                ordered_results.push(dati.results.no_sponsored[endex]);
-                            }
-                        }
-                    }
-    
-    
-                    for (let index = 0; index < ordered_results.length; index++) {
-                        var services = ordered_results[index].services;
-                        var finalArray = ordered_results[index].services.map(function (services) {
-                            return services.type;
-                        });
-    
-    
-    
-    
-                        console.log(finalArray);
-    
-                            if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
-    
-                                var stelle ='';
-                                        for (let endex = 1; endex <= ordered_results[index].rating; endex++) {
-                                            stelle += '<li class="fa fa-star"></li>'
-                                        } 
-    
-                                our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + ordered_results[index].slug;
-                                our_results.title = ordered_results[index].title;
-                                our_results.street = ordered_results[index].street;
-                                our_results.building_number = ordered_results[index].building_number;
-                                our_results.city = ordered_results[index].city;
-                                our_results.region = ordered_results[index].region;
-                                our_results.zip_code = ordered_results[index].zip_code;
-                                our_results.src = ordered_results[index].src;
-                                our_results.distance = ordered_results[index].distance;
-                                our_results.price = ordered_results[index].price;
-                                our_results.rating = stelle;
-    
-    
-                                if (ordered_results[index].is_active == 1) {
-                                    var html = template(our_results);
-                                    $('.our_results').append(html);
-                                }
-    
-                            } else if ( searched_services.length == 0) {
-    
-                                var stelle ='';
-                                        for (let endex = 1; endex <= ordered_results[index].rating; endex++) {
-                                            stelle += '<li class="fa fa-star"></li>'
-                                        } 
-    
-                                our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + ordered_results[index].slug;
-                                our_results.title = ordered_results[index].title;
-                                our_results.street = ordered_results[index].street;
-                                our_results.building_number = ordered_results[index].building_number;
-                                our_results.city = ordered_results[index].city;
-                                our_results.region = ordered_results[index].region;
-                                our_results.zip_code = ordered_results[index].zip_code;
-                                our_results.src = ordered_results[index].src;
-                                our_results.distance = ordered_results[index].distance;
-                                our_results.price = ordered_results[index].price;
-                                our_results.rating = stelle;
-    
-    
-                                if (ordered_results.is_active == 1) {
-                                    var html = template(our_results);
-                                    $('.our_results').append(html);
-                                }
-                            }
-                    }
+                    //funzione per restituire gli appartamenti non sponsorizzati sulla base dei filtri scelti dall'utente
+                    no_sponsored_generator_filtered(dati,searched_services);
+
                 },
                 error: function() {
                     console.log('error');
@@ -370,4 +254,89 @@ $(document).ready(function(){
             }
         }
     }
+
+    function no_sponsored_generator(dati) {
+
+        var array = []
+                                
+        for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+            array.push(dati.results.no_sponsored[index].distance)
+        }
+
+        var sorted = array.sort(function(a, b){return a-b});
+        var ordered_results = [];
+
+        for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+            for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+                if(sorted[index] == dati.results.no_sponsored[endex].distance) {
+                    ordered_results.push(dati.results.no_sponsored[endex]);
+                }
+            }
+
+            //funzione per generare il template degli appartamenti non sponsorizzati
+            template_no_sponsored(ordered_results[index]);
+        }
+    }
+
+    function no_sponsored_generator_filtered(dati, searched_services) {
+
+        var array = [];
+    
+        for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+            array.push(dati.results.no_sponsored[index].distance)
+        }
+        var sorted = array.sort(function(a, b){return a-b});
+
+        var ordered_results = [];
+
+        for (let index = 0; index < dati.results.no_sponsored.length; index++) {
+            for (let endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+                if(sorted[index] == dati.results.no_sponsored[endex].distance) {
+                    ordered_results.push(dati.results.no_sponsored[endex]);
+                }
+            }
+        }
+
+        for (let index = 0; index < ordered_results.length; index++) {
+            var services = ordered_results[index].services;
+            var finalArray = ordered_results[index].services.map(function (services) {
+                return services.type;
+            });
+
+                if(searched_services.every(elem => finalArray.indexOf(elem) > -1)) {
+
+                    template_no_sponsored(ordered_results[index]);
+
+                } else if ( searched_services.length == 0) {
+
+                    template_no_sponsored(ordered_results[index]);
+                }
+        }
+    }
+
+    function template_no_sponsored(pippo) {
+        var stelle ='';
+            for (let endex = 1; endex <= pippo.rating; endex++) {
+                stelle += '<li class="fa fa-star"></li>'
+            } 
+
+            our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + pippo.slug;
+            our_results.title = pippo.title;
+            our_results.street = pippo.street;
+            our_results.building_number = pippo.building_number;
+            our_results.city = pippo.city;
+            our_results.region = pippo.region;
+            our_results.zip_code = pippo.zip_code;
+            our_results.src = pippo.src;
+            our_results.distance = pippo.distance;
+            our_results.price = pippo.price;
+            our_results.rating = stelle;
+
+            if (pippo.is_active == 1) {
+                var html = template(our_results);
+                $('.our_results').append(html);
+                
+            }
+    }
+    
 })

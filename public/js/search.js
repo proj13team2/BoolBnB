@@ -42561,50 +42561,11 @@ $(document).ready(function () {
                 $('.form_fallovede').removeClass('disabled');
                 $('.pop-up-results').removeClass('disabled');
                 $('#go').removeClass('disabled');
-                $('.SPONSORIZED').removeClass('disabled');
-                sponsored_generator(dati);
-                var array = [];
+                $('.SPONSORIZED').removeClass('disabled'); //funzione per generare i template degli appartamenti sponsorizzati
 
-                for (var index = 0; index < dati.results.no_sponsored.length; index++) {
-                  array.push(dati.results.no_sponsored[index].distance);
-                }
+                sponsored_generator(dati); //funzione che restituisce come risultatigli appartmaneti non attualmente sponsorizzati
 
-                var sorted = array.sort(function (a, b) {
-                  return a - b;
-                });
-                var ordered_results = [];
-
-                for (var _index = 0; _index < dati.results.no_sponsored.length; _index++) {
-                  for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-                    if (sorted[_index] == dati.results.no_sponsored[endex].distance) {
-                      ordered_results.push(dati.results.no_sponsored[endex]);
-                    }
-                  }
-
-                  var stelle = '';
-
-                  for (var _endex = 1; _endex <= ordered_results[_index].rating; _endex++) {
-                    stelle += '<li class="fa fa-star"></li>';
-                  }
-
-                  our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index].slug;
-                  our_results.title = ordered_results[_index].title;
-                  our_results.street = ordered_results[_index].street;
-                  our_results.building_number = ordered_results[_index].building_number;
-                  our_results.city = ordered_results[_index].city;
-                  our_results.region = ordered_results[_index].region;
-                  our_results.zip_code = ordered_results[_index].zip_code;
-                  our_results.src = ordered_results[_index].src;
-                  our_results.distance = ordered_results[_index].distance;
-                  our_results.price = ordered_results[_index].price;
-                  our_results.rating = stelle;
-
-                  if (ordered_results[_index].is_active == 1) {
-                    var html = template(our_results);
-                    $('.our_results').append(html);
-                  }
-                }
-
+                no_sponsored_generator(dati);
                 $('#ricerca_user').empty();
                 $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">' + ' ' + ricerca_utente + '</span>');
               });
@@ -42630,7 +42591,6 @@ $(document).ready(function () {
           searched_services.push($(this).val());
         }
       });
-      console.log(searched_services);
       $.ajax({
         'url': window.location.protocol + '//' + window.location.host + '/api/filtered',
         'method': 'GET',
@@ -42644,85 +42604,9 @@ $(document).ready(function () {
         success: function success(dati) {
           console.log(dati);
           $('.our_results').empty();
-          sponsored_generator(dati);
-          var array = [];
+          sponsored_generator(dati); //funzione per restituire gli appartamenti non sponsorizzati sulla base dei filtri scelti dall'utente
 
-          for (var index = 0; index < dati.results.no_sponsored.length; index++) {
-            array.push(dati.results.no_sponsored[index].distance);
-          }
-
-          var sorted = array.sort(function (a, b) {
-            return a - b;
-          });
-          var ordered_results = [];
-
-          for (var _index2 = 0; _index2 < dati.results.no_sponsored.length; _index2++) {
-            for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
-              if (sorted[_index2] == dati.results.no_sponsored[endex].distance) {
-                ordered_results.push(dati.results.no_sponsored[endex]);
-              }
-            }
-          }
-
-          for (var _index3 = 0; _index3 < ordered_results.length; _index3++) {
-            var services = ordered_results[_index3].services;
-
-            var finalArray = ordered_results[_index3].services.map(function (services) {
-              return services.type;
-            });
-
-            console.log(finalArray);
-
-            if (searched_services.every(function (elem) {
-              return finalArray.indexOf(elem) > -1;
-            })) {
-              var stelle = '';
-
-              for (var _endex2 = 1; _endex2 <= ordered_results[_index3].rating; _endex2++) {
-                stelle += '<li class="fa fa-star"></li>';
-              }
-
-              our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index3].slug;
-              our_results.title = ordered_results[_index3].title;
-              our_results.street = ordered_results[_index3].street;
-              our_results.building_number = ordered_results[_index3].building_number;
-              our_results.city = ordered_results[_index3].city;
-              our_results.region = ordered_results[_index3].region;
-              our_results.zip_code = ordered_results[_index3].zip_code;
-              our_results.src = ordered_results[_index3].src;
-              our_results.distance = ordered_results[_index3].distance;
-              our_results.price = ordered_results[_index3].price;
-              our_results.rating = stelle;
-
-              if (ordered_results[_index3].is_active == 1) {
-                var html = template(our_results);
-                $('.our_results').append(html);
-              }
-            } else if (searched_services.length == 0) {
-              var stelle = '';
-
-              for (var _endex3 = 1; _endex3 <= ordered_results[_index3].rating; _endex3++) {
-                stelle += '<li class="fa fa-star"></li>';
-              }
-
-              our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + ordered_results[_index3].slug;
-              our_results.title = ordered_results[_index3].title;
-              our_results.street = ordered_results[_index3].street;
-              our_results.building_number = ordered_results[_index3].building_number;
-              our_results.city = ordered_results[_index3].city;
-              our_results.region = ordered_results[_index3].region;
-              our_results.zip_code = ordered_results[_index3].zip_code;
-              our_results.src = ordered_results[_index3].src;
-              our_results.distance = ordered_results[_index3].distance;
-              our_results.price = ordered_results[_index3].price;
-              our_results.rating = stelle;
-
-              if (ordered_results.is_active == 1) {
-                var html = template(our_results);
-                $('.our_results').append(html);
-              }
-            }
-          }
+          no_sponsored_generator_filtered(dati, searched_services);
         },
         error: function error() {
           console.log('error');
@@ -42758,6 +42642,92 @@ $(document).ready(function () {
       }
     }
   }
+
+  function no_sponsored_generator(dati) {
+    var array = [];
+
+    for (var index = 0; index < dati.results.no_sponsored.length; index++) {
+      array.push(dati.results.no_sponsored[index].distance);
+    }
+
+    var sorted = array.sort(function (a, b) {
+      return a - b;
+    });
+    var ordered_results = [];
+
+    for (var _index = 0; _index < dati.results.no_sponsored.length; _index++) {
+      for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+        if (sorted[_index] == dati.results.no_sponsored[endex].distance) {
+          ordered_results.push(dati.results.no_sponsored[endex]);
+        }
+      } //funzione per generare il template degli appartamenti non sponsorizzati
+
+
+      template_no_sponsored(ordered_results[_index]);
+    }
+  }
+
+  function no_sponsored_generator_filtered(dati, searched_services) {
+    var array = [];
+
+    for (var index = 0; index < dati.results.no_sponsored.length; index++) {
+      array.push(dati.results.no_sponsored[index].distance);
+    }
+
+    var sorted = array.sort(function (a, b) {
+      return a - b;
+    });
+    var ordered_results = [];
+
+    for (var _index2 = 0; _index2 < dati.results.no_sponsored.length; _index2++) {
+      for (var endex = 0; endex < dati.results.no_sponsored.length; endex++) {
+        if (sorted[_index2] == dati.results.no_sponsored[endex].distance) {
+          ordered_results.push(dati.results.no_sponsored[endex]);
+        }
+      }
+    }
+
+    for (var _index3 = 0; _index3 < ordered_results.length; _index3++) {
+      var services = ordered_results[_index3].services;
+
+      var finalArray = ordered_results[_index3].services.map(function (services) {
+        return services.type;
+      });
+
+      if (searched_services.every(function (elem) {
+        return finalArray.indexOf(elem) > -1;
+      })) {
+        template_no_sponsored(ordered_results[_index3]);
+      } else if (searched_services.length == 0) {
+        template_no_sponsored(ordered_results[_index3]);
+      }
+    }
+  }
+
+  function template_no_sponsored(pippo) {
+    var stelle = '';
+
+    for (var endex = 1; endex <= pippo.rating; endex++) {
+      stelle += '<li class="fa fa-star"></li>';
+    }
+
+    our_results.link = window.location.protocol + '//' + window.location.host + '/guest/apartment/' + pippo.slug;
+    our_results.title = pippo.title;
+    our_results.street = pippo.street;
+    our_results.building_number = pippo.building_number;
+    our_results.city = pippo.city;
+    our_results.region = pippo.region;
+    our_results.zip_code = pippo.zip_code;
+    our_results.src = pippo.src;
+    our_results.distance = pippo.distance;
+    our_results.price = pippo.price;
+    our_results.rating = stelle;
+
+    if (pippo.is_active == 1) {
+      var html = template(our_results);
+      $('.our_results').append(html);
+    }
+  }
 });
 
 /***/ }),
@@ -42769,7 +42739,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
 
 
 /***/ })

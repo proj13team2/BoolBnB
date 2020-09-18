@@ -11676,7 +11676,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .green-text {
-  color: #007b5e;
+  color: #007b5e !important;
 }
 
 .green-text-light {
@@ -11717,7 +11717,8 @@ main {
 
 header {
   background-size: cover;
-  background-position: center;
+  background-position: center 25%;
+  background-image: url(https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-0.3.5&s=c3d0603820b595592d80f5a239938c67&auto=format&fit=crop&w=1500&q=80);
 }
 
 .margin-zero {
@@ -11749,15 +11750,15 @@ header {
 .fa-home,
 .fa-user,
 .nav-link-register {
-  color: #fff !important;
+  color: #007b5e !important;
 }
 
 .fa-home {
   font-size: 22px;
 }
 
-.header-log-home {
-  background-color: rgba(23, 147, 118, 0.7);
+main {
+  margin-top: 47px;
 }
 
 .disabled {

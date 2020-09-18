@@ -9,12 +9,12 @@
 
 // Animations
 @import 'animations';
-
 // VIEWS STYLES !!!!!!!!!!!!!!!!!
 @import 'homepage';
 @import 'guest/guestshow';
 @import 'auth/auth';
 @import 'admin/admin';
+@import 'footer';
 
 
 
@@ -50,6 +50,9 @@ header {
 }
 // ELEMENTI HEADER
 
+.margin-zero {
+  margin: 0!important;
+}
 .navbar-brand , .nav-link   {
   color: white!important;
   font-size: 20px;
@@ -67,11 +70,11 @@ header {
 }
 
 .dropdown-menu-user {
-  background-color:#ff385c !important;
+  background-color:#007b5e !important;
 }
 
 .fa-home , .fa-user , .nav-link-register {
-  color: #ff385c !important;
+  color: #fff !important;
 }
 
 .fa-home {
@@ -79,7 +82,7 @@ header {
 }
 
 .header-log-home {
-  background-color: lightblue;
+  background-color:#007b5e;
 }
 
 // RECURRING DISABLED CLASSES //

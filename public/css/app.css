@@ -11097,13 +11097,22 @@ button:focus {
   outline: none !important;
 }
 
+.btn {
+  background-color: #007b5e !important;
+  border-color: #007b5e !important;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
 #ricerca_user {
   margin-bottom: 0 !important;
   line-height: 80px;
 }
 
 #button_search {
-  background: #ff385c !important;
+  background: #007b5e !important;
   border: 0px;
   margin: 0px;
   border-radius: 24px;
@@ -11114,7 +11123,7 @@ button:focus {
 }
 
 #go {
-  background: #ff385c !important;
+  background: #007b5e !important;
   border: 0px;
   margin: 0px;
   border-radius: 24px;
@@ -11211,6 +11220,90 @@ button:focus {
   font-style: italic;
 }
 
+section {
+  padding: 60px 0;
+}
+
+section .section-title {
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+}
+
+#what-we-do {
+  background: #ffffff;
+}
+
+#what-we-do .card {
+  padding: 1rem !important;
+  border: none;
+  margin-bottom: 1rem;
+  transition: 0.5s all ease;
+}
+
+#what-we-do .card:hover {
+  box-shadow: 5px 7px 9px -4px #9e9e9e;
+}
+
+#what-we-do .card .card-block {
+  padding-left: 50px;
+  position: relative;
+}
+
+#what-we-do .card .card-block a {
+  color: #007b5e !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+#what-we-do .card .card-block a i {
+  display: none;
+}
+
+#what-we-do .card:hover .card-block a i {
+  display: inline-block;
+  font-weight: 700;
+}
+
+#what-we-do .card .card-block:before {
+  font-family: FontAwesome;
+  position: absolute;
+  font-size: 39px;
+  color: #007b5e;
+  left: 0;
+  transition: transform 0.2s ease-in-out;
+}
+
+#what-we-do .card .block-1:before {
+  content: "\F0E7";
+}
+
+#what-we-do .card .block-2:before {
+  content: "\F0EB";
+}
+
+#what-we-do .card .block-3:before {
+  content: "\F00C";
+}
+
+#what-we-do .card .block-4:before {
+  content: "\F209";
+}
+
+#what-we-do .card .block-5:before {
+  content: "\F0A1";
+}
+
+#what-we-do .card .block-6:before {
+  content: "\F218";
+}
+
+#what-we-do .card:hover .card-block:before {
+  transform: rotate(360deg);
+  transition: 0.5s all ease;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -11274,6 +11367,68 @@ button:focus {
   height: 60px;
 }
 
+#footer {
+  background: #007b5e !important;
+}
+
+#footer h5 {
+  padding-left: 10px;
+  border-left: 3px solid #eeeeee;
+  padding-bottom: 6px;
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+#footer a {
+  color: #ffffff;
+  text-decoration: none !important;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+#footer ul.social li {
+  padding: 3px 0;
+}
+
+#footer ul.social li a i {
+  margin-right: 5px;
+  font-size: 25px;
+  transition: 0.5s all ease;
+}
+
+#footer ul.social li:hover a i {
+  font-size: 30px;
+  margin-top: -10px;
+}
+
+#footer ul.social li a,
+#footer ul.quick-links li a {
+  color: #ffffff;
+}
+
+#footer ul.social li a:hover {
+  color: #eeeeee;
+}
+
+#footer ul.quick-links li {
+  padding: 3px 0;
+  transition: 0.5s all ease;
+}
+
+#footer ul.quick-links li:hover {
+  padding: 3px 0;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+#footer ul.quick-links li a i {
+  margin-right: 5px;
+}
+
+#footer ul.quick-links li:hover a i {
+  font-weight: 700;
+}
+
 .yellow {
   background-color: lightyellow;
 }
@@ -11314,6 +11469,14 @@ button:focus {
   background-color: Moccasin;
 }
 
+.green-text {
+  color: #007b5e;
+}
+
+.green-background {
+  background-color: #007b5e;
+}
+
 .superfunzionante {
   display: block;
 }
@@ -11343,6 +11506,10 @@ header {
   background-position: center;
 }
 
+.margin-zero {
+  margin: 0 !important;
+}
+
 .navbar-brand,
 .nav-link {
   color: white !important;
@@ -11362,13 +11529,13 @@ header {
 }
 
 .dropdown-menu-user {
-  background-color: #ff385c !important;
+  background-color: #007b5e !important;
 }
 
 .fa-home,
 .fa-user,
 .nav-link-register {
-  color: #ff385c !important;
+  color: #fff !important;
 }
 
 .fa-home {
@@ -11376,7 +11543,7 @@ header {
 }
 
 .header-log-home {
-  background-color: lightblue;
+  background-color: #007b5e;
 }
 
 .disabled {

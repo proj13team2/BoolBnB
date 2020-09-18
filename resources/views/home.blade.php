@@ -1,9 +1,13 @@
 @extends('layouts.app')
 
+{{-- TITLE --}}
 @section('page_title')
   <title>{{ config('pagetitle.main_title') }}</title>
 @endsection
+{{-- TITLE --}}
 
+
+{{-- HOMEPAGEHEADER --}}
 @section('homepage_header_unique')
   <div class="TOP_MAIN" id="search_input">
       <div class="input_search  pt-5 d-flex justify-content-center align-items-center">
@@ -15,12 +19,14 @@
         </div>
   </div>
   <div class="jumbotron">
-  <h1 class="display-4">Hello, world!</h1>
+  <h1 class="display-4 green-text">Hello, world!</h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
 @endsection
+{{-- HOMEPAGEHEADER --}}
 
+{{-- CAROUSEL --}}
 @section('carousel')
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -38,21 +44,154 @@
         </a>
 </div>
 @endsection
+{{-- CAROUSEL --}}
 
+{{-- PRIMA SEZIONE --}}
 @section('section-first')
-    <div class="section-first-container d-flex flex-wrap">
+    <section class="section-first-container row">
       <div class="section-first-l  col-lg-6 col-md-6  col-sm-12 ">
         <div class="section-first-l-img"></div>
       </div>
       <div class="section-first-d text-center col-lg-6  col-md-6 col-sm-12">
         <div class="descript">
-          <h4 class="descript-title pl-3 pt-5">Find your style!</h4>
+          <h4 class="descript-title green-text pl-3 pt-5">Find your style!</h4>
           <p class="descript-text  pt-5">Assisti a performance live interattive e partecipa a conversazioni con persone di Broadway e non solo. Tutto senza uscire di casa.</p>
         </div>
       </div>
-    </div>
+    </section>
 @endsection
+{{-- PRIMA SEZIONE --}}
 
+{{-- FOOTER --}}
+@section('footer')
+  	<section id="footer">
+  		<div class="container">
+  			<div class="row text-center text-xs-center text-sm-center text-md-center">
+  				<div class="col-xs-12 col-sm-4 col-md-4">
+  					<h5>Quick links</h5>
+  					<ul class="list-unstyled quick-links">
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Videos</a></li>
+  					</ul>
+  				</div>
+  				<div class="col-xs-12 col-sm-4 col-md-4">
+  					<h5>Quick links</h5>
+  					<ul class="list-unstyled quick-links">
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Videos</a></li>
+  					</ul>
+  				</div>
+  				<div class="col-xs-12 col-sm-4 col-md-4">
+  					<h5>Quick links</h5>
+  					<ul class="list-unstyled quick-links">
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+  						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+  						<li><a href="" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
+  					</ul>
+  				</div>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+  					<ul class="list-unstyled list-inline social text-center">
+  						<li class="list-inline-item"><a href=""><i class="fa fa-facebook"></i></a></li>
+  						<li class="list-inline-item"><a href=""><i class="fa fa-twitter"></i></a></li>
+  						<li class="list-inline-item"><a href=""><i class="fa fa-instagram"></i></a></li>
+  						<li class="list-inline-item"><a href=""><i class="fa fa-google-plus"></i></a></li>
+  						<li class="list-inline-item"><a href="" target="_blank"><i class="fa fa-envelope"></i></a></li>
+  					</ul>
+  				</div>
+  				<hr>
+  			</div>
+  			<div class="row">
+  				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+  					<p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
+  					<p class="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+  				</div>
+  				<hr>
+  			</div>
+  		</div>
+  	</section>
+@endsection
+{{-- FOOTER --}}
+
+{{-- SECTION-SECOND WHAT WE DO --}}
+@section('section-second')
+  <section id="what-we-do">
+  <div class="container">
+    <h2 class="section-title mb-2 h1">What we do</h2>
+    <p class="text-center text-muted h5">Having and managing a correct marketing strategy is crucial in a fast moving market.</p>
+    <div class="row mt-5">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-1">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-2">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-3">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-4">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-5">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+        <div class="card">
+          <div class="card-block block-6">
+            <h3 class="card-title">Special title</h3>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="https://www.fiverr.com/share/qb8D02" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+@endsection
+{{-- SECTION-SECOND WHAT WE DO --}}
+
+{{-- CONTENT --}}
 @section('content')
 <div class="container">
 <div class="row">
@@ -65,8 +204,8 @@
   </div>
   <div id="results" class="filter_container ">
     <div class="FORM_SEARCH" id="filter">
-      <div class="form_fallovede  disabled">
-        <form class="row" action="index.html" method="post">
+      <div class="form_fallovede container disabled">
+        <form class="o row" action="index.html" method="post">
           @csrf
           <div class="services card col-4">
             <article class="card-group-item">
@@ -142,14 +281,20 @@
       </div>
    </div>
   </div>
-    <div  class="searchedinputresult">
+    <div  class="searchedinputresult container">
       <div class="SPONSORIZED row pt-5 disabled"></div>
       <div class='our_results row'></div>
     </div>
   </div>
   @yield('section-first')
+  @yield('section-second')
 </div>
 </div>
+<footer>
+   @yield('footer')
+</footer>
+{{-- CONTENT --}}
+
 <script id="our_results" type="text/x-handlebars-template">
   <div class="apartment-grid col-4">
           <div class="apartment-image">
@@ -188,6 +333,8 @@
           </div>
 </script>
 @endsection
+
+
 @push('head')
   <script src="{{ asset('js/search.js')}}"></script>
 @endpush

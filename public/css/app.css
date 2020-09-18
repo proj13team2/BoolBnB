@@ -11170,6 +11170,10 @@ button:focus {
   background: transparent !important;
 }
 
+.jumbotron .lead {
+  color: #fff;
+}
+
 .searchedinputresult {
   width: 100%;
 }
@@ -11467,6 +11471,77 @@ img {
   height: 60px;
 }
 
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 25px;
+  margin: auto;
+  border: 5px solid #007b5e;
+  overflow: auto;
+}
+
+.form-register {
+  width: 100%;
+  max-width: 630px;
+  max-height: 90%;
+  padding: 25px;
+  margin: auto;
+  border: 5px solid #007b5e;
+  overflow: auto;
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type=email] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type=password] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.body-auth {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-family: "Roboto", sans-serif;
+}
+
+.body-auth {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#fa-home-iccon-login {
+  font-size: 75px;
+}
+
+#login-register-btn {
+  margin: 10px;
+}
+
 #footer {
   background: #007b5e !important;
 }
@@ -11679,6 +11754,10 @@ how to remove the virtical space around the range input in IE*/
   color: #007b5e !important;
 }
 
+.green-text-bold {
+  font-weight: bolder;
+}
+
 .green-text-light {
   color: rgba(0, 123, 94, 0.5);
 }
@@ -11706,8 +11785,9 @@ how to remove the virtical space around the range input in IE*/
 }
 
 body {
-  height: 100%;
+  height: 100vh;
   width: 100%;
+  position: relative;
 }
 
 main {
@@ -11716,8 +11796,9 @@ main {
 }
 
 header {
+  z-index: 999999;
   background-size: cover;
-  background-position: center 25%;
+  background-position: center 10%;
   background-image: url(https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-0.3.5&s=c3d0603820b595592d80f5a239938c67&auto=format&fit=crop&w=1500&q=80);
 }
 

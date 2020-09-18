@@ -78,6 +78,9 @@ h {
 .jumbotron {
   margin-bottom: 0!important;
   background: transparent!important;
+  .lead {
+    color: #fff ;
+  }
 }
 
 .searchedinputresult{
@@ -89,6 +92,7 @@ h {
   padding: 10px!important;
   border-radius: 15px !important;
 }
+
 
 
 

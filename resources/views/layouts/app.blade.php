@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- icon --}}
-    <link rel="icon" href="https://i.ibb.co/Nx8y17C/NEW-LOGO.png">
+    <link rel="icon" href="https://i.ibb.co/VM3ZMHX/ICON-Fix.png">
     {{-- PAGE title --}}
     @yield('page_title')
 

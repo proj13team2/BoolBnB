@@ -44,8 +44,16 @@
  color: #007b5e;
 }
 
+.green-text-light {
+ color: rgba(0, 123, 94, 0.5);
+}
+
 .green-background {
-  background-color: #007b5e;
+  background-color: #007b5e!important;
+}
+
+.green-border {
+  border-color: #007b5e!important;
 }
 // font-size
 // font-family: 'Roboto', sans-serif;

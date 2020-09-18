@@ -281,3 +281,77 @@ section .section-title{
 }
 
 // !!!!!!!! END CAROUSEL  !!!!!!!! //
+
+// !!!!!!!! TESMIMONIALS  !!!!!!!! //
+.bg-5 {
+    background-image: url("http://regaltheme.com/tf/multi/rnr/assets/img/bg/5.png");
+    background-position: center 65%;
+    background-size: auto;
+    background-repeat: no-repeat;
+}
+.client-testimonial .client-nav .nav-item {
+  position: absolute;
+  z-index: 5;
+  width: 10.5rem; }
+  .client-testimonial .client-nav .nav-item:nth-child(1) {
+    top: 2.5rem;
+    right: 16%;
+    width: 7rem; }
+  .client-testimonial .client-nav .nav-item:nth-child(2) {
+    bottom: 3rem;
+    right: 0; }
+
+.client-testimonial .tab-content .fade {
+  -webkit-transition: all 0.4s ease-in;
+  -o-transition: all 0.4s ease-in;
+  transition: all 0.4s ease-in; }
+
+.client-testimonial .tab-content .client-thumb {
+  width: 10.5rem; }
+
+.client-testimonial .tab-content .client-desc {
+  -webkit-box-shadow: 0px 15px 50px 0px rgba(23, 147, 118, 0.06);
+  box-shadow: 0px 15px 50px 0px rgba(23, 147, 118, 0.06);
+  border-radius: 50px;
+  min-height: 21rem;
+  padding: 2rem; }
+  .client-testimonial .tab-content .client-desc h6 {
+    font-size: 1.3rem; }
+.section-ptb, .section-pt, .section-pb {
+  padding-top: 3rem;
+  padding-bottom: 3rem; }
+
+      hr.line {
+  margin: 0;
+  border-color: #1c223a;
+  border-width: 1px;
+  width: 4.5rem; }
+  hr.line.line-sm {
+    width: 8.6rem;
+}
+hr.line.bw-2 {
+    border-width: 2px;
+}
+.mb-5 {
+    margin-bottom: 0.5rem !important;
+}
+.mb-80 {
+  margin-bottom: 8rem !important; }
+  .mb-20 {
+  margin-bottom: 2rem !important; }
+  .mb-25 {
+  margin-bottom: 2.5rem !important; }
+img {
+  max-width: 100%; }
+
+.client-testimonial a:hover, .client-testimonial a:focus {
+  border: none!important;
+  transform: scale(1.05);
+  border-radius: 50px;
+}
+.client-testimonial a {
+  border: none!important;
+}
+
+
+// !!!!!!!! TESMIMONIALS  !!!!!!!! //

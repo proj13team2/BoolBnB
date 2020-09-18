@@ -11093,6 +11093,10 @@ a.text-dark:focus {
   transform: scale(0.8);
 }
 
+button:focus {
+  outline: none !important;
+}
+
 #ricerca_user {
   margin-bottom: 0 !important;
   line-height: 80px;
@@ -11109,6 +11113,16 @@ a.text-dark:focus {
   margin-left: 20px;
 }
 
+#go {
+  background: #ff385c !important;
+  border: 0px;
+  margin: 0px;
+  border-radius: 24px;
+  height: 48px !important;
+  color: white;
+  padding: 12px;
+}
+
 #button_search:focus {
   outline: none !important;
 }
@@ -11122,6 +11136,20 @@ a.text-dark:focus {
 
 #input:focus {
   outline: none !important;
+}
+
+.input_searc h {
+  width: 100%;
+}
+
+.btn-circle.btn-lg,
+.btn-group-lg > .btn-circle.btn {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
 }
 
 .jumbotron {
@@ -11167,46 +11195,20 @@ a.text-dark:focus {
   line-height: 36px !important;
 }
 
-.section-first-container {
-  padding: 50px 0px;
-}
-
-.section-first-l,
-.section-first-d,
-.section-first-long {
-  height: 350px;
-}
-
-.section-first-l {
-  background-image: url(https://scontent-mxp1-1.xx.fbcdn.net/v/t1.0-9/101273481_2905790046203982_2909085992163999744_o.jpg?_nc_cat=101&_nc_sid=730e14&_nc_ohc=jXwzhueosT4AX92ZhaU&_nc_ht=scontent-mxp1-1.xx&oh=e7cf049461c357c3995036f68aa66c82&oe=5F8981C5);
-  background-size: cover;
-  background-position: center;
-  border-radius: 40px 7px 40px 0px;
-}
-
-.section-first-d .descript {
-  height: 100%;
-}
-
-.section-first-d .descript .descript-title {
-  font-size: 42px !important;
-  line-height: 36px !important;
-}
-
 .section-first-d .descript .descript-text {
   padding: 0px 50px;
   font-size: 22px !important;
   line-height: 22px !important;
 }
 
-.carousel_container {
-  padding: 10px 0px 10px;
+.results-for-p {
+  padding: 10px;
+  font-weight: lighter;
 }
 
-.carousel_container .carousel-item img {
-  max-width: 100%;
-  max-height: 100%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.results-for-p .results-for-span {
+  font-size: 20px;
+  font-style: italic;
 }
 
 .bd-placeholder-img {

@@ -1,7 +1,9 @@
 //!!!!!!!!!!!!!!!!!!!!!HOMEPAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 //   !!!!!!!!!!!!!!!  INPUTS  AND IDS  !!!!!!!!!!!
-
+button:focus {
+     outline:none!important;
+}
 
 #ricerca_user {
   margin-bottom: 0!important;
@@ -17,6 +19,16 @@
   color: white;
   padding: 12px;
   margin-left: 20px;
+}
+
+#go {
+  background: #ff385c !important;
+  border: 0px;
+  margin: 0px;
+  border-radius: 24px;
+  height: 48px !important;
+  color: white;
+  padding: 12px;
 }
 
 #button_search:focus {
@@ -37,7 +49,16 @@
 h {
   width: 100%;
 }
+// BOTTONE
 
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
 
 //   !!!!!!!!!!!!!!!  JUMBOTRON AND RESULTS  !!!!!!!!!!!
 

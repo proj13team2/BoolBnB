@@ -42563,6 +42563,7 @@ $(document).ready(function () {
                 $('.our_results').empty();
                 $('.form_fallovede').removeClass('disabled');
                 $('.pop-up-results').removeClass('disabled');
+                $('#go').removeClass('disabled');
                 $('.SPONSORIZED').removeClass('disabled');
                 var array = [];
 
@@ -42600,27 +42601,7 @@ $(document).ready(function () {
                 }
 
                 $('#ricerca_user').append('Apartments for: <span class="results-for-span pl-1">' + ' ' + ricerca_utente + '</span>');
-              }); //faccio la stessa cosa ma con l'enter
-              // $('input').keyup(function(event) {
-              // verifico se l'utente ha digitato "ENTER"
-              //  if(event.which == 13) {
-              //     $('.our_results').empty();
-              //     for (let index = 0; index < dati.results.length; index++) {
-              //         our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
-              //         our_results.title = dati.results[index].title;
-              //         our_results.street = dati.results[index].street;
-              //         our_results.building_number = dati.results[index].building_number;
-              //         our_results.city = dati.results[index].city;
-              //         our_results.region = dati.results[index].region;
-              //         our_results.zip_code = dati.results[index].zip_code;
-              //         our_results.src = dati.results[index].src;
-              //         var html = template(our_results);
-              //         $('.apartment_result>a').attr('href', link )
-              //         $('.our_results').append(html);
-              //     }
-              //     $('input').val('');
-              // }
-              // })
+              });
             },
             error: function error() {
               console.log('error');
@@ -42738,7 +42719,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/search.js */"./resources/js/search.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\search.js */"./resources/js/search.js");
 
 
 /***/ })

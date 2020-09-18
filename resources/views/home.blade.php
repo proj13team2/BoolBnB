@@ -63,23 +63,35 @@
   <div class="results-for-p text-center">
       <h3 class="" id="ricerca_user"></h3>
   </div>
-  <div id="results" class="filter_container">
-    <div class="FORM_SEARCH  MistyRose" id="filter">
-      <div class="form_fallovede disabled">
-        <form class="" action="index.html" method="post">
+  <div id="results" class="filter_container ">
+    <div class="FORM_SEARCH" id="filter">
+      <div class="form_fallovede  disabled">
+        <form class="row" action="index.html" method="post">
           @csrf
-          <div class="services  d-flex flex-column">
-            @foreach ($services as $service)
-                <div class="form-check form-check-inline ">
-                    <label class="form-check-label">
-                        <input class='services_input'
-                        name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->type }}">
-                        {{ $service->type }}
-                    </label>
-                </div>
-            @endforeach
+          <div class="services card col-4">
+            <article class="card-group-item">
+              <div class="card-header">
+                <h6 class="title">Services </h6>
+              </div>
+              <div class="card-body">
+                @foreach ($services as $service)
+                    <div class="form-check form-check-inline ">
+                        <label class="form-check-label">
+                            <input class='services_input'
+                            name="service_id[]" class="form-check-input" type="checkbox" value="{{ $service->type }}">
+                            {{ $service->type }}
+                        </label>
+                    </div>
+                @endforeach
+              </div>
+            </article> <!-- card-group-item.// -->
           </div>
-          <div class="number_of">
+          <div class="number_of  card  col-4">
+            <div class="card-group-item">
+              <div class="card-header">
+                <h6 class="title">Filter for number of </h6>
+              </div>
+              <div class="card-body">
             <label for="number_of_rooms">Select number of rooms:</label>
             <select class="" id="number_of_rooms" name="number_of_rooms">
               <option value="">...</option>
@@ -108,14 +120,25 @@
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
+            </div>
           </div>
-          <div class="slider">
+          </div>
+          <div class="slider  card  col-4">
+            <article class="card-group-item">
+              <div class="card-header">
+                <h6 class="title">Distance </h6>
+              </div>
+              <div class="card-body">
             <label for="km_slider">Km (between 0 and 100):</label>
             <input type="range" min="1" max="100" id="km_slider" name="km_slider" value="100">
             <p>value: <span id="slider_range"></span></p>
+            </article> <!-- card-group-item.// -->
+            </div>
           </div>
-          <button type="button" id='go' name="button">Go</button>
         </form>
+        <div class="mt-3 text-center">
+          <button class="disabled"type="button" id='go' name="button">Go</button>
+        </div>
       </div>
    </div>
   </div>

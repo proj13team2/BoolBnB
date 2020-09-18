@@ -14,7 +14,7 @@
             <input  id='input' autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  type="text">
             <button id="button_search"><i class="fas fa-search"></i> Cerca </button>
             <div class="tomtom_results dropdown-menu"  aria-labelledby="input">
-
+              Cerca la tua prossima destinazione...
             </div>
         </div>
   </div>

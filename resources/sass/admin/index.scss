@@ -3,7 +3,7 @@
 }
 
 .services-height {
-  height: 50px!important;
+  max-height: 110px!important;
 }
 
 .unique-style {
@@ -16,24 +16,43 @@
 .index-container {
   border-radius: 15px;
   img {
-    max-width: 50%;
+    max-width: 70%;
     position: relative;
     border-radius: 0px 40px 0px 40px;
   }
 }
 
 #price-tag {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  font-size: 50px;
+  font-size: 40px;
   background: rgb(0,0,0);
   background: linear-gradient(25deg, rgba(0,0,0,0.4990371148459384) 0%, rgba(0,0,0,0.5) 100%);
-  padding: 15px;
+  padding:  15px;
   border-radius: 15px;
+  vertical-align: middle;
+
 }
 
 .no-hoover:hover {
   text-decoration: none;
+}
+
+#delete {
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid red!important;
+}
+
+
+.index-admin-container {
+  background: rgb(233,206,177);
+background: linear-gradient(90deg, rgba(233,206,177,0.5018382352941176) 0%, rgba(233,206,177,0.09) 100%);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 50px;
+}
+
+.no-margins {
+  .row {
+    margin: 0px!important;
+  }
 }

@@ -11103,7 +11103,7 @@ a.text-dark:focus {
 
 .material-button-anim {
   position: relative;
-  padding: 100px 15px 27px;
+  padding: 50px 15px 27px;
   text-align: center;
   max-width: 320px;
   margin: 0 auto 20px;
@@ -11933,7 +11933,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .services-height {
-  height: 50px !important;
+  max-height: 110px !important;
 }
 
 .unique-style .apt-services {
@@ -11945,25 +11945,40 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .index-container img {
-  max-width: 50%;
+  max-width: 70%;
   position: relative;
   border-radius: 0px 40px 0px 40px;
 }
 
 #price-tag {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 50px;
+  font-size: 40px;
   background: black;
   background: linear-gradient(25deg, rgba(0, 0, 0, 0.4990371148) 0%, rgba(0, 0, 0, 0.5) 100%);
   padding: 15px;
   border-radius: 15px;
+  vertical-align: middle;
 }
 
 .no-hoover:hover {
   text-decoration: none;
+}
+
+#delete {
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid red !important;
+}
+
+.index-admin-container {
+  background: #e9ceb1;
+  background: linear-gradient(90deg, rgba(233, 206, 177, 0.5018382353) 0%, rgba(233, 206, 177, 0.09) 100%);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 50px;
+}
+
+.no-margins .row {
+  margin: 0px !important;
 }
 
 .yellow {
@@ -12047,12 +12062,21 @@ how to remove the virtical space around the range input in IE*/
   background-color: #007b5e !important;
 }
 
+.red-background {
+  background-color: red !important;
+}
+
 .white-background {
   background-color: #fff !important;
 }
 
 .green-border {
   border-color: #007b5e !important;
+}
+
+.gray-background {
+  background-color: grey !important;
+  border-color: grey !important;
 }
 
 .superfunzionante {
@@ -12126,6 +12150,7 @@ header {
 
 main {
   margin-top: 47px;
+  margin-bottom: 47px;
 }
 
 .disabled {

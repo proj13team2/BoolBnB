@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container no-margins">
         <div class="row">
             {{-- header --}}
               <h1 class="mt-3 mb-3  col-12 green-text">Lista Appartamenti</h1>
@@ -16,11 +16,11 @@
               @forelse ($user_apartments as $user_apartment)
       <div class="col-12  index-admin-container mt-5">
             <div class="apt-index-title-each  row">
-              <div class="title col-8">
+              <div class="title col-7">
                 <h1 class="green-text"><a class="green-text"  href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}">{{$user_apartment->title}}</a> / Id: {{$user_apartment->id}}</h1>
                 <p class="text-muted">{{ $user_apartment->address->street}} {{$user_apartment->address->building_number}}, {{$user_apartment->address->city}}</p>
               </div>
-                <div class="apt-services  services-container row align-items-center justify-content-around services-height col-4">
+                <div class="apt-services  services-container row align-items-center justify-content-around services-height col-3">
                         @forelse ($user_apartment->services as $service)
                           <div class="p-3 text-center white-text">
                             <i class="fas fa-{{ $service->description }} font-size-i"></i>
@@ -32,15 +32,29 @@
                           </div>
                         @endforelse
                 </div>
+                <div class=" col-2 align-center text-right">
+                  <form class="d-inline" action="{{ route('user.apartments.disable', ['apartment' => $user_apartment->id]) }}" method="post">
+                      @csrf
+                      @method('PUT')
+                      @if ($user_apartment->is_active == 0)
+                            <input type="submit" class="btn btn-small white-text gray-background" value="Attiva">
+                      @else
+                          <input type="submit" class="btn btn-small white-text gray-background" value="Disattiva">
+                      @endif
+                  </form>
+                      <a id="delete" href="{{ route('user.apartments.delete', ['apartment' => $user_apartment->id]) }}" class="inline red-background button btn delete-confirm"><i  class="p-1 fas fa-times  white-text "></i></a>
+                </div>
             </div>
             <div class="row  index-container  "     @if ($user_apartment->is_active == 0)  class='apartment-disabled'@endif>
-              <div class="col-6">
+              <div class="col-5">
                 @if($user_apartment->src)
                     <img src="{{ asset('storage/' . $user_apartment->src) }}" alt="">
                 @endif
-                  <p class="white-text " id="price-tag">{{ $user_apartment->price }} <i class="fas fa-euro-sign white-text"></i></p>
               </div>
-                <div class="col-6 ">
+              <div class="col-2 pt-5">
+                  <p class="white-text aligne-center" id="price-tag">{{ $user_apartment->price }} <i class="fas fa-euro-sign white-text"></i></p>
+              </div>
+                <div class="col-5 ">
                   <div class="material-button-anim">
                     <ul class="list-inline" id="options">
                       <li class="option">
@@ -63,20 +77,6 @@
                       <span class="fa fa-plus" aria-hidden="true"></span>
                     </button>
                   </div>
-                  <form class="d-inline" action="{{ route('user.apartments.disable', ['apartment' => $user_apartment->id]) }}" method="post">
-                      @csrf
-                      @method('PUT')
-                      @if ($user_apartment->is_active == 0)
-                        <div class="text-center">
-                            <input type="submit" class="btn btn-small white-text green-background-light" value="Attiva">
-                        </div>
-                      @else
-                        <div class="text-center">
-                          <input type="submit" class="btn btn-small white-text green-background-light" value="Disattiva">
-                        </div>
-                      @endif
-                  </form>
-                  <a href="{{ route('user.apartments.delete', ['apartment' => $user_apartment->id]) }}" class="button delete-confirm">Delete</a>
                 </div>
                 {{-- @forelse ($user_apartment->sponsors as $sponsor)
                 @if($sponsor->pivot->end_date > ($mutable ?? ''))

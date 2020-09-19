@@ -5,10 +5,18 @@ const $ = require('jquery');
 
 $(document).ready(function(){
 
+    // animation-button-index
+    $('.material-button-toggle').on("click", function () {
+        $(this).parent().addClass('open');
+        $('.open ul .option').toggleClass('scale-on');
+        $(this).parent().removeClass('open');
+    });
+
+
     const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
     //CHIAMATA API PER CREATE E UPDATE
 
-    
+
     $('button.btn-submit').click('btn-submit',function(evento){
         evento.preventDefault()
         var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val()
@@ -29,7 +37,7 @@ $(document).ready(function(){
                 $('#lat').val(lat)
                 $('#lng').val(lng)
                 $('form.apartment-form').submit()
-            
+
             },
             'error': function(){
                 console.log('Errore Chiamata Ajax');
@@ -37,5 +45,5 @@ $(document).ready(function(){
         })
     })
 
-   
+
 })

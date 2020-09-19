@@ -1,0 +1,39 @@
+.font-size-i {
+  font-size: 20px!important;
+}
+
+.services-height {
+  height: 50px!important;
+}
+
+.unique-style {
+
+  .apt-services {
+    max-width: 100%;
+  }
+}
+
+.index-container {
+  border-radius: 15px;
+  img {
+    max-width: 50%;
+    position: relative;
+    border-radius: 0px 40px 0px 40px;
+  }
+}
+
+#price-tag {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 50px;
+  background: rgb(0,0,0);
+  background: linear-gradient(25deg, rgba(0,0,0,0.4990371148459384) 0%, rgba(0,0,0,0.5) 100%);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+.no-hoover:hover {
+  text-decoration: none;
+}

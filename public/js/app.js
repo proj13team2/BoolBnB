@@ -37269,6 +37269,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 $(document).ready(function () {
+  // animation-button-index
+  $('.material-button-toggle').on("click", function () {
+    $(this).parent().addClass('open');
+    $('.open ul .option').toggleClass('scale-on');
+    $(this).parent().removeClass('open');
+  });
   var key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1'; //CHIAMATA API PER CREATE E UPDATE
 
   $('button.btn-submit').click('btn-submit', function (evento) {

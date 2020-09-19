@@ -68,6 +68,15 @@
  color: rgba(0, 123, 94, 0.5);
 }
 
+.green-background-light {
+ background-color: rgba(0, 123, 94, 0.65)!important;
+ border: 0;
+}
+
+.green-background-light:hover {
+ background-color: rgba(0, 123, 94, 1)!important;
+}
+
 .green-background {
   background-color: #007b5e!important;
 }

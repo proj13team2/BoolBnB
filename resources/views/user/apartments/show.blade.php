@@ -16,9 +16,10 @@
                         <img src="{{ asset('storage/' . $apartment->src) }}" alt="">
                     @endif
                 </div>
-                <p data-title='{{ $apartment->title }}'>
+                <h2 data-title='{{ $apartment->title }}'>
                     <strong>Titolo:</strong>
                     {{ $apartment->title }}
+                </h2>
                 </p>
                 <p data-address='{{ $apartment->address->street }} {{ $apartment->address->building_number }}, {{ $apartment->address->city }}'>
                     <strong>address:</strong>

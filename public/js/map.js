@@ -37375,7 +37375,7 @@ $(document).ready(function () {
   };
   var element = document.createElement('div');
   element.id = 'marker';
-  var apt_title = $('p[data-title]').data('title');
+  var apt_title = $('h2[data-title]').data('title');
   var apt_address = $('p[data-address]').data('address');
   var apt_endaddress = $('.appartamento').data('endaddress');
   var popup = new _tomtom_international_web_sdk_maps__WEBPACK_IMPORTED_MODULE_0___default.a.Popup({
@@ -37397,7 +37397,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/BoolBnB/resources/js/map.js */"./resources/js/map.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\map.js */"./resources/js/map.js");
 
 
 /***/ })

@@ -4,6 +4,7 @@ const $ = require('jquery');
 const { log } = require('handlebars');
 
 $(document).ready(function(){
+  
 
     //chiave per accedere alle API di tomtom
     const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
@@ -34,7 +35,7 @@ $(document).ready(function(){
         price: '',
         rating:'',
     }
-    
+
   // SCROLL DOWN AUTO FOR SEARCH
    $("#button_search").click(function (){
        $('html, body').animate({
@@ -72,7 +73,7 @@ $(document).ready(function(){
           'method': 'GET',
           success:function(dati) {
               $('.carousel-inner').empty();
-              
+
               for (let index = 0; index < dati.results.length; index++) {
                   our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results[index].slug;
                   our_results.title = dati.results[index].title;
@@ -84,7 +85,7 @@ $(document).ready(function(){
                   our_results.src = dati.results[index].src;
                   our_results.distance = dati.results[index].distance;
                   our_results.price = dati.results[index].price;
-  
+
                   if(dati.results[index].is_active == 1) {
                       var html = template_carousel(our_results);
                       $('.carousel-inner').append(html);
@@ -198,7 +199,7 @@ $(document).ready(function(){
                     searched_services.push($(this).val());
                 }
             })
-    
+
             $.ajax({
                 'url': window.location.protocol + '//' + window.location.host  + '/api/filtered',
                 'method': 'GET',
@@ -212,7 +213,7 @@ $(document).ready(function(){
                 success: function(dati) {
                     console.log(dati);
                     $('.our_results').empty();
-    
+
                     sponsored_generator(dati);
 
                     //funzione per restituire gli appartamenti non sponsorizzati sulla base dei filtri scelti dall'utente
@@ -233,7 +234,7 @@ $(document).ready(function(){
             var stelle ='';
             for (let endex = 1; endex <= dati.results.sponsored[index].rating; endex++) {
                 stelle += '<li class="fa fa-star"></li>'
-            } 
+            }
 
             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + dati.results.sponsored[index].slug;
             our_results.title = dati.results.sponsored[index].title;
@@ -246,7 +247,7 @@ $(document).ready(function(){
             our_results.distance = dati.results.sponsored[index].distance;
             our_results.price = dati.results.sponsored[index].price;
             our_results.rating = stelle;
-            
+
             if (dati.results.sponsored[index].is_active == 1) {
                 var html = template(our_results);
                 $('.our_results').append(html);
@@ -258,7 +259,7 @@ $(document).ready(function(){
     function no_sponsored_generator(dati) {
 
         var array = []
-                                
+
         for (let index = 0; index < dati.results.no_sponsored.length; index++) {
             array.push(dati.results.no_sponsored[index].distance)
         }
@@ -281,7 +282,7 @@ $(document).ready(function(){
     function no_sponsored_generator_filtered(dati, searched_services) {
 
         var array = [];
-    
+
         for (let index = 0; index < dati.results.no_sponsored.length; index++) {
             array.push(dati.results.no_sponsored[index].distance)
         }
@@ -318,7 +319,7 @@ $(document).ready(function(){
         var stelle ='';
             for (let endex = 1; endex <= pippo.rating; endex++) {
                 stelle += '<li class="fa fa-star"></li>'
-            } 
+            }
 
             our_results.link = window.location.protocol + '//' + window.location.host  + '/guest/apartment/' + pippo.slug;
             our_results.title = pippo.title;
@@ -335,8 +336,8 @@ $(document).ready(function(){
             if (pippo.is_active == 1) {
                 var html = template(our_results);
                 $('.our_results').append(html);
-                
+
             }
     }
-    
+
 })

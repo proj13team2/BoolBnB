@@ -6,10 +6,11 @@ const $ = require('jquery');
 
 $(document).ready(function(){
 
+
     const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';
     //CHIAMATA API PER CREATE E UPDATE
 
-    
+
     $('button.btn-submit').click('btn-submit',function(evento){
         evento.preventDefault()
         var indirizzo_inserito = $('#street').val() + ' ' + $('#building_number').val()
@@ -30,7 +31,7 @@ $(document).ready(function(){
                 $('#lat').val(lat)
                 $('#lng').val(lng)
                 $('form.apartment-form').submit()
-            
+
             },
             'error': function(){
                 console.log('Errore Chiamata Ajax');
@@ -38,7 +39,7 @@ $(document).ready(function(){
         })
     })
 
-    
+
     var position = [ $('.appartamento').data('lng') , $('.appartamento').data('lat') ];
 
 
@@ -59,7 +60,7 @@ $(document).ready(function(){
     }
     var element = document.createElement('div');
     element.id = 'marker';
-    var apt_title = $('p[data-title]').data('title');
+    var apt_title = $('h2[data-title]').data('title');
     var apt_address = $('p[data-address]').data('address');
     var apt_endaddress = $('.appartamento').data('endaddress')
     var popup = new tt.Popup({offset: popupOffsets}).setHTML("<b>"+ apt_title +"</b><br/>" + apt_address + '</br>' + apt_endaddress);

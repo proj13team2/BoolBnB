@@ -21,7 +21,7 @@ class ApartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         //recupero la lista degli appartamenti per ciascun utente
 
         $mutable = Carbon::now();
@@ -67,20 +67,21 @@ class ApartmentController extends Controller
             'number_of_beds' => 'required|numeric|between:1,10',
             'number_of_bathrooms' => 'required|numeric|between:1,10',
             'square_meters' => 'required|numeric|min:1',
-            'src' => 'image|max:1024'
+            'src' => 'image|max:1024',
+            'rating' =>'required|numeric|between:1,5'
         ]);
-        
+
         //recupero tutti i dati
         $dati = $request->all();
-        
-        
+
+
         if(!$request->hasFile('src')) {
             $img_path = 'uploads/no-img.png';
             $dati['src'] = $img_path;
         }else {
            $img_path = Storage::put('uploads', $dati['src']);
            $dati['src'] = $img_path;
-       } 
+       }
 
        $dati_apartment = [
            'user_id' => Auth::id(),
@@ -90,6 +91,7 @@ class ApartmentController extends Controller
            'number_of_beds' => $dati['number_of_beds'],
            'number_of_bathrooms' => $dati['number_of_bathrooms'],
            'square_meters' => $dati['square_meters'],
+           'rating' => $dati['rating'],
            'src' => $dati['src'],
            'slug' => slug_generator($dati)
        ];
@@ -163,7 +165,7 @@ class ApartmentController extends Controller
         }
 
 
-            
+
         if($apartment) {
             return view('user.apartments.show', compact('apartment' , 'active'));
         } else {
@@ -218,8 +220,8 @@ class ApartmentController extends Controller
         ]);
 
         $dati = $request->all();
-        
-        
+
+
         //verifico se l'utente ha inserito un'immagine
         if($request->hasFile('src')) {
 

@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <form class='apartment-form form-register text-center ' action="{{ route('user.apartments.store') }}" method="post" enctype="multipart/form-data" name="form_apartment">
+            <form class='apartment-form  text-center ' action="{{ route('user.apartments.store') }}" method="post" enctype="multipart/form-data" name="form_apartment">
                 @csrf
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     <i id="fa-home-iccon-login" class="fas fa-home"></i>
@@ -68,7 +68,9 @@
                 <textarea type="text" name="rating" class="form-control" id="rating" placeholder="rating">{{ old('rating') }}</textarea>
 
                 <label for="immagine" class="col-md-4 col-form-label text-center green-text green-text-bold ">Image</label>
-                <input type="file" name="src" class="form-control-file">
+                <div class="d-flex justify-content-center pt-3 pb-3">
+                  <input type="file" name="src" class="form-control-file no-width" multiple>
+                </div>
 
                 @foreach ($services as $service)
                 <div class="form-check">

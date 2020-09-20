@@ -11295,6 +11295,7 @@ button:focus {
   border-radius: 32px !important;
   padding: 10px 20px;
   width: 35%;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 #input:focus {
@@ -11318,6 +11319,7 @@ button:focus {
 .jumbotron {
   margin-bottom: 0 !important;
   background: transparent !important;
+  padding: 2rem !important;
 }
 
 .jumbotron .lead {
@@ -11478,7 +11480,6 @@ section .section-title {
 }
 
 .carousel-item {
-  border-radius: 15px;
   background-color: black !important;
   height: 27rem;
 }
@@ -12131,11 +12132,25 @@ main {
   z-index: 9999 !important;
 }
 
+.no-width {
+  width: auto !important;
+}
+
+#img-edit {
+  max-width: 50%;
+  padding: 20px 0px;
+}
+
 header {
   z-index: 999999;
-  background-size: cover;
-  background-position: center 10%;
-  background-image: url(https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-0.3.5&s=c3d0603820b595592d80f5a239938c67&auto=format&fit=crop&w=1500&q=80);
+}
+
+.box-shadow-cool {
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.box-shadow-full {
+  box-shadow: 32px 16px 32px 16px rgba(15, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 .margin-zero {
@@ -12144,7 +12159,7 @@ header {
 
 .navbar-brand,
 .nav-link {
-  color: white !important;
+  color: #007b5e !important;
   font-size: 20px;
 }
 

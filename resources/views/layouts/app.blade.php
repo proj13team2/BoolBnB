@@ -28,8 +28,8 @@
 </head>
 <body>
     <header id="app">
-        <div class="header-log-home">
-        <div class="container">
+        <div class="header-log-home box-shadow-cool">
+        <div class="container ">
           <nav class="navbar navbar-expand-md navbar-light">
               {{-- ICON-TITLE - FLIZTBO --}}
               <div class="home" id="navbar">

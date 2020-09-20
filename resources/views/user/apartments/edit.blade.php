@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12">
 
-            <form class='apartment-form form-register text-center' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data" name='form_apartment'>
+            <form class='apartment-form  text-center' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data" name='form_apartment'>
                 @csrf
                 @method('PUT')
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -72,10 +72,11 @@
 
 
                 <label for="immagine" class="col-md-4 col-form-label text-center green-text green-text-bold ">Image</label>
-                <input type="file" name="src" class="form-control-file" multiple>
+                <div class="d-flex justify-content-center pt-3 pb-3">
+                  <input type="file" name="src" class="form-control-file no-width" multiple>
+                </div>
                 @if ($apartment->src)
-                <p class="col-md-4 col-form-label text-center green-text green-text-bold ">Image Ok</p>
-                <img src="{{ asset('storage/' . $apartment->src) }}">
+                <img id="img-edit" src="{{ asset('storage/' . $apartment->src) }}">
                 @else
                 <p>There's no Image</p>
                 @endif

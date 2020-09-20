@@ -10,6 +10,9 @@
 {{-- HOMEPAGEHEADER --}}
 @section('homepage_header_unique')
   <div class="TOP_MAIN" id="search_input">
+    <div class="text-center">
+      <h1 class="green-text pt-5 pb-5">Find your next Adventure</h1>
+    </div>
       <div class="input_search  pt-5 d-flex justify-content-center align-items-center">
             <input  id='input' autocomplete="off" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  type="text">
             <button id="button_search"><i class="fas fa-search"></i> Cerca </button>

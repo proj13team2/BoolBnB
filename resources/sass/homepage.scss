@@ -53,6 +53,7 @@ button:focus {
   border-radius: 32px !important;
   padding: 10px 20px;
   width: 35%;
+      box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.15), 0px 3px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 #input:focus {
@@ -78,6 +79,7 @@ h {
 .jumbotron {
   margin-bottom: 0!important;
   background: transparent!important;
+  padding: 2rem !important;
   .lead {
     color: #fff ;
   }
@@ -246,7 +248,6 @@ section .section-title{
 }
 
 .carousel-item {
-  border-radius: 15px;
   background-color: black!important;
   height: 27rem;
 }

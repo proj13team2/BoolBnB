@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12">
 
-            <form class='apartment-form  text-center' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data" name='form_apartment'>
+            <form class='form-stefano-ti-odio apartment-form  text-center' action="{{ route('user.apartments.update', ['apartment' => $apartment->id])}}" method="post" enctype="multipart/form-data" name='form_apartment'>
                 @csrf
                 @method('PUT')
                 <a class="navbar-brand" href="{{ url('/home') }}">

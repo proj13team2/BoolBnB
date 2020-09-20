@@ -11674,10 +11674,6 @@ img {
   font-size: 50px;
 }
 
-.apt-services {
-  background: #B0C4DE;
-}
-
 #no-services {
   font-size: 80px;
 }
@@ -11994,12 +11990,11 @@ how to remove the virtical space around the range input in IE*/
 #delete {
   border-radius: 5px;
   font-size: 1rem;
-  border: 1px solid red !important;
+  border: 1px solid darkred !important;
 }
 
 .index-admin-container {
-  background: #e9ceb1;
-  background: linear-gradient(0deg, rgba(233, 206, 177, 0.5018382353) 0%, rgba(233, 206, 177, 0.6) 100%);
+  background-color: #d4edda;
   padding-top: 15px;
   padding-bottom: 15px;
   border-radius: 10px;
@@ -12007,6 +12002,10 @@ how to remove the virtical space around the range input in IE*/
 
 .no-margins .row {
   margin: 0px !important;
+}
+
+.lightgreen-back {
+  background-color: #fff !important;
 }
 
 .font-big {
@@ -12095,7 +12094,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .red-background {
-  background-color: red !important;
+  background-color: #8B0000 !important;
 }
 
 .white-background {
@@ -12164,7 +12163,7 @@ header {
 
 .navbar-brand,
 .nav-link {
-  color: #007b5e !important;
+  color: #fff !important;
   font-size: 20px;
 }
 
@@ -12187,7 +12186,7 @@ header {
 .fa-home,
 .fa-user,
 .nav-link-register {
-  color: #007b5e !important;
+  color: #fff !important;
 }
 
 .fa-home {

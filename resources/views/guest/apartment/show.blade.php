@@ -25,14 +25,14 @@
                   </div>
                   <div class="apt-services col-5 services-container row align-items-center justify-content-around">
                           @forelse ($apartment->services as $service)
-                            <div class="p-3 text-center white-text">
+                            <div class="p-3 text-center green-text">
                               <i class="fas fa-{{ $service->description }}"></i>
                               <p>{{ $service->type }}</p>
                             </div>
                           @empty
-                            <div class="p-3 text-center white-text">
+                            <div class="p-3 text-center green-text">
                                 <i  id="no-services"class="fas fa-cogs"></i>
-                              <p>No Services</p>
+                              <p class="green-text">No Services</p>
                             </div>
                           @endforelse
                      </div>

@@ -144,7 +144,7 @@ class AddressesTableSeeder extends Seeder
                 'region'=>'Torino',
                 'country'=>'Italia',
                 'lat'=>'45.0751109',
-                'lng'=>'9.6018004',
+                'lng'=>'7.6692819',
             ],
             [
                 'id'=>'12',

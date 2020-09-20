@@ -11994,10 +11994,10 @@ how to remove the virtical space around the range input in IE*/
 
 .index-admin-container {
   background: #e9ceb1;
-  background: linear-gradient(90deg, rgba(233, 206, 177, 0.5018382353) 0%, rgba(233, 206, 177, 0.09) 100%);
+  background: linear-gradient(0deg, rgba(233, 206, 177, 0.5018382353) 0%, rgba(233, 206, 177, 0.6) 100%);
   padding-top: 15px;
   padding-bottom: 15px;
-  border-radius: 50px;
+  border-radius: 10px;
 }
 
 .no-margins .row {

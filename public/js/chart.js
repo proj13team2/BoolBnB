@@ -74686,14 +74686,24 @@ $(document).ready(function () {
         data: {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           datasets: [{
-            label: 'Visualizzazioni mensili',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            label: 'Messaggi ricevuti',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgb(0, 123, 94)',
             data: dati.results
           }]
         },
         // Configuration options go here
-        options: {}
+        options: {
+          responsive: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                precision: 0
+              }
+            }]
+          }
+        }
       });
     },
     error: function error() {}
@@ -74717,13 +74727,23 @@ $(document).ready(function () {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           datasets: [{
             label: 'Visualizzazioni mensili',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderColor: 'rgb(0, 123, 94)',
             data: dati.results
           }]
         },
         // Configuration options go here
-        options: {}
+        options: {
+          responsive: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                precision: 0
+              }
+            }]
+          }
+        }
       });
     },
     error: function error() {}
@@ -74739,7 +74759,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\chart.js */"./resources/js/chart.js");
+module.exports = __webpack_require__(/*! /var/www/html/Boolean/Final-project/BoolBnB/resources/js/chart.js */"./resources/js/chart.js");
 
 
 /***/ })

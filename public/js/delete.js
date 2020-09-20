@@ -37635,7 +37635,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\ProgettoFinale\BoolBnB\resources\js\delete.js */"./resources/js/delete.js");
+module.exports = __webpack_require__(/*! /var/www/html/Boolean/Final-project/BoolBnB/resources/js/delete.js */"./resources/js/delete.js");
 
 
 /***/ })

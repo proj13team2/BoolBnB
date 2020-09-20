@@ -26,16 +26,26 @@ $(document).ready(function () {
         data: {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
             datasets: [{
-                label: 'Visualizzazioni mensili',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                label: 'Messaggi ricevuti',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgb(0, 123, 94)',
                 data: dati.results
             }]
         },
         // Configuration options go here
-        options: {}
+        options: {
+        responsive: true,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    precision: 0
+                }
+            }]
+        }
+        }
         })
-},
+        },
     error: function(){
 
     }
@@ -62,13 +72,22 @@ $.ajax({
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
             datasets: [{
                 label: 'Visualizzazioni mensili',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(0, 0, 0, 0)',
+                borderColor: 'rgb(0, 123, 94)', 
                 data: dati.results
             }]
         },
         // Configuration options go here
-        options: {}
+        options: {
+            responsive: true,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }]            }
+        }
         })
 },
     error: function(){

@@ -59,18 +59,17 @@
                     <ul class="list-inline" id="options">
                       <li class="option">
                         <button class="material-button option1" type="button">
-                          <a class="fa fa-pencil-alt white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.edit', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
+                          <a class="fa fa-pencil-alt white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.edit', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"> <span id="info-popup" class="disabled">Edit</span></a>
                         </button>
                       </li>
                       <li class="option">
                         <button class="material-button option2" type="button">
-                          <a class="fa fa-chart-bar white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
+                          <a class="fa fa-chart-bar white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"> <span id="info-popup" class="disabled">Stats</span></a>
                         </button>
                       </li>
                       <li class="option">
                         <button class="material-button option3 " type="button">
-                          <span>Show</span>
-                          <a class="fas fa-eye white-text no-hoover i-drop-selectall"  href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}"></a>
+                          <a class="fas fa-eye white-text no-hoover i-drop-selectall"  href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}">  <span id="info-popup" class="disabled">Show</span></a>
                         </button>
                       </li>
                     </ul>

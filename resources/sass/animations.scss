@@ -126,6 +126,24 @@
     transition:         all .175s;
 }
 
+
+.i-drop-selectall {
+  width: 100%;
+  line-height: 2.8!important;
+  position: relative;
+}
+
+.i-drop-selectall:hover {
+  span {
+    display: block!important;
+    position: absolute;
+  }
+}
+
+.disabled-pop-up {
+  display: none;
+}
+
 @keyframes toggleBtnAnim {
     0% {
         -webkit-transform: scale(1,1);

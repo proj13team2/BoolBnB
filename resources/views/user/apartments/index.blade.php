@@ -59,17 +59,18 @@
                     <ul class="list-inline" id="options">
                       <li class="option">
                         <button class="material-button option1" type="button">
-                          <a class="fa fa-pencil-alt white-text no-hoover" href="{{ route('user.apartments.edit', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
+                          <a class="fa fa-pencil-alt white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.edit', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
                         </button>
                       </li>
                       <li class="option">
                         <button class="material-button option2" type="button">
-                          <a class="fa fa-chart-bar white-text no-hoover" href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
+                          <a class="fa fa-chart-bar white-text no-hoover i-drop-selectall" href="{{ route('user.apartments.stats', ['apartment' => $user_apartment->id]) }}" aria-hidden="true"></a>
                         </button>
                       </li>
                       <li class="option">
-                        <button class="material-button option3" type="button">
-                          <a class="fas fa-eye white-text no-hoover"  href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}"></a>
+                        <button class="material-button option3 " type="button">
+                          <span>Show</span>
+                          <a class="fas fa-eye white-text no-hoover i-drop-selectall"  href="{{ route('user.apartments.show', ['apartment' => $user_apartment->id]) }}"></a>
                         </button>
                       </li>
                     </ul>
@@ -96,6 +97,5 @@
 @endsection
 
 @push('head')
-  <script src="{{ asset('js/app.js')}}"></script>
   <script src="{{ asset('js/delete.js')}}"></script>
 @endpush

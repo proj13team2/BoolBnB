@@ -20,4 +20,17 @@ $('.button.delete-confirm').on('click', function (event) {
         }
     });
 });
+
+
+// animation-button-index
+$('.material-button-toggle').on("click", function () {
+    $(this).parent().addClass('open');
+    $('.open ul .option').toggleClass('scale-on');
+    $(this).parent().removeClass('open');
+});
+
+
+$( ".i-drop-selectall" ).mouseover(function() {
+  console.log('ciao');
+});
 })

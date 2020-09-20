@@ -5,12 +5,7 @@ const $ = require('jquery');
 
 $(document).ready(function(){
 
-    // animation-button-index
-    $('.material-button-toggle').on("click", function () {
-        $(this).parent().addClass('open');
-        $('.open ul .option').toggleClass('scale-on');
-        $(this).parent().removeClass('open');
-    });
+    
 
 
     const key = '8J0GxEHlPS0kzUv7VYyhyy8PmaaKDcr1';

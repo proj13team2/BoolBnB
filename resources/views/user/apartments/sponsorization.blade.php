@@ -33,10 +33,10 @@
 
       <div class="card-deck mb-3  text-center">
 
-                <form method="post" class="row col-12"id="payment-form" action="{{route('user.apartment.sponsorization', ['apartment' => $apartment->id])}}">
+                <form method="post" class="row col-sm-12 col-md-12 col-lg-12 col-xl-12"id="payment-form" action="{{route('user.apartment.sponsorization', ['apartment' => $apartment->id])}}">
                     @csrf
                         @foreach ($sponsors as $sponsor)
-                          <div class="card mb-4 shadow-sm">
+                          <div class="card col-sm-12  col-lg-12 col-xl-12 mb-4 shadow-sm">
                           <div class="card-header">
                             <h4 class="my-0 font-weight-normal">{{$sponsor->sponsorship_level}}</h4>
                           </div>

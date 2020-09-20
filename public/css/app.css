@@ -11645,6 +11645,7 @@ img {
   outline: none !important;
   border-radius: 50%;
   border: 8px solid #007b5e !important;
+  margin: auto;
 }
 
 .mapboxgl-ctrl-top-right .mapboxgl-ctrl {

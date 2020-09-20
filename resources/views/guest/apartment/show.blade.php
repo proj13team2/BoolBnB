@@ -95,7 +95,7 @@
                   </div>
                 </div>
               </section>
-            <div class="col-6 p-5 mb-3">
+            <div class=" col-sm-12 col-md-12 col-lg-6 col-xl-6 p-5 mb-3">
               <div class="green-background  text-white form-message-touser">
                 <form action="{{route('guest.message', ['apartment' => $apartment->id])}}" method="post" name = "message">
                     @csrf
@@ -112,7 +112,7 @@
                 </form>
               </div>
             </div>
-            <div class="col-6 p-3 mb-3">
+            <div class=" col-sm-12 col-md-12 col-lg-6 col-xl-6 p-3 mb-3">
                 <div id="map" style="width: 480px; height: 480px;"></div>
             </div>
         </div>

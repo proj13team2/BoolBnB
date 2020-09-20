@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="d-flex align-items-center">
-                    <h1 class="mt-3 mb-3">New apartment</h1>
+                    <h1 class="mt-3 mb-3">EDIT APARTMENT : {{$apartment->title}}</h1>
                 </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">

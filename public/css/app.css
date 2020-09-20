@@ -11950,6 +11950,10 @@ how to remove the virtical space around the range input in IE*/
   font-size: 20px !important;
 }
 
+#sponsored {
+  border-radius: 0px !important;
+}
+
 .services-height {
   max-height: 110px !important;
 }
@@ -12012,7 +12016,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .blue {
-  background-color: lightblue;
+  background-color: lightblue !important;
 }
 
 .gray {
@@ -12032,7 +12036,7 @@ how to remove the virtical space around the range input in IE*/
 }
 
 .Wheat {
-  background-color: Wheat;
+  background-color: Wheat !important;
 }
 
 .Wheat {

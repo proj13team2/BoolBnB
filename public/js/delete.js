@@ -37621,8 +37621,18 @@ $(document).ready(function () {
     $('.open ul .option').toggleClass('scale-on');
     $(this).parent().removeClass('open');
   });
+  $('.index-admin-container').on("mouseleave", function () {
+    $(this).parent().addClass('open');
+    $('.open ul .option').removeClass('scale-on');
+    $(this).parent().removeClass('open');
+  });
   $(".i-drop-selectall").mouseover(function () {
     console.log('ciao');
+    $(this).children('#info-popup').removeClass('disabled');
+  });
+  $(".i-drop-selectall").mouseleave(function () {
+    console.log('ciao');
+    $(this).children('#info-popup').addClass('disabled');
   });
 });
 

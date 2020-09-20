@@ -51,8 +51,14 @@
                     <img src="{{ asset('storage/' . $user_apartment->src) }}" alt="">
                 @endif
               </div>
-              <div class="col-2 pt-5">
+              <div class="col-2 pt-5 text-center">
                   <p class="white-text aligne-center" id="price-tag">{{ $user_apartment->price }} <i class="fas fa-euro-sign white-text"></i></p>
+                  @forelse ($user_apartment->sponsors as $sponsor)
+                  @if($sponsor->pivot->end_date > ($mutable ?? ''))
+                      <img id="sponsored" class="mt-3"src="https://i.ibb.co/wBrstP0/pngkey-com-false-stamp-png-1383873.png" height="40px" width="100px"alt="Money">
+                  @endif
+                  @empty
+                  @endforelse
               </div>
                 <div class="col-5 ">
                   <div class="material-button-anim">
@@ -78,12 +84,6 @@
                     </button>
                   </div>
                 </div>
-                {{-- @forelse ($user_apartment->sponsors as $sponsor)
-                @if($sponsor->pivot->end_date > ($mutable ?? ''))
-                    <img src="https://www.partinicolive.it/home1/wp-content/uploads/2019/12/sponsor.jpg" height="35px" alt="Money">
-                @endif
-                @empty
-                @endforelse --}}
             </div>
             </div>
               @empty

@@ -6,9 +6,11 @@
 
 @section('content')
 <div class="container">
-    <div class="row">
-        <img src="{{ asset('storage/' . $apartment->src) }}" alt="{{$apartment->title}}" class="col-offset-2 col-4">
-        <h1 id='titolo-apt-stats' data-apartment='{{$apartment->id}}'>{{$apartment->title}}</h1>
+    <div class="d-flex align-center flex-column justify-content-center text-center">
+        <h1 id='titolo-apt-stats' class="green-text" data-apartment='{{$apartment->id}}'>{{$apartment->title}}</h1>
+        <div class="col-12 text-center mt-4">
+            <img src="{{ asset('storage/' . $apartment->src) }}" alt="{{$apartment->title}}" class="col-6 col-offset-6">
+        </div>
     </div>
     <div class="row">
         <div class="offset-2 col-8 container-chart p-5 ">
@@ -23,6 +25,9 @@
             <canvas id="chartMessages"></canvas>
             <h5 id='total-messages' class="text-center" >Totale messaggi: <span></span> </h5>
         </div>
+    </div>
+    <div class="pt-3 text-center">
+      <a class="btn btn-small btn-info "  href="{{ route('user.apartments.index') }}">  Back - Dashboard </a>
     </div>
 </div>
 @endsection

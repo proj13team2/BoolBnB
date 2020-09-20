@@ -79,6 +79,10 @@
                         <textarea type="text" name="square_meters" class="form-control" id="square_meters" placeholder="square_meters">{{ old('square_meters', $apartment->square_meters)}}</textarea>
                     </div>
                     <div class="form-group">
+                        <label for="rating">rating</label>
+                        <textarea type="text" name="rating" class="form-control" id="rating" placeholder="rating">{{ old('rating') }}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="immagine">Immagine di copertina</label>
                         <input type="file" name="src" class="form-control-file" multiple>
                         @if ($apartment->src)

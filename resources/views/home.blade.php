@@ -19,8 +19,6 @@
         </div>
   </div>
   <div class="jumbotron">
-  <h1 class="display-4 green-text">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
 </div>
 @endsection
 {{-- HOMEPAGEHEADER --}}
@@ -53,8 +51,10 @@
       </div>
       <div class="section-first-d text-center col-lg-6  col-md-6 col-sm-12">
         <div class="descript">
-          <h4 class="descript-title green-text pl-3 pt-5">Find your style!</h4>
-          <p class="descript-text  pt-5">Assisti a performance live interattive e partecipa a conversazioni con persone di Broadway e non solo. Tutto senza uscire di casa.</p>
+          <h4 class="descript-title green-text pl-3 pt-5">Explore All!</h4>
+          <p class="descript-text  pt-5">Broadway Online Experiences
+              Join live, interactive performances and conversations with people from Broadway and beyond. Without leaving home.
+          </p>
         </div>
       </div>
     </section>
@@ -66,14 +66,14 @@
 @section('section-second')
   <section id="what-we-do">
   <div class="container">
-    <h2 class="section-title mb-2 h1">What we do</h2>
-    <p class="text-center text-muted h5">Having and managing a correct marketing strategy is crucial in a fast moving market.</p>
+    <h2 class="section-title mb-2 h1">Get to know FlitzBo</h2>
+    <p class="text-center text-muted h5">Welcome to the FlitzBo travel community. Wherever you go, we have a place for you.</p>
     <div class="row mt-5">
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-1">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">A place to stay for every trip</h3>
+            <p class="card-text">Whether you’re looking for a treehouse for the weekend or an entire home for the whole family, a warm welcome awaits. Behind every stay is a real person who can give you the details you need to check in and feel at home.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -81,8 +81,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-2">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">One-of-a-kind experiences</h3>
+            <p class="card-text">`FlitzBo` Experiences are not your typical tour. Whether you’re on a trip, exploring your own city, or staying at home, learn something new from an expert host. Choose from dance lessons, pasta making – even yoga with goats.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -90,8 +90,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-3">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">Why host on FlitzBo?</h3>
+            <p class="card-text">No matter what kind of home or room you have to share, FlitzBo makes it simple and secure to host travellers. You’re in full control of your availability, prices, house rules, and how you interact with guests.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -101,8 +101,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-4">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">We have your back</h3>
+            <p class="card-text">To keep you, your home, and your belongings safe, we cover every booking with $1M USD in property damage protection and another $1M USD in insurance against accidents.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -110,8 +110,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-5">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">Charge what you want</h3>
+            <p class="card-text">You always get to pick your price. Need help? We have tools to help you match demand in your area.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -119,8 +119,8 @@
       <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
         <div class="card">
           <div class="card-block block-6">
-            <h3 class="card-title">Special title</h3>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <h3 class="card-title">Pay low fees</h3>
+            <p class="card-text">There’s no cost to sign up. FlitzBo generally charges hosts a fixed 3% per reservation, among the lowest fees in the industry.</p>
             <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
           </div>
         </div>
@@ -139,7 +139,7 @@
         <div class="col-12">
           <div class="heading mb-80">
             <h2 class="green-text">Testimonials</h2>
-            <p class="mb-20">Looked up one of the more obscure Latin words, consectetur, from <br class="d-none d-md-block"> a Lorem Ipsum passage, and going</p>
+            <p class="mb-20">Stories from the FlitzBo Community</p>
             <hr class=" green-border line bw-2 mx-auto line-sm mb-5">
             <hr class=" green-border line bw-2 mx-auto">
           </div>
@@ -186,9 +186,10 @@
                     </div>
                     <div class="client-desc bg-white d-flex align-items-center">
                       <div class="text mx-auto">
-                        <h4 class="mb-10 green-text">Evelyn Riley</h4>
-                        <h6 class="green-text-light">Hade Of Idea</h6>
-                        <p>Richard McClintock, a Latin professor at Hampden <br class="d-none d-lg-block">College in Virginia, looked up one of the more obscure Latin words</p>
+                        <h4 class="mb-10 green-text">Giorgio Vanni</h4>
+                        <h6 class="green-text-light">Manager</h6>
+                        <p>A busy Italian keeps pace with tradition <br class="d-none d-lg-block">In between marketing Carnegie Hall and marathoning, Giorgio enjoys connecting with guests who stay in his home.</p>
+                        <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
                       </div>
                     </div>
                   </div>
@@ -199,9 +200,10 @@
                     </div>
                     <div class="client-desc bg-white d-flex align-items-center">
                       <div class="text mx-auto">
-                        <h4 class="mb-10 green-text">Ethan Green</h4>
+                        <h4 class="mb-10 green-text">Mario Super</h4>
                         <h6 class="green-text-light">Photograper</h6>
-                        <p>Many desktop publishing packages and web page editors <br class="d-none d-lg-block"> now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum'</p>
+                        <p>Mario Super is a Photograper, patient advocate, and FlitzBo host living in Busto Arsizio.  <br class="d-none d-lg-block"> We Are FlitzBo: Hosts answer life’s challenges in an unexpected way</p>
+                        <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
                       </div>
                     </div>
                   </div>
@@ -238,9 +240,10 @@
                     </div>
                     <div class="client-desc bg-white d-flex align-items-center">
                       <div class="text mx-auto">
-                        <h4 class="mb-10 green-text">Susan Gardner</h4>
-                        <h6 class="green-text-light">Manager</h6>
-                        <p>The point of using Lorem Ipsum is that it has a more <br class="d-none d-lg-block"> normal distribution of letters, as opposed to using 'Content here, content here point of using</p>
+                        <h4 class="mb-10 green-text">Chiara Mente</h4>
+                        <h6 class="green-text-light">Artist</h6>
+                        <p>Second Act: A new beginning <br class="d-none d-lg-block">Chiara is an artist and host. She has traveled the world extensively—her home and creations reflect her talent, aesthetic, and collections from her travels.</p>
+                        <a href="" title="Read more" class="read-more" >Read more<i class="fa fa-angle-double-right ml-2"></i></a>
                       </div>
                     </div>
                   </div>

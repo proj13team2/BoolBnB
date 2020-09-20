@@ -12184,3 +12184,9 @@ main {
   opacity: 0.6;
 }
 
+a.read-more {
+  color: #007b5e !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+

@@ -99,33 +99,33 @@
           		<div class="container">
           			<div class="row text-center text-xs-center text-sm-center text-md-center">
           				<div class="col-xs-12 col-sm-4 col-md-4">
-          					<h5>Quick links</h5>
+          					<h5>ABOUT</h5>
           					<ul class="list-unstyled quick-links">
           						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>How FlitzBo works</a></li>
           						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
           						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
           						<li><a href=""><i class="fa fa-angle-double-right"></i>Videos</a></li>
           					</ul>
           				</div>
           				<div class="col-xs-12 col-sm-4 col-md-4">
-          					<h5>Quick links</h5>
+          					<h5>COMMUNITY</h5>
           					<ul class="list-unstyled quick-links">
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>Videos</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Diversity & Belonging</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Accessibility</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>FlitzBo Associates</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Frontline Stays</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Invite friends</a></li>
           					</ul>
           				</div>
           				<div class="col-xs-12 col-sm-4 col-md-4">
-          					<h5>Quick links</h5>
+          					<h5>HOST</h5>
           					<ul class="list-unstyled quick-links">
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>Home</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>About</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>FAQ</a></li>
-          						<li><a href=""><i class="fa fa-angle-double-right"></i>Get Started</a></li>
-          						<li><a href="" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Host your home</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Host an Online Experience</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Host an Experience</a></li>
+          						<li><a href=""><i class="fa fa-angle-double-right"></i>Message from CEO Momo Ramadori</a></li>
+          						<li><a href="" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Open Homes</a></li>
           					</ul>
           				</div>
           			</div>
@@ -143,8 +143,8 @@
           			</div>
           			<div class="row">
           				<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
-          					<p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Elavon, Inc. Georgia [a wholly owned subsidiary of U.S. Bancorp, Minneapolis, MN]</p>
-          					<p class="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+          					<p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u> is a Registered MSP/ISO of Piazza Cesare Beccaria, Inc. Milano </p>
+          					<p class="h6">© All right Reversed.</p>
           				</div>
           				<hr>
           			</div>

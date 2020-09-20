@@ -88,7 +88,7 @@
             </div>
               @empty
                 <div class="col-12">
-                  <h1 class="green-text text-center">Non è presente alcun appartamento</h1>
+                  <h1 class="pt-5 green-text text-center">Non è presente alcun appartamento</h1>
                 </div>
               @endforelse
         </div>

@@ -12134,6 +12134,7 @@ body {
 main {
   font-family: "Roboto Slab", serif;
   z-index: 9999 !important;
+  min-height: 272px;
 }
 
 .no-width {

@@ -12,16 +12,16 @@
     </div>
     <div class="row">
         <div class="offset-2 col-8 container-chart p-5 ">
-            <h3 class="p-2 text-center">Visualizzazione totale</h3>
+            <h3 class="p-2 text-center">Visualizzazioni</h3>
             <canvas id="chartViews"></canvas>
-            <h5 id='total-visualizations' class="p-5 text-center">Totale visualizzazioni: <span></span> </h5>
+            <h5 id='total-visualizations' class="pb-5 text-center">Totale visualizzazioni: <span></span> </h5>
         </div>
     </div>
     <div class="row">
         <div class="offset-2 col-8  container-chart p-5">
-            <h3 class="p-2 text-center">Messaggi totale</h3>
+            <h3 class="p-2 text-center">Messaggi ricevuti</h3>
             <canvas id="chartMessages"></canvas>
-            <h5 id='total-messages' >Totale messaggi: <span></span> </h5>
+            <h5 id='total-messages' class="text-center" >Totale messaggi: <span></span> </h5>
         </div>
     </div>
 </div>
